@@ -1,0 +1,24 @@
+/* .el-dialog__title{
+	float: left;
+}
+.el-dialog{
+		width: 700.8px;
+		overflow: auto;
+	}
+.el-checkbox:last-of-type {
+    margin-right: 30px;
+}
+@media (max-width: 736px){
+	.el-dialog{
+		width: 382.8px;
+	}
+}
+@media (max-width:320px) {
+	.el-dialog{
+		width: 90%;
+	}
+} */
+.img-dialog {
+	-webkit-box-shadow: 0 1px 3px #FFFFFF;
+	box-shadow: 0 1px 3px #FFFFFF;
+}

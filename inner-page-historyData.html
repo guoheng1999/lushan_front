@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>0级历史观测数据</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+		<!-- import element-ui CSS -->
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/historyData/dataShow.css" rel="stylesheet">
+		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
+
+		<!-- 导入阿里的图标样式文件 -->
+		<link rel="stylesheet" href="assets/css/iconfont.css">
+		<link rel="stylesheet" href="assets/css/left_nav.css">
+
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import element-ui JavaScript -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+		<!-- =======================================================
+  * Template Name: Medilab - v4.3.0
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+	</head>
+
+	<body>
+
+		<!-- ======= Top Bar ======= -->
+		<div id="topbar" class="d-flex align-items-center fixed-top">
+			<div class="container d-flex justify-content-between">
+				<div class="contact-info d-flex align-items-center">
+					<i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+					<i class="bi bi-phone"></i> +1 5589 55488 55
+				</div>
+				<div class="d-none d-lg-flex social-links align-items-center">
+					<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+					<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+					<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+					<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+				</div>
+			</div>
+		</div>
+
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+
+
+		<main id="main" style="margin-top: 0;">
+
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<h2>数据产品</h2>
+						<ol>
+							<li><a href="index.html">首页</a></li>
+							<li>数据产品</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<!-- End Breadcrumbs Section -->
+
+			<section class="inner-page">
+				<div class="container">
+					<div class="row">
+						<div class="menu-box">
+							<!-- 展示与隐藏侧边栏 开始-->
+							<!-- <input type="checkbox" id="menu-btn">
+					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
+							<!-- 展示与隐藏侧边栏 结束-->
+							<div class="menu">
+								<!-- 侧边栏的标题 开始-->
+								<div class="menu-title">
+									<h1 style="font-size: 23px; color: #000;">详细数据</h1>
+								</div>
+								<!-- 侧边栏的标题 结束-->
+
+								<!-- 每一项导航 -->
+								<div class="menu-item">
+									<input type="checkbox" id="menu-item1">
+									<label for="menu-item1">
+										<i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
+										<span>0级历史观测数据</span>
+										<i class="menu-item-last iconfont icon-down"></i>
+									</label>
+									<div class="menu-content">
+										<ul class="nav nav-tabs flex-column">
+											<li>
+												<a data-bs-toggle="tab" href="#tab-1">便携式自动气象站</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-2">雨量筒</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-3">能见度仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-4">云高仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-5">雨滴谱仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-6">雾滴谱仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-7">颗粒物仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-8">微雨雷达</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-9">微波辐射计</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="set-line"></div>
+								<div class="menu-item">
+									<input type="checkbox" id="menu-item2">
+									<label for="menu-item2">
+										<i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+										<span><a href="inner-page-currentData.html"
+												style="color: #000000;">1级现代观测数据</a></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-9 mt-4 mt-lg-0">
+							<div id="history-list">
+								<!-- 历史数据名称列表 -->
+								<template>
+									<el-table
+										:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+										style="width: 100%">
+										<el-table-column label="Date" prop="id">
+										</el-table-column>
+										<el-table-column label="Name" prop="name">
+										</el-table-column>
+										<el-table-column align="right">
+											<template slot="header" slot-scope="scope">
+												<el-input v-model="search" size="mini" placeholder="按文件名搜索" />
+											</template>
+											<template slot-scope="scope">
+
+												<el-button size="mini"
+													@click="download_csvData(scope.$index,scope.row)">
+													下载
+												</el-button>
+												<el-button size="mini" @click="showDialog(scope.row)">
+													原始图片
+												</el-button>
+												<!-- 图片列表弹窗 -->
+
+												<el-dialog custom-class="historyData-dialog" :title="dialog_title"
+													:visible.sync="dialogVisible"
+													style="text-align: center; margin-top: -13vh;">
+													<template>
+														<el-table ref="multipleTable"
+															@selection-change="handleSelectionChange"
+															:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+															style="width: 100%">
+															<el-table-column label="Date" prop="id" type="selection">
+															</el-table-column>
+															<el-table-column label="Name" prop="name">
+															</el-table-column>
+															<el-table-column align="right">
+																<template slot="header" slot-scope="scope">
+																	<el-input v-model="search" size="mini"
+																		placeholder="按图像名搜索" />
+																</template>
+																<template slot-scope="scope">
+																	<el-button size="mini"
+																		@click="img_dialogVisible = true">
+																		查看
+																	</el-button>
+																	<!-- 具体图像 -->
+																	<el-dialog custom-class="login-dialog img-dialog"
+																		title="" :visible.sync="img_dialogVisible"
+																		style="text-align: center;" append-to-body>
+																		<div class="demo-image__placeholder">
+																			<div class="block">
+																				<el-image :src="src"></el-image>
+																			</div>
+																		</div>
+																	</el-dialog>
+																</template>
+															</el-table-column>
+														</el-table>
+														<el-pagination @size-change="handleSizeChange"
+															@current-change="handleCurrentChange"
+															:current-page="currentPage" :page-sizes="[2, 5, 8]"
+															layout="total, sizes, prev, pager, next, jumper"
+															:total="tableData.length">
+														</el-pagination>
+													</template>
+													<span slot="footer" class="dialog-footer">
+
+														<el-button type="primary" @click="download_csvData()">
+															下载
+														</el-button>
+													</span>
+												</el-dialog>
+											</template>
+										</el-table-column>
+									</el-table>
+									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+										:current-page="currentPage" :page-sizes="[2, 5, 10]" :page-size="pagesize"
+										layout="total, sizes, prev, pager, next, jumper" :total="tableData.length">
+									</el-pagination>
+								</template>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</section>
+
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+		<footer id="footer">
+			<div class="container d-md-flex py-4">
+
+				<div class="me-md-auto text-center text-md-start">
+					<div class="copyright">
+						&copy; Copyright <strong><span>中国气象局人工影响天气中心</span></strong>. All Rights Reserved
+					</div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+	<style>
+		.el-dialog__title {
+			float: left;
+		}
+
+		.historyData-dialog {
+			margin-top: 2%;
+			width: 700.8px;
+			height: 700px;
+			overflow: auto;
+		}
+
+		.el-checkbox:last-of-type {
+			margin-right: 30px;
+		}
+
+		@media (max-width: 736px) {
+			.el-dialog {
+				width: 382.8px;
+			}
+		}
+
+		@media (max-width:320px) {
+			.el-dialog {
+				width: 90%;
+			}
+		}
+	</style>
+	<script src="assets/js/login/login.js"></script>
+	<script>
+		const cityOptions = ['上海', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京',
+			'广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳',
+			'广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州',
+			'深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州',
+			'深圳'
+		];
+		new Vue({
+			el: '#history-list',
+			data() {
+				return {
+					src: 'assets/img/about.jpg',
+					dialog_title: '',
+					tableData: [{
+						id: '01',
+						name: '文件名01'
+					}, {
+						id: '02',
+						name: '文件名02'
+					}, {
+						id: '03',
+						name: '文件名03'
+					}, {
+						id: '04',
+						name: '文件名04'
+					}, {
+						id: '05',
+						name: '文件名05'
+					}, {
+						id: '06',
+						name: '文件名06'
+					}, {
+						id: '07',
+						name: '文件名07'
+					}, {
+						id: '08',
+						name: '文件名08'
+
+					}, {
+						id: '09',
+						name: '文件名09'
+					}, {
+						id: '10',
+						name: '文件名10'
+					}, {
+						id: '11',
+						name: '文件名11'
+					}, {
+						id: '12',
+						name: '文件名12'
+					}, {
+						id: '13',
+						name: '文件名13'
+					}],
+					search: '',
+					dialogVisible: false,
+					img_dialogVisible: false,
+					currentPage: 1,
+					pagesize: 9,
+					//dataShow
+					checkAll: false,
+					checkedCities: ['上海', '北京'],
+					cities: cityOptions,
+					isIndeterminate: true,
+					url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+					srcList: [
+						'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+						'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
+					]
+				}
+			},
+			created() {
+				// this.handleUserList()
+			},
+			methods: {
+				open(index, row) {
+					console.log(index, row);
+				},
+				// 初始页currentPage、初始每页数据数pagesize和数据data
+				handleSizeChange: function(size) {
+					this.pagesize = size;
+					console.log(this.pagesize) //每页下拉显示数据
+				},
+				handleCurrentChange: function(currentPage) {
+					this.currentPage = currentPage;
+					console.log(this.currentPage) //点击第几页
+				},
+				// handleUserList() {
+				//     this.$http.get('http://localhost:3000/userList').then(res => {  //这是从本地请求的数据接口，
+				//     this.userList = res.body
+				// })
+				handleCheckAllChange(val) {
+					this.checkedCities = val ? cityOptions : [];
+					this.isIndeterminate = false;
+				},
+				handleCheckedCitiesChange(value) {
+					let checkedCount = value.length;
+					this.checkAll = checkedCount === this.cities.length;
+					this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+				},
+
+				download_csvData(index, data) {
+					console.log(index, data); //点击第几页
+					this.$message.success('请求成功，等待服务器响应！');
+				},
+				toggleSelection(rows) {
+					if (rows) {
+						rows.forEach(row => {
+							this.$refs.multipleTable.toggleRowSelection(row);
+						});
+					} else {
+						this.$refs.multipleTable.clearSelection();
+					}
+				},
+				handleSelectionChange(val) {
+					this.multipleSelection = val;
+				},
+				showDialog(row){
+					this.dialog_title = row.name
+					this.dialogVisible = true
+				}
+			}
+		})
+	</script>
+
+</html>

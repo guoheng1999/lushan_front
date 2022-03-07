@@ -1,0 +1,29 @@
+.el-form{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+}
+.upload-demo{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+}
+.el-input{
+	width: 335.5px;
+}
+.el-form-item__content {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.el-register-btn{
+	margin-top: 3%;
+}
+#form-image{
+	width: 335.5px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}

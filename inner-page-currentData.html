@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>1级现代观测数据</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
+
+		<!-- 导入阿里的图标样式文件 -->
+		<link rel="stylesheet" href="assets/css/iconfont.css">
+		<link rel="stylesheet" href="assets/css/left_nav.css">
+
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+
+		<!-- import moment JavaScript -->
+		<script src="assets/js/moment.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<!-- import element-ui CSS -->
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import element-ui JavaScript -->
+		<script src="assets/js/element-ui/lib/index.js"></script>
+	</head>
+
+	<body>
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+		<main id="main" style="margin-top: 0;">
+
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<h2>数据产品</h2>
+						<ol>
+							<li><a href="index.html">首页</a></li>
+							<li>数据产品</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<!-- End Breadcrumbs Section -->
+
+			<section class="inner-page">
+				<div class="container">
+					<div class="row">
+						<div class="menu-box">
+							<!-- 展示与隐藏侧边栏 开始-->
+							<!-- <input type="checkbox" id="menu-btn">
+					        <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
+							<!-- 展示与隐藏侧边栏 结束-->
+							<div class="menu">
+								<!-- 侧边栏的标题 开始-->
+								<div class="menu-title">
+									<h1 style="font-size: 23px; color: #000;">详细数据</h1>
+								</div>
+								<!-- 侧边栏的标题 结束-->
+
+								<!-- 每一项导航 -->
+								<div class="menu-item">
+									<input type="checkbox" id="menu-item1">
+									<label for="menu-item1">
+										<i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
+										<span>1级现代观测数据</span>
+										<i class="menu-item-last iconfont icon-down"></i>
+									</label>
+									<div class="menu-content">
+										<ul class="nav nav-tabs flex-column">
+											<li>
+												<a data-bs-toggle="tab" href="#tab-1">便携式自动气象站</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-2">雨量筒</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-3">能见度仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-4">云高仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-5">雨滴谱仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-6">雾滴谱仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-7">颗粒物仪</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-8">微雨雷达</a>
+											</li>
+											<li class="nav-item">
+												<a data-bs-toggle="tab" href="#tab-9">微波辐射计</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="set-line"></div>
+								<div class="menu-item">
+									<input type="checkbox" id="menu-item2">
+									<label for="menu-item2">
+										<i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
+										<span><a href="inner-page-historyData.html"
+												style="color: #000000;">0级历史观测数据</a></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-9 mt-4 mt-lg-0">
+							<div class="tab-content">
+								<p id="deviceName">便携式自动气象站
+								<p>
+								<div class="tab-pane active show" id="tab-1">
+									<div class="row calendar-box">
+										<div class="w3pay-right wthree-pay-grid">
+											<div id="calender">
+												<div>
+													<el-radio v-model="dataPickerOption" label="year" border>按年选择数据
+													</el-radio>
+													<el-radio v-model="dataPickerOption" label="week" border>按月下载数据
+													</el-radio>
+													<el-button type="primary" @click="downloadData()" rounds>下载数据
+													</el-button>
+												</div>
+												<div class="block" v-if="dataPickerOption=='year'" style="margin-top: 2%;">
+													<span class="demonstration">起始年</span>
+													<el-date-picker v-model="fromDate" type='year' placeholder="选择年">
+													</el-date-picker>
+
+													<span class="demonstration">结束年</span>
+													<el-date-picker v-model="endDate" type='year' placeholder="选择年">
+													</el-date-picker>
+
+												</div>
+												<div class="block" v-if="dataPickerOption=='week'" style="margin-top: 2%;">
+													<span class="demonstration">起始月</span>
+													<el-date-picker v-model="fromDate" type='month' placeholder="选择月">
+													</el-date-picker>
+
+													<span class="demonstration">结束月</span>
+													<el-date-picker v-model="endDate" type='month' placeholder="选择月">
+													</el-date-picker>
+												</div>
+												<el-calendar v-model="value" style="height:40%" class="el_cal_out">
+													<template slot="dateCell" slot-scope="{ data}">
+														<p style="margin:0px">
+															{{ data.day.split('-').slice(2).join() }}<br />
+															<!--标记-->
+														<div v-for="(i, index) in dayTime" :key="index">
+															<div v-if="data.day==i" class="budge"></div>
+														</div>
+														</p>
+													</template>
+												</el-calendar>
+											</div>
+										</div>
+									</div>
+									<div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</section>
+
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+		<footer id="footer">
+			<div class="container d-md-flex py-4">
+
+				<div class="me-md-auto text-center text-md-start">
+					<div class="copyright">
+						&copy; Copyright <strong><span>中国气象局人工影响天气中心</span></strong>. All Rights Reserved
+					</div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+	</body>
+	<style>
+		/* 日历 */
+		.budge {
+			width: 8px;
+			height: 8px;
+			background: #e6a23c;
+			border-radius: 50%;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+	</style>
+	<script src="assets/js/login/login.js"></script>
+	<script>
+		new Vue({
+			el: '#calender',
+			data() {
+				return {
+					dataPickerOption: 'year',
+					value: new Date(),
+					dayTime: ["2022-03-28", "2022-01-26", "2022-03-16"],
+					fromDate: '',
+					endDate: '',
+				}
+			},
+			created() {
+	
+			},
+			watch: {
+				dataPickerOption() {
+					this.fromDate = ''
+					this.endDate = ''
+				}
+	
+			},
+			computed: {
+				datePickStatus: function() {
+					if (this.fromDate != '' && this.endDate != '') {
+						return true
+					} else {
+						return false
+					}
+				}
+			},
+			methods: {
+				/**
+				 * 得到开始和结束日期，得到中间所有天返回数组
+				 * @param {String} string 开始日期'2021-7-1'
+				 * @param {String} String 结束日期'2021-8-1'
+				 * @return {Array} ['2021-07-01', '2021-07-01'...., '2021-08-01']
+				 */
+				getDayArr(startDay, endDay) {
+					let startVal = moment(new Date(startDay)).format('YYYY-MM-DD')
+					let dayArr = []
+					while (moment(startVal).isBefore(endDay)) {
+						dayArr.push(startVal)
+						// 自增
+						startVal = moment(new Date(startVal)).add(1, 'day').format('YYYY-MM-DD')
+					}
+					// 将结束日期的天放进数组
+					dayArr.push(moment(new Date(endDay)).format('YYYY-MM-DD'))
+					return dayArr
+					
+				},
+				downloadData() {
+					if (this.datePickStatus) {
+						console.log(this.getDayArr(this.fromDate, this.endDate))
+						this.$message.success('请求成功，等待服务器响应！');
+					} else {
+						this.$message.error('请先选择下载日期！');
+					}
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,122 @@
+<header id="header" class="fixed-top">
+	<div class="container d-flex align-items-center">
+		<a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+
+		<nav id="navbar" class="navbar order-last order-lg-0">
+			<ul>
+				<li><a class="nav-link scrollto active" href="index.html#hero">主页<i class="fas"></i></a></li>
+				<li class="dropdown"><a href="index.html#devices"><span>观测设备</span> <i
+							class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li><a href="inner-page-device.html?device_id=0">自动气象站</a></li>
+						<li><a href="inner-page-device.html?device_id=1">雨量筒</a></li>
+						<li><a href="inner-page-device.html?device_id=2">能见度仪</a></li>
+						<li><a href="inner-page-device.html?device_id=3">云高仪</a></li>
+						<li><a href="inner-page-device.html?device_id=4">雨滴谱仪</a></li>
+						<li><a href="inner-page-device.html?device_id=5">雾滴谱仪</a></li>
+						<li><a href="inner-page-device.html?device_id=6">颗粒物仪</a></li>
+						<li><a href="inner-page-device.html?device_id=7">微雨雷达</a></li>
+						<li><a href="inner-page-device.html?device_id=8">微波辐射计</a></li>
+					</ul>
+				<li class="dropdown"><a href="index.html#datasets"><span>数据产品</span> <i
+							class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li><a href="inner-page-historyData.html">0级历史观测数据</a></li>
+						<li><a href="inner-page-currentData.html">1级现代观测数据</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="index.html#customer">用户服务 <i class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li><a href="index.html#customer">用户须知</a></li>
+						<li><a href="index.html#faq">常见问题</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="index.html#why-us">关于我们 <i class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li><a href="index.html#why-us">中国气象局人工影响天气中心</a></li>
+						<li><a href="index.html#faq">庐山云雾物理实验基地</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="#"><span>友情链接</span> <i class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li><a href="http://www.cma.gov.cn/">中国气象局</a></li>
+						<li><a href="http://www.camscma.cn/">中国气象科学研究院</a></li>
+						<li><a href="http://data.cma.cn/">国家气象科学数据中心</a></li>
+					</ul>
+				</li>
+			</ul>
+			<i class="bi bi-list mobile-nav-toggle"></i>
+		</nav>
+		<!-- .navbar -->
+		<!-- 登录注册 -->
+		<div id="login">
+			<el-button
+				style="background: #1977cc; border-radius: 50px; margin-left: 25px; color: #fff; cursor: pointer; padding: 8px 25px; white-space: nowrap; font-size: 14px;"
+				size="mini" @click="login_dialogVisible = true">
+				登录/注册
+			</el-button>
+			<el-dialog custom-class="login-dialog" title="登录/注册" :visible.sync="login_dialogVisible"
+				style="text-align: center;" append-to-body>
+				<div id="gg"
+					style=" display: flex; align-content: center; justify-content: center; flex-direction: column;">
+					<el-form
+						style="display: flex; align-content: center; justify-content: center; flex-direction: column;"
+						:model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
+						<el-form-item>
+							<el-input style="width: 90pv" placeholder="邮箱" type="text" v-model="ruleForm.name"
+								autocomplete="off">
+								<i slot="prefix" class="el-input__icon el-icon-user"></i>
+							</el-input>
+						</el-form-item>
+						<el-form-item style="width: 90pv" prop="pass">
+							<el-input placeholder="密码" type="password" v-model="ruleForm.pass" autocomplete="off">
+								<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
+							</el-input>
+						</el-form-item>
+						<el-form-item class="el-register-btn">
+							<el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+							<el-button @click="pushToRegister('register.html')">注册</el-button>
+						</el-form-item>
+					</el-form>
+					<a href="#" style="margin-left: 75%;">忘记密码？</a>
+				</div>
+			</el-dialog>
+		</div>
+	</div>
+</header>
+<script>
+    new Vue({
+		el: '#login',
+		data() {
+			return {
+				fileList: [],
+				login_dialogVisible: false,
+				ruleForm: {
+					pass: '',
+					name: ''
+				}
+			}
+		},
+		methods: {
+			submitForm(formName) {
+				this.$refs[formName].validate((valid) => {
+					if (valid) {
+						alert('submit!');
+					} else {
+						console.log('error submit!!');
+						return false;
+					}
+				});
+			},
+			pushToRegister(url) {
+				window.location.href = url;
+			}
+		}
+	})
+</script>
+<style>
+	.login-dialog {
+		width: 360px;
+		/* height: 320px; */
+	}
+</style>

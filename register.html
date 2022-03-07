@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>欢迎注册</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<!--element-ui css-->
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<!--注册-->
+		<link href="assets/css/register.css" rel="stylesheet" type="text/css" media="all">
+		<link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import JavaScript -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	</head>
+
+	<body>
+
+		<!-- ======= Top Bar ======= -->
+		<div id="topbar" class="d-flex align-items-center fixed-top">
+			<div class="container d-flex justify-content-between">
+				<div class="contact-info d-flex align-items-center">
+					<i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+					<i class="bi bi-phone"></i> +1 5589 55488 55
+				</div>
+				<div class="d-none d-lg-flex social-links align-items-center">
+					<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+					<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+					<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+					<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+				</div>
+			</div>
+		</div>
+
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+
+
+		<main id="main" style="margin-top: 0;">
+
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<h2>注册</h2>
+						<ol>
+							<li><a href="index.html">首页</a></li>
+							<li>注册</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<!-- End Breadcrumbs Section -->
+
+			<section class="inner-page">
+				<div class="main-agileits">
+					<div class="sub-main" id="register-from">
+						<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
+							<div class="form-text">
+								<el-form-item>
+									<el-input placeholder="姓名" type="text" v-model="ruleForm.name" autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-user"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item>
+									<el-select prefix-icon="el-icon-search" v-model="degrees.value"
+										placeholder="请选择您的职称或学历">
+										<i slot="prefix" class="el-input__icon el-icon-suitcase-1"></i>
+										<el-option v-for="item in degrees" :key="item.value" :label="item.label"
+											:value="item.value">
+										</el-option>
+									</el-select>
+								</el-form-item>
+								<el-form-item>
+									<el-select prefix-icon="el-icon-search" v-model="value" filterable
+										placeholder="请搜索或选择您所在的机构">
+										<i slot="prefix" class="el-input__icon el-icon-school"></i>
+										<el-option-group v-for="group in options" :key="group.label"
+											:label="group.label">
+											<el-option v-for="item in group.options" :key="item.value"
+												:label="item.label" :value="item.value">
+											</el-option>
+										</el-option-group>
+									</el-select>
+								</el-form-item>
+								<el-form-item prop="pass">
+									<el-input placeholder="密码" type="password" v-model="ruleForm.pass"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item prop="checkPass">
+									<el-input placeholder="确认密码" type="password" v-model="ruleForm.checkPass"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-lock"></i>
+									</el-input>
+								</el-form-item>
+							</div>
+							<div id="form-image">
+								<el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/"
+									:on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList"
+									:limit="2" :on-exceed="handleExceed" :before-upload="beforeAvatarUpload"
+									list-type="picture">
+									<!-- :before-upload = "beforeAvatarUpload" -->
+									<el-button size="medium" type="primary">点击上传</el-button>
+									<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过2M</div>
+								</el-upload>
+								<el-form-item class="el-register-btn">
+									<el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+									<el-button @click="resetForm('ruleForm')">重置</el-button>
+								</el-form-item>
+							</div>
+						</el-form>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</section>
+
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+		<footer id="footer">
+			<div class="container d-md-flex py-4">
+
+				<div class="me-md-auto text-center text-md-start">
+					<div class="copyright">
+						&copy; Copyright <strong><span style="font-weight: bold;">中国气象局人工影响天气中心</span></strong>. All
+						Rights Reserved
+					</div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+
+	</body>
+
+	<script src="assets/js/login/login.js"></script>
+	<script>
+		new Vue({
+			el: '#register-from',
+			data() {
+				var validatePass = (rule, value, callback) => {
+					if (value === '') {
+						callback(new Error('请输入密码'));
+					} else {
+						if (this.ruleForm.checkPass !== '') {
+							this.$refs.ruleForm.validateField('checkPass');
+						}
+						callback();
+					}
+				};
+				var validatePass2 = (rule, value, callback) => {
+					if (value === '') {
+						callback(new Error('请再次输入密码'));
+					} else if (value !== this.ruleForm.pass) {
+						callback(new Error('两次输入密码不一致!'));
+					} else {
+						callback();
+					}
+				};
+				return {
+					fileList: [],
+					ruleForm: {
+						pass: '',
+						checkPass: ''
+					},
+					rules: {
+						pass: [{
+							validator: validatePass,
+							trigger: 'blur'
+						}],
+						checkPass: [{
+				 		validator: validatePass2,
+							trigger: 'blur'
+						}]
+					},
+					options: [{
+						label: '热门城市',
+						options: [{
+							value: 'Shanghai',
+							label: '上海'
+						}, {
+				   value: 'Beijing',
+							label: '北京'
+						}]
+					}, {
+						label: '城市名',
+						options: [{
+							value: 'Chengdu',
+							label: '成都'
+						}, {
+							value: 'Shenzhen',
+							label: '深圳'
+						}, {
+							value: 'Guangzhou',
+							label: '广州'
+						}, {
+							value: 'Dalian',
+							label: '大连'
+						}]
+				 }],
+					degrees: [{
+						value: '选项1',
+						label: '大学本科'
+					}, {
+						value: '选项2',
+						label: '硕士'
+					}, {
+						value: '选项3',
+						label: '博士'
+					}],
+					value: ''
+				};
+			},
+			methods: {
+				submitForm(formName) {
+					this.$refs[formName].validate((valid) => {
+						if (valid) {
+							alert('submit!');
+						} else {
+							console.log('error submit!!');
+			 			return false;
+						}
+					});
+				},
+				resetForm(formName) {
+					this.$refs[formName].resetFields();
+				},
+				handleRemove(file, fileList) {
+					console.log(file, fileList);
+				},
+				handlePreview(file) {
+					console.log(file);
+				},
+				handleExceed(file) {
+					this.$message.error('只允许上传两张图片');
+				},
+				beforeAvatarUpload(file) {
+					const isJPG = file.type === 'image/jpeg';
+					const isPNG = file.type === 'image/png';
+					const isPG = (isJPG || isPNG) //限制图片格式为jpg / png
+					const isLt2M = file.size / 1024 / 1024 < 2; //限制图片大小
+					if (!isPG) {
+						this.$message.error('上传图片只能是 JPG 或 PNG 格式!');
+					}
+					if (!isLt2M) {
+						this.$message.error('上传图片大小不能超过 2MB!');
+					}
+					return isPG && isLt2M && isSize
+				}
+			}
+		})
+	</script>
+</html>

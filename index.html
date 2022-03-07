@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>中国气象局人工影响天气中心</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.ico" rel="icon">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<link href="assets/css/login.css" />
+		<!-- Template Main CSS File -->
+		<script src="assets/js/jquery.min.js"></script>
+		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/font-awesome.css" rel="stylesheet">
+		<script src="assets/js/jquery-3.2.1.min.js"></script>
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import JavaScript -->
+		<script src="assets/js/element-ui/lib/index.js"></script>
+	</head>
+
+	<body>
+
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<!-- End Header -->
+
+		<!-- ======= Hero Section ======= -->
+		<section id="hero"></section>
+		<!-- End Hero -->
+		<main id="main">
+
+			<!-- ======= Devices Section ======= -->
+			<section id="devices"></section>
+			<!-- End Devices Section -->
+
+			<!-- ======= Datasets Section ======= -->
+			<section id="datasets"></section>
+			<!-- End Services Section -->
+
+			<!-- ======= Customer Section ======= -->
+			<section id="customer"></section>
+			<!-- End About Section -->
+
+			<!-- ======= Why Us Section ======= -->
+			<section id="why-us"></section>
+			<!-- End Why Us Section -->
+
+		</main>
+		<!-- End #main -->
+		<footer id="copyright"></footer>
+		<!-- End Footer -->
+		<div id="preloader"></div>
+		<!-- Login & Logout -->
+		<div class="cd-user-modal">
+			<div class="cd-user-modal-container">
+				<ul class="cd-switcher">
+					<li><a href="#0">用户登录</a></li>
+					<li><a href="#0">注册新用户</a></li>
+				</ul>
+
+				<div id="cd-login">
+					<form class="cd-form">
+						<!-- 登录表单 -->
+					</form>
+				</div>
+
+				<div id="cd-signup">
+					<form class="cd-form">
+						<!-- 注册表单 -->
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+		<script>
+			$("#head").load("head.html")
+			$("#hero").load("components/hero.html")
+			$("#devices").load("components/device.html")
+			$("#datasets").load("components/datasets.html")
+			$("#customer").load("components/customer.html")
+			$("#why-us").load("components/why-us.html")
+			$("#copyright").load("components/copyright.html")
+		</script>
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+	</body>
+	<script>
+		new Vue({
+			el: '#login',
+			data() {
+				return {
+					fileList: [],
+					login_dialogVisible: false,
+					ruleForm: {
+						pass: '',
+						name: ''
+					}
+				}
+			},
+			methods: {
+				submitForm(formName) {
+					this.$refs[formName].validate((valid) => {
+						if (valid) {
+							alert('submit!');
+						} else {
+							console.log('error submit!!');
+							return false;
+						}
+					});
+				},
+				pushToRegister(url) {
+					window.location.href = url;
+				}
+			}
+		})
+	</script>
+</html>

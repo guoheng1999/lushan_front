@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>1级现代观测数据</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
+
+		<!-- 导入阿里的图标样式文件 -->
+		<link rel="stylesheet" href="assets/css/iconfont.css">
+		<link rel="stylesheet" href="assets/css/left_nav.css">
+
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- import api.js -->
+		<script src="assets/js/axios.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<script src="assets/js/api.js"></script>
+		<!-- import moment JavaScript -->
+		<script src="assets/js/moment.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<!-- import element-ui CSS -->
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import element-ui JavaScript -->
+		<script src="assets/js/element-ui/lib/index.js"></script>
+
+
+		<!-- =======================================================
+  * Template Name: Medilab - v4.3.0
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+	</head>
+
+	<body>
+
+		<!-- ======= Top Bar ======= -->
+		<!-- <div id="topbar" class="d-flex align-items-center fixed-top">
+        <div class="container d-flex justify-content-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+                <i class="bi bi-phone"></i> +1 5589 55488 55
+            </div>
+            <div class="d-none d-lg-flex social-links align-items-center">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+            </div>
+        </div>
+    </div> -->
+
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+
+
+		<main id="main" style="margin-top: 0;">
+
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<h2>观测设备</h2>
+						<ol>
+							<li><a href="index.html">首页</a></li>
+							<li>观测设备</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<!-- End Breadcrumbs Section -->
+
+			<div id="device-introduction" class="inner-page">
+				<div class="container">
+					<el-container>
+						<el-aside width="13%">
+							<el-col>
+								<el-menu class="el-menu-vertical-demo"
+									:default-active="this.device_list[this.activate_id]">
+									<!-- :index 要是字符串类型,而for中的index是数值,如果直接写会报错,但不影响运行.所以加个空转为字符串型就不错了 -->
+									<el-menu-item @click.native="changeDevice(i)" :index="item.deviceName"
+										v-for="(item,i) in this.device_list" :key="item.deviceName">
+										<span>{{item.deviceName}}</span>
+									</el-menu-item>
+								</el-menu>
+							</el-col>
+						</el-aside>
+						<el-main>
+							<el-container>
+								<el-aside width="70%">
+									<div class="textBox">
+
+										<h2>{{this.activate_device_name}}概述</h2>
+										<p>&nbsp; &nbsp;
+											HM-YQX5型产品
+										</p>
+										<h2>{{this.activate_device_name}}特点</h2>
+										<p>*采用先进的传感技术实时测量</p>								
+										<h2>{{this.activate_device_name}}应用领域</h2>
+										<p>*气象监测</p>
+										<h2>{{this.activate_device_name}}技术参数表</h2>
+										<p>*桥梁隧道</p>
+									</div>
+								</el-aside>
+								<el-main>
+									<el-image :src="active_src">
+										<div slot="error" class="image-slot">
+											<i class="el-icon-picture-outline"></i>
+										</div>
+									</el-image>
+								</el-main>
+							</el-container>
+						</el-main>
+					</el-container>
+				</div>
+			</div>
+
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+		<footer id="footer">
+			<div class="container d-md-flex py-4">
+
+				<div class="me-md-auto text-center text-md-start">
+					<div class="copyright">
+						&copy; Copyright <strong><span>中国气象局人工影响天气中心</span></strong>. All Rights Reserved
+					</div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+		<script>
+			new Vue({
+				el: '#device-introduction',
+				data() {
+					return {
+						device_list: ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达", "微波辐射计", ],
+						active_id: 0,
+						activate_device_name: "自动气象站",
+						active_src: ''
+					}
+				},
+				beforeMount() {
+					this.deviceInfo()
+
+					this.active_id = this.checkUrl()
+
+					this.activate_device_name = this.device_list[this.active_id]
+					
+					this.active_src = 'assets/img/devices/' + this.activate_device_name +'.jpg'
+				},
+				watch: {
+
+				},
+				computed: {},
+				methods: {
+					changeDevice(key) {
+						this.active_id = key
+						this.activate_device_name = this.device_list[this.active_id].deviceName
+						this.active_src = 'assets/img/devices/' + this.activate_device_name +'.jpg'
+					},
+					checkUrl() {
+						href_str = window.location.href
+						if (href_str.indexOf("device_id") != -1) {
+							buffer = href_str.substring(href_str.lastIndexOf('device_id'))
+							buffer = buffer.split("=")[1]
+							try {
+								id = parseInt(buffer)
+								return id
+							} catch (e) {
+								//TODO handle the exception
+								return 0
+							}
+						}
+						return 0
+					},
+					deviceInfo() {
+						response = getDeviceInfo()
+						response.then(res => {
+							this.device_list = res.data.data || ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪",
+								"颗粒物仪", "微雨雷达", "微波辐射计"
+							]
+						}).catch(err => {
+							this.device_list = ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达",
+								"微波辐射计"
+							]
+						})
+					}
+				}
+			})
+		</script>
+
+	</body>
+	<script src="assets/js/login/login.js"></script>
+	<style>
+		/* 导航栏 */
+		.el-menu-vertical-demo span {
+			font-size: 18px;
+		}
+
+		.el-container {
+			padding: 0;
+		}
+
+		.el-descriptions__title {
+			font-size: 20px;
+		}
+
+		.device-introduce {
+			height: 100%;
+		}
+
+		.textBox h2 {
+			text-align: center !important;
+			background: url(./assets/img/icon33.png) no-repeat center bottom !important;
+			line-height: 36px !important;
+			padding-bottom: 10px !important;
+			font-size: 20px !important;
+			color: #062640;
+			margin: 6px 0 !important;
+		}
+	</style>
+</html>
