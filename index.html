@@ -23,13 +23,13 @@
 		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
 		<link href="assets/css/login.css" />
+		<link href="assets/css/learn-more.css" rel="stylesheet">
 		<!-- Template Main CSS File -->
 		<script src="assets/js/jquery.min.js"></script>
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/font-awesome.css" rel="stylesheet">
 		<script src="assets/js/jquery-3.2.1.min.js"></script>
 		<script src="assets/js/vue/vue.js"></script>
-		<!-- import JavaScript -->
 		<script src="assets/js/element-ui/lib/index.js"></script>
 	</head>
 
@@ -43,7 +43,10 @@
 		<section id="hero"></section>
 		<!-- End Hero -->
 		<main id="main">
-
+			<!-- ======= Learn More Section ======= -->
+			<section id="learn-more"></section>
+			<!-- End Learn More Section -->
+			
 			<!-- ======= Devices Section ======= -->
 			<section id="devices"></section>
 			<!-- End Devices Section -->
@@ -59,7 +62,6 @@
 			<!-- ======= Why Us Section ======= -->
 			<section id="why-us"></section>
 			<!-- End Why Us Section -->
-
 		</main>
 		<!-- End #main -->
 		<footer id="copyright"></footer>
@@ -99,6 +101,7 @@
 		<script>
 			$("#head").load("head.html")
 			$("#hero").load("components/hero.html")
+			$("#learn-more").load("components/learn-more.html")
 			$("#devices").load("components/device.html")
 			$("#datasets").load("components/datasets.html")
 			$("#customer").load("components/customer.html")
@@ -108,6 +111,7 @@
 		<!-- Template Main JS File -->
 		<script src="assets/js/main.js"></script>
 	</body>
+	<script src="assets/js/learn-more.js"></script>
 	<script>
 		new Vue({
 			el: '#login',

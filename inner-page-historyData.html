@@ -169,19 +169,25 @@
 								<!-- 历史数据名称列表 -->
 								<template>
 									<el-table
-										:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+										:data="historyData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
 										style="width: 100%">
-										<el-table-column label="Date" prop="id">
+										<el-table-column min-width="15%" label="文件夹" prop="folder">
 										</el-table-column>
-										<el-table-column label="Name" prop="name">
+										<el-table-column min-width="15%" label="记录时间" prop="time">
 										</el-table-column>
-										<el-table-column align="right">
+										<el-table-column min-width="15%" label="站点" prop="site">
+										</el-table-column>
+										<el-table-column min-width="15%" label="页数" prop="pages">
+										</el-table-column>
+										<el-table-column min-width="15%" label="清晰度" prop="definition">
+										</el-table-column>
+										<el-table-column min-width="25%" align="right">
 											<template slot="header" slot-scope="scope">
 												<el-input v-model="search" size="mini" placeholder="按文件名搜索" />
 											</template>
 											<template slot-scope="scope">
 
-												<el-button size="mini"
+												<el-button size="mini" style="margin-bottom: 5%;"
 													@click="download_csvData(scope.$index,scope.row)">
 													下载
 												</el-button>
@@ -227,7 +233,7 @@
 														</el-table>
 														<el-pagination @size-change="handleSizeChange"
 															@current-change="handleCurrentChange"
-															:current-page="currentPage" :page-sizes="[2, 5, 8]"
+															:current-page="currentPage" :page-sizes="[9, 15, 20]" :page-size="pagesize"
 															layout="total, sizes, prev, pager, next, jumper"
 															:total="tableData.length">
 														</el-pagination>
@@ -243,8 +249,8 @@
 										</el-table-column>
 									</el-table>
 									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-										:current-page="currentPage" :page-sizes="[2, 5, 10]" :page-size="pagesize"
-										layout="total, sizes, prev, pager, next, jumper" :total="tableData.length">
+										:current-page="historyData_currentPage" :page-sizes="[10, 20, 50]" :page-size="historyData_pagesize"
+										layout="total, sizes, prev, pager, next, jumper" :total="historyData.length">
 									</el-pagination>
 								</template>
 							</div>
@@ -315,18 +321,103 @@
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script>
-		const cityOptions = ['上海', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京',
-			'广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳',
-			'广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州',
-			'深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州', '深圳', '北京', '广州', '深圳', '广州', '深圳', '广州',
-			'深圳'
-		];
 		new Vue({
 			el: '#history-list',
 			data() {
 				return {
 					src: 'assets/img/about.jpg',
 					dialog_title: '',
+					historyData: [{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					},{
+						folder: 'A3-02',
+						time: '1962-1965',
+						site: '天控所',
+						pages: '14',
+						definition: '98.63%'
+					}],
 					tableData: [{
 						id: '01',
 						name: '文件名01'
@@ -371,18 +462,13 @@
 					search: '',
 					dialogVisible: false,
 					img_dialogVisible: false,
+					historyData_currentPage: 1,
+					historyData_pagesize: 10,
 					currentPage: 1,
 					pagesize: 9,
 					//dataShow
 					checkAll: false,
-					checkedCities: ['上海', '北京'],
-					cities: cityOptions,
-					isIndeterminate: true,
-					url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					srcList: [
-						'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-						'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-					]
+					isIndeterminate: true
 				}
 			},
 			created() {
@@ -432,7 +518,7 @@
 					this.multipleSelection = val;
 				},
 				showDialog(row){
-					this.dialog_title = row.name
+					this.dialog_title = "文件夹  |" + row.folder + "|  包含的图片"
 					this.dialogVisible = true
 				}
 			}

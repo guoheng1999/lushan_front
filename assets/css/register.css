@@ -1,8 +1,9 @@
-.el-form{
+.register-form{
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center;
 	justify-content: center;
+	flex-direction: column;
 }
 .upload-demo{
 	display: flex;

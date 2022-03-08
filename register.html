@@ -97,34 +97,28 @@
 
 			<section class="inner-page">
 				<div class="main-agileits">
-					<div class="sub-main" id="register-from">
-						<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
+					<div class="sub-main" id="register-form">
+						<el-form class="register-form" :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
 							<div class="form-text">
-								<el-form-item>
+								<el-form-item prop="name">
 									<el-input placeholder="姓名" type="text" v-model="ruleForm.name" autocomplete="off">
 										<i slot="prefix" class="el-input__icon el-icon-user"></i>
 									</el-input>
 								</el-form-item>
-								<el-form-item>
-									<el-select prefix-icon="el-icon-search" v-model="degrees.value"
-										placeholder="请选择您的职称或学历">
-										<i slot="prefix" class="el-input__icon el-icon-suitcase-1"></i>
-										<el-option v-for="item in degrees" :key="item.value" :label="item.label"
-											:value="item.value">
-										</el-option>
-									</el-select>
+								<el-form-item prop="email">
+									<el-input placeholder="邮箱" type="text" v-model="ruleForm.email" autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-message"></i>
+									</el-input>
 								</el-form-item>
-								<el-form-item>
-									<el-select prefix-icon="el-icon-search" v-model="value" filterable
-										placeholder="请搜索或选择您所在的机构">
+								<el-form-item prop="phone">
+									<el-input placeholder="手机号" type="text" v-model="ruleForm.phone" autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-phone"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item prop="organization">
+									<el-input placeholder="组织" type="text" v-model="ruleForm.organization" autocomplete="off">
 										<i slot="prefix" class="el-input__icon el-icon-school"></i>
-										<el-option-group v-for="group in options" :key="group.label"
-											:label="group.label">
-											<el-option v-for="item in group.options" :key="item.value"
-												:label="item.label" :value="item.value">
-											</el-option>
-										</el-option-group>
-									</el-select>
+									</el-input>
 								</el-form-item>
 								<el-form-item prop="pass">
 									<el-input placeholder="密码" type="password" v-model="ruleForm.pass"
@@ -145,8 +139,8 @@
 									:limit="2" :on-exceed="handleExceed" :before-upload="beforeAvatarUpload"
 									list-type="picture">
 									<!-- :before-upload = "beforeAvatarUpload" -->
-									<el-button size="medium" type="primary">点击上传</el-button>
-									<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过2M</div>
+									<el-button size="medium" type="primary" icon="el-icon-upload2">上传审核资料</el-button>
+									<div slot="tip" class="el-upload__tip">只能上传jpg/png/pdf文件，且不超过2M</div>
 								</el-upload>
 								<el-form-item class="el-register-btn">
 									<el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -186,7 +180,7 @@
 	<script src="assets/js/login/login.js"></script>
 	<script>
 		new Vue({
-			el: '#register-from',
+			el: '#register-form',
 			data() {
 				var validatePass = (rule, value, callback) => {
 					if (value === '') {
@@ -210,6 +204,10 @@
 				return {
 					fileList: [],
 					ruleForm: {
+						name: '',
+						eamil: '',
+						phone: '',
+						organization: '',
 						pass: '',
 						checkPass: ''
 					},
@@ -222,43 +220,7 @@
 				 		validator: validatePass2,
 							trigger: 'blur'
 						}]
-					},
-					options: [{
-						label: '热门城市',
-						options: [{
-							value: 'Shanghai',
-							label: '上海'
-						}, {
-				   value: 'Beijing',
-							label: '北京'
-						}]
-					}, {
-						label: '城市名',
-						options: [{
-							value: 'Chengdu',
-							label: '成都'
-						}, {
-							value: 'Shenzhen',
-							label: '深圳'
-						}, {
-							value: 'Guangzhou',
-							label: '广州'
-						}, {
-							value: 'Dalian',
-							label: '大连'
-						}]
-				 }],
-					degrees: [{
-						value: '选项1',
-						label: '大学本科'
-					}, {
-						value: '选项2',
-						label: '硕士'
-					}, {
-						value: '选项3',
-						label: '博士'
-					}],
-					value: ''
+					}
 				};
 			},
 			methods: {
