@@ -100,70 +100,15 @@
 			<section class="inner-page">
 				<div class="container">
 					<div class="row">
-						<div class="menu-box">
 							<!-- 展示与隐藏侧边栏 开始-->
 							<!-- <input type="checkbox" id="menu-btn">
 					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
 							<!-- 展示与隐藏侧边栏 结束-->
-							<div class="menu">
-								<!-- 侧边栏的标题 开始-->
-								<div class="menu-title">
-									<h1 style="font-size: 23px; color: #000;">详细数据</h1>
-								</div>
-								<!-- 侧边栏的标题 结束-->
-
-								<!-- 每一项导航 -->
-								<div class="menu-item">
-									<input type="checkbox" id="menu-item1">
-									<label for="menu-item1">
-										<i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
-										<span>0级历史观测数据</span>
-										<i class="menu-item-last iconfont icon-down"></i>
-									</label>
-									<div class="menu-content">
-										<ul class="nav nav-tabs flex-column">
-											<li>
-												<a data-bs-toggle="tab" href="#tab-1">便携式自动气象站</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-2">雨量筒</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-3">能见度仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-4">云高仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-5">雨滴谱仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-6">雾滴谱仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-7">颗粒物仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-8">微雨雷达</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-9">微波辐射计</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="set-line"></div>
-								<div class="menu-item">
-									<input type="checkbox" id="menu-item2">
-									<label for="menu-item2">
-										<i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
-										<span><a href="inner-page-currentData.html"
-												style="color: #000000;">1级现代观测数据</a></span>
-									</label>
-								</div>
-							</div>
+						<div id="data-menu" class="menu-box">
 						</div>
+						<script>
+							$("#data-menu").load("components/data-menu.html")
+						</script>
 						<div class="col-lg-9 mt-4 mt-lg-0">
 							<div id="history-list">
 								<!-- 历史数据名称列表 -->
