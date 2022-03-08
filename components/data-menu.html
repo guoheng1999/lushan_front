@@ -7,37 +7,37 @@
 			</template>
 			<el-submenu index="1-1">
 				<span slot="title">云滴谱数据(A2/A3)</span>
-				<el-menu-item index="1-1-1">云滴谱数据A2</el-menu-item>
-				<el-menu-item index="1-1-2">云滴谱数据A3</el-menu-item>
+				<el-menu-item index="1-1-1"><span onclick="pushTo('inner-page-historyData.html?device-id=0')">云滴谱数据A2</span></el-menu-item>
+				<el-menu-item index="1-1-2"><span onclick="pushTo('inner-page-historyData.html?device-id=1')">云滴谱数据A3</span></el-menu-item>
 			</el-submenu>
-			<el-menu-item index="1-2">雾滴谱原始数据(a)</el-menu-item>
+			<el-menu-item index="1-2"><span onclick="pushTo('inner-page-historyData.html?device-id=2')">雾滴谱原始数据(a)</span></el-menu-item>
 			<el-submenu index="1-3">
 				<span slot="title">雨滴谱数据(B2/B3)</span>
-				<el-menu-item index="1-3-1">雨滴谱数据A2</el-menu-item>
-				<el-menu-item index="1-3-2">雨滴谱数据A3</el-menu-item>
+				<el-menu-item index="1-3-1"><span onclick="pushTo('inner-page-historyData.html?device-id=3')">雨滴谱数据A2</span></el-menu-item>
+				<el-menu-item index="1-3-2"><span onclick="pushTo('inner-page-historyData.html?device-id=4')">雨滴谱数据A3</span></el-menu-item>
 			</el-submenu>
 			<el-submenu index="1-4">
 				<span slot="title">盐核数据(C1/C2)</span>
-				<el-menu-item index="1-4-1">盐核数据C1</el-menu-item>
-				<el-menu-item index="1-4-2">盐核数据C2</el-menu-item>
+				<el-menu-item index="1-4-1"><span onclick="pushTo('inner-page-historyData.html?device-id=5')">盐核数据C1</span></el-menu-item>
+				<el-menu-item index="1-4-2"><span onclick="pushTo('inner-page-historyData.html?device-id=6')">盐核数据C2</span></el-menu-item>
 			</el-submenu>
 			
-			<el-menu-item index="1-5">云的宏观观测数据(D1)</el-menu-item>
-			<el-menu-item index="1-6">双经纬仪测云数据(F3)</el-menu-item>
+			<el-menu-item index="1-5"><span onclick="pushTo('inner-page-historyData.html?device-id=7')">云的宏观观测数据(D1)</span></el-menu-item>
+			<el-menu-item index="1-6"><span onclick="pushTo('inner-page-historyData.html?device-id=8')">双经纬仪测云数据(F3)</span></el-menu-item>
 		</el-submenu>
 		<el-submenu index="2">
 			<template slot="title">
 				<span slot="title">1级现代观测数据</span>
 			</template>
-			<el-menu-item index="2-1">便携式六要素自动气象站</el-menu-item>
-			<el-menu-item index="2-2">雨量筒</el-menu-item>
-			<el-menu-item index="2-3">能见度仪</el-menu-item>
-			<el-menu-item index="2-4">云高仪</el-menu-item>
-			<el-menu-item index="2-5">雨滴谱仪</el-menu-item>
-			<el-menu-item index="2-6">雾滴谱仪</el-menu-item>
-			<el-menu-item index="2-7">颗粒物仪</el-menu-item>
-			<el-menu-item index="2-8">微雨雷达</el-menu-item>
-			<el-menu-item index="2-9">微波辐射计</el-menu-item>
+			<el-menu-item index="2-1"><span onclick="pushTo('inner-page-currentData.html?device-id=0')">便携式六要素自动气象站<span></el-menu-item>
+			<el-menu-item index="2-2"><span onclick="pushTo('inner-page-currentData.html?device-id=1')">雨量筒</span></el-menu-item>
+			<el-menu-item index="2-3"><span onclick="pushTo('inner-page-currentData.html?device-id=2')">能见度仪</span></el-menu-item>
+			<el-menu-item index="2-4"><span onclick="pushTo('inner-page-currentData.html?device-id=3')">云高仪</span></el-menu-item>
+			<el-menu-item index="2-5"><span onclick="pushTo('inner-page-currentData.html?device-id=4')">雨滴谱仪</span></el-menu-item>
+			<el-menu-item index="2-6"><span onclick="pushTo('inner-page-currentData.html?device-id=5')">雾滴谱仪</span></el-menu-item>
+			<el-menu-item index="2-7"><span onclick="pushTo('inner-page-currentData.html?device-id=6')">颗粒物仪</span></el-menu-item>
+			<el-menu-item index="2-8"><span onclick="pushTo('inner-page-currentData.html?device-id=7')">微雨雷达</span></el-menu-item>
+			<el-menu-item index="2-9"><span onclick="pushTo('inner-page-currentData.html?device-id=8')">微波辐射计</span></el-menu-item>
 	</el-menu>
 </div>
 <script>

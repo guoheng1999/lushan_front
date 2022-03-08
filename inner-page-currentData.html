@@ -104,12 +104,18 @@
 												</el-button>
 											</div>
 										</el-header>
-										<el-main>
-											<el-row style="margin-bottom: 45px;">
+										<el-main style="text-align: center;">
+											<el-row style="display: inline-flex;">
+												<el-button @click="pervious" style="margin-right: 5px;"  icon="el-icon-arrow-left" circle></el-button>
+												<el-radio-group v-model="showYear">
+													<el-radio-button style="margin: 0;"  v-for="(item,index) in yearList" :label="item"></el-radio-button>
+												</el-radio-group>
+												<el-button @click="next"  style="margin-left: 5px;" icon="el-icon-arrow-right" circle></el-button>
+											</el-row>
+											<el-row v-if="isRefresh">
 												<el-col :span="6" v-for="(item,index) in monthList" :key="item">
-													<span
-														style="margin-left: 45%; margin-bottom: -5px;">{{item}}月</span>
-													<el-calendar :value="'2022-' + item">
+													<span style="margin-bottom: -5px;">{{item}}月</span>
+													<el-calendar :value="showYear +'-' + item">
 													</el-calendar>
 												</el-col>
 											</el-row>
@@ -208,10 +214,15 @@
 					dayTime: ["2022-03-28", "2022-01-26", "2022-03-16"],
 					fromDate: '',
 					endDate: '',
-					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+					isRefresh: true,
+					defaultYear: 2022,
+					yearList: [2018, 2019, 2020, 2021, 2022],
 				}
 			},
-			beforeMount() {},
+			beforeMount() {
+				this.createYearList(this.defaultYear)
+			},
 			watch: {
 				dataPickerOption() {
 					this.fromDate = ''
@@ -248,6 +259,7 @@
 					dayArr.push(moment(new Date(endDay)).format('YYYY-MM-DD'))
 					return dayArr
 				},
+
 				downloadData() {
 					console.log(this.getMonthArea(0))
 					if (this.datePickStatus) {
@@ -256,6 +268,18 @@
 					} else {
 						this.$message.error('请先选择下载日期！');
 					}
+				},
+				createYearList(indexYear) {
+					this.yearList = Array(7).fill(0).map((v, i) => i + indexYear)
+				},
+				
+				pervious() {
+					this.defaultYear -= 1
+					this.createYearList(this.defaultYear)
+				},
+				next() {
+					this.defaultYear += 1
+					this.createYearList(this.defaultYear)
 				}
 			}
 		})
