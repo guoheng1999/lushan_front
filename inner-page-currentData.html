@@ -105,10 +105,10 @@
 											</div>
 										</el-header>
 										<el-main>
-											<el-row :gutter="20">
-												<el-col :span="6" v-for="(item,index) in 12">
+											<el-row>
+												<el-col :span="6" v-for="(item,index) in monthList" style="margin-bottom: 20px;">
 													<span>{{item}}月</span>
-													<el-calendar :range="['2022-01-03', '2022-02-06']">
+													<el-calendar :value="'2022-' + item">
 													</el-calendar>
 												</el-col>
 											</el-row>
@@ -186,7 +186,7 @@
 					dayTime: ["2022-03-28", "2022-01-26", "2022-03-16"],
 					fromDate: '',
 					endDate: '',
-					monthList: []
+					monthList: ['01', '02','03', '04','05', '06','07', '08','09', '10','11', '12']
 				}
 			},
 			beforeMount() {
@@ -275,12 +275,6 @@
 					} else {
 						this.$message.error('请先选择下载日期！');
 					}
-				},
-				createMonthDict() {
-					for (var i = 0; i <= 12; i++) {
-						this.monthList.push(this.getMonday(this.getFirstDayOfMonth(this.showYear, i)))
-					}
-					console.log(this.monthList)
 				}
 			}
 		})
