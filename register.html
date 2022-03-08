@@ -244,18 +244,19 @@
 					console.log(file);
 				},
 				handleExceed(file) {
-					this.$message.error('只允许上传两张图片');
+					this.$message.error('最多只允许上传两张图片或PDF文档');
 				},
 				beforeAvatarUpload(file) {
 					const isJPG = file.type === 'image/jpeg';
 					const isPNG = file.type === 'image/png';
-					const isPG = (isJPG || isPNG) //限制图片格式为jpg / png
+					const isPDF = file.type === 'application/pdf';
+					const isPG = (isJPG || isPNG ||isPDF) //限制图片格式为jpg / png
 					const isLt2M = file.size / 1024 / 1024 < 2; //限制图片大小
 					if (!isPG) {
-						this.$message.error('上传图片只能是 JPG 或 PNG 格式!');
+						this.$message.error('上传文件只能是 JPG 或 PNG 格式图片或 PDF文档!');
 					}
 					if (!isLt2M) {
-						this.$message.error('上传图片大小不能超过 2MB!');
+						this.$message.error('上传文件大小不能超过 2MB!');
 					}
 					return isPG && isLt2M && isSize
 				}
