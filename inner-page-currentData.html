@@ -27,7 +27,8 @@
 		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.css" >
+		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.min.css">
 		<!-- Template Main CSS File -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
@@ -38,7 +39,8 @@
 
 		<!-- js -->
 		<script src="assets/js/jquery.min.js"></script>
-
+		<script src="assets/bootstrap-year-calendar/js/bootstrap-year-calendar.js"></script>
+		<script src="assets/bootstrap-year-calendar/js/bootstrap-year-calendar.min.js"></script>
 		<!-- import moment JavaScript -->
 		<script src="assets/js/moment.js"></script>
 		<script src="assets/js/moment.min.js"></script>
@@ -73,125 +75,45 @@
 				</div>
 			</section>
 			<!-- End Breadcrumbs Section -->
-
 			<section class="inner-page">
 				<div class="container">
 					<div class="row">
-						<div class="menu-box">
-							<!-- 展示与隐藏侧边栏 开始-->
-							<!-- <input type="checkbox" id="menu-btn">
-					        <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
-							<!-- 展示与隐藏侧边栏 结束-->
-							<div class="menu">
-								<!-- 侧边栏的标题 开始-->
-								<div class="menu-title">
-									<h1 style="font-size: 23px; color: #000;">详细数据</h1>
-								</div>
-								<!-- 侧边栏的标题 结束-->
-
-								<!-- 每一项导航 -->
-								<div class="menu-item">
-									<input type="checkbox" id="menu-item1">
-									<label for="menu-item1">
-										<i class="menu-item-icon iconfont icon-a-01-shujuzhongxin"></i>
-										<span>1级现代观测数据</span>
-										<i class="menu-item-last iconfont icon-down"></i>
-									</label>
-									<div class="menu-content">
-										<ul class="nav nav-tabs flex-column">
-											<li>
-												<a data-bs-toggle="tab" href="#tab-1">便携式自动气象站</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-2">雨量筒</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-3">能见度仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-4">云高仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-5">雨滴谱仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-6">雾滴谱仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-7">颗粒物仪</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-8">微雨雷达</a>
-											</li>
-											<li class="nav-item">
-												<a data-bs-toggle="tab" href="#tab-9">微波辐射计</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="set-line"></div>
-								<div class="menu-item">
-									<input type="checkbox" id="menu-item2">
-									<label for="menu-item2">
-										<i class="menu-item-icon iconfont icon-a-02-kechengguanli"></i>
-										<span><a href="inner-page-historyData.html"
-												style="color: #000000;">0级历史观测数据</a></span>
-									</label>
-								</div>
-							</div>
+						<div id="data-menu" class="menu-box">
 						</div>
+						<script>
+							$("#data-menu").load("components/data-menu.html")
+						</script>
 						<div class="col-lg-9 mt-4 mt-lg-0">
 							<div class="tab-content">
-								<p id="deviceName">便携式自动气象站
+								<p id="deviceName" style="margin-top: 10px;">便携式自动气象站
 								<p>
-								<div class="tab-pane active show" id="tab-1">
-									<div class="row calendar-box">
-										<div class="w3pay-right wthree-pay-grid">
-											<div id="calender">
-												<div>
-													<el-radio v-model="dataPickerOption" label="year" border>按年选择数据
-													</el-radio>
-													<el-radio v-model="dataPickerOption" label="week" border>按月下载数据
-													</el-radio>
-													<el-button type="primary" @click="downloadData()" rounds>下载数据
-													</el-button>
-												</div>
-												<div class="block" v-if="dataPickerOption=='year'" style="margin-top: 2%;">
-													<span class="demonstration">起始年</span>
-													<el-date-picker v-model="fromDate" type='year' placeholder="选择年">
-													</el-date-picker>
+								<div id="calender">
+									<el-container>
+										<el-header>
+											<div style="text-align: center;">
+												<span class="demonstration">起始日</span>
+												<el-date-picker v-model="fromDate" type='date' placeholder="选择日">
+												</el-date-picker>
 
-													<span class="demonstration">结束年</span>
-													<el-date-picker v-model="endDate" type='year' placeholder="选择年">
-													</el-date-picker>
+												<span class="demonstration">结束日</span>
+												<el-date-picker v-model="endDate" type='date' placeholder="选择日">
+												</el-date-picker>
 
-												</div>
-												<div class="block" v-if="dataPickerOption=='week'" style="margin-top: 2%;">
-													<span class="demonstration">起始月</span>
-													<el-date-picker v-model="fromDate" type='month' placeholder="选择月">
-													</el-date-picker>
-
-													<span class="demonstration">结束月</span>
-													<el-date-picker v-model="endDate" type='month' placeholder="选择月">
-													</el-date-picker>
-												</div>
-												<el-calendar v-model="value" style="height:40%" class="el_cal_out">
-													<template slot="dateCell" slot-scope="{ data}">
-														<p style="margin:0px">
-															{{ data.day.split('-').slice(2).join() }}<br />
-															<!--标记-->
-														<div v-for="(i, index) in dayTime" :key="index">
-															<div v-if="data.day==i" class="budge"></div>
-														</div>
-														</p>
-													</template>
-												</el-calendar>
+												<el-button style="margin-left: 1.25rem;" type="primary"
+													@click="downloadData()" rounds>下载数据
+												</el-button>
 											</div>
-										</div>
-									</div>
-									<div>
-									</div>
+										</el-header>
+										<el-main>
+											<el-row :gutter="20">
+												<el-col :span="6" v-for="(item,index) in 12">
+													<span>{{item}}月</span>
+													<el-calendar :range="['2022-01-03', '2022-02-06']">
+													</el-calendar>
+												</el-col>
+											</el-row>
+										</el-main>
+									</el-container>
 								</div>
 							</div>
 						</div>
@@ -230,14 +152,26 @@
 		<script src="assets/js/main.js"></script>
 	</body>
 	<style>
-		/* 日历 */
-		.budge {
-			width: 8px;
-			height: 8px;
-			background: #e6a23c;
-			border-radius: 50%;
-			margin: 0 auto;
-			margin-top: 10px;
+		.el-calendar__body {
+			width: 230px;
+			height: 200px;
+		}
+
+		.el-calendar__header {
+			display: none;
+		}
+
+		.el-calendar-table .el-calendar-day {
+			width: 60px;
+			height: 30px;
+		}
+
+		.el-col {
+			border-radius: 4px;
+		}
+
+		.is-selected {
+			color: #1989FA;
 		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
@@ -248,29 +182,35 @@
 				return {
 					dataPickerOption: 'year',
 					value: new Date(),
+					showYear: 2022,
 					dayTime: ["2022-03-28", "2022-01-26", "2022-03-16"],
 					fromDate: '',
 					endDate: '',
+					monthList: []
 				}
 			},
-			created() {
-	
+			beforeMount() {
+				this.createMonthDict()
 			},
 			watch: {
 				dataPickerOption() {
 					this.fromDate = ''
 					this.endDate = ''
+				},
+				showYear() {
+					this.createMonthDict()
 				}
-	
+
 			},
 			computed: {
 				datePickStatus: function() {
-					if (this.fromDate != '' && this.endDate != '') {
+					if (this.fromDate != '' && this.endDate != '' && this.endDate != null && this.fromDate !=
+						null) {
 						return true
 					} else {
 						return false
 					}
-				}
+				},
 			},
 			methods: {
 				/**
@@ -290,15 +230,57 @@
 					// 将结束日期的天放进数组
 					dayArr.push(moment(new Date(endDay)).format('YYYY-MM-DD'))
 					return dayArr
-					
 				},
+				// 获取周一
+				getMonday(date) {
+					var dd = new Date(date)
+					var week = dd.getDay(); //获取时间的星期数
+					var minus = week ? week - 1 : 6;
+					dd.setDate(dd.getDate() - minus); //获取周一日期
+					var y = dd.getFullYear();
+					var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+					var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+					return y + "-" + m + "-" + d;
+				},
+				
+				// 获取周日
+				getSunday(date) {
+					var dd = new Date(date)
+					var week = dd.getDay(); //获取时间的星期数
+					var minus = week ? week - 1 : 6;
+					dd.setDate(dd.getDate() - minus); //获取周一日期
+					dd.setDate(dd.getDate() + 6) //加6得到周日日期
+					var y = dd.getFullYear();
+					var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+					var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+					return y + "-" + m + "-" + d;
+				},
+				//
+				getMonthArea(item){
+					return [this.getMonday(this.getFirstDayOfMonth(this.showYear, item)), this.getSunday(this.getLastDatOfMonth(this.showYear, item))]
+				}
+				,
+				getFirstDayOfMonth(year, month) {
+					return new Date(year, month, 1);
+				},
+				getLastDatOfMonth(year, month) {
+					return new Date(year, month + 1, 0)
+				},
+				
 				downloadData() {
+					console.log(this.getMonthArea(0))
 					if (this.datePickStatus) {
 						console.log(this.getDayArr(this.fromDate, this.endDate))
 						this.$message.success('请求成功，等待服务器响应！');
 					} else {
 						this.$message.error('请先选择下载日期！');
 					}
+				},
+				createMonthDict() {
+					for (var i = 0; i <= 12; i++) {
+						this.monthList.push(this.getMonday(this.getFirstDayOfMonth(this.showYear, i)))
+					}
+					console.log(this.monthList)
 				}
 			}
 		})
