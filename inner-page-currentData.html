@@ -27,7 +27,7 @@
 		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.css" >
+		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.css">
 		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.min.css">
 		<!-- Template Main CSS File -->
 		<link href="assets/css/style.css" rel="stylesheet">
@@ -105,18 +105,14 @@
 											</div>
 										</el-header>
 										<el-main>
-<<<<<<< Updated upstream
-											<el-row>
-												<el-col :span="6" v-for="(item,index) in monthList" style="margin-bottom: 20px;">
-													<span>{{item}}月</span>
+											<el-row style="margin-bottom: 45px;">
+												<el-col :span="6" v-for="(item,index) in monthList" :key="item">
+													<span
+														style="margin-left: 45%; margin-bottom: -5px;">{{item}}月</span>
 													<el-calendar :value="'2022-' + item">
 													</el-calendar>
 												</el-col>
 											</el-row>
-=======
-											<!-- 日历挂载 -->
-											
->>>>>>> Stashed changes
 										</el-main>
 									</el-container>
 								</div>
@@ -157,9 +153,25 @@
 		<script src="assets/js/main.js"></script>
 	</body>
 	<style>
+		.el-row {
+			display: flex;
+			box-sizing: border-box;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-content: center;
+			justify-content: center;
+		}
+
+		.el-calendar {
+			margin-top: -10px;
+			margin-bottom: 15px;
+		}
+
 		.el-calendar__body {
 			width: 230px;
 			height: 200px;
+			padding-top: 0px;
+			padding-bottom: 45px;
 		}
 
 		.el-calendar__header {
@@ -167,12 +179,17 @@
 		}
 
 		.el-calendar-table .el-calendar-day {
-			width: 60px;
+			width: 100%;
 			height: 30px;
 		}
 
 		.el-col {
 			border-radius: 4px;
+			margin-top: 35px;
+		}
+
+		.el-col-6 {
+			width: 230px;
 		}
 
 		.is-selected {
@@ -191,20 +208,15 @@
 					dayTime: ["2022-03-28", "2022-01-26", "2022-03-16"],
 					fromDate: '',
 					endDate: '',
-					monthList: ['01', '02','03', '04','05', '06','07', '08','09', '10','11', '12']
+					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				}
 			},
-			beforeMount() {
-				this.createMonthDict()
-			},
+			beforeMount() {},
 			watch: {
 				dataPickerOption() {
 					this.fromDate = ''
 					this.endDate = ''
 				},
-				showYear() {
-					this.createMonthDict()
-				}
 
 			},
 			computed: {
@@ -236,42 +248,6 @@
 					dayArr.push(moment(new Date(endDay)).format('YYYY-MM-DD'))
 					return dayArr
 				},
-				// 获取周一
-				getMonday(date) {
-					var dd = new Date(date)
-					var week = dd.getDay(); //获取时间的星期数
-					var minus = week ? week - 1 : 6;
-					dd.setDate(dd.getDate() - minus); //获取周一日期
-					var y = dd.getFullYear();
-					var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-					var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
-					return y + "-" + m + "-" + d;
-				},
-				
-				// 获取周日
-				getSunday(date) {
-					var dd = new Date(date)
-					var week = dd.getDay(); //获取时间的星期数
-					var minus = week ? week - 1 : 6;
-					dd.setDate(dd.getDate() - minus); //获取周一日期
-					dd.setDate(dd.getDate() + 6) //加6得到周日日期
-					var y = dd.getFullYear();
-					var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
-					var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
-					return y + "-" + m + "-" + d;
-				},
-				//
-				getMonthArea(item){
-					return [this.getMonday(this.getFirstDayOfMonth(this.showYear, item)), this.getSunday(this.getLastDatOfMonth(this.showYear, item))]
-				}
-				,
-				getFirstDayOfMonth(year, month) {
-					return new Date(year, month, 1);
-				},
-				getLastDatOfMonth(year, month) {
-					return new Date(year, month + 1, 0)
-				},
-				
 				downloadData() {
 					console.log(this.getMonthArea(0))
 					if (this.datePickStatus) {
