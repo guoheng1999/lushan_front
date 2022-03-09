@@ -115,6 +115,10 @@
 												<el-button @click="next" style="margin-left: 5px;"
 													icon="el-icon-arrow-right" circle></el-button>
 											</el-row>
+
+
+										
+
 											<el-row v-if="isRefresh">
 												<el-col :span="6" v-for="(item,index) in monthList" :key="item">
 													<span style="margin-bottom: 5px;">{{item}}月</span>
@@ -128,6 +132,14 @@
 												</el-col>
 											</el-row>
 										</el-main>
+										<el-aside>
+											<el-col :span="2">
+												<el-tag>标签一</el-tag>
+											</el-col>
+											<el-col :span="2">
+												<el-tag>标签一</el-tag>
+											</el-col>
+										</el-aside>
 									</el-container>
 								</div>
 							</div>
@@ -209,6 +221,7 @@
 		.el-calendar-table td.is-selected {
 			background-color: #FFFFFF;
 		}
+
 		.is-selected {
 			background-color: #ffffff;
 		}
@@ -216,15 +229,17 @@
 		.el-calendar-table thead {
 			display: none;
 		}
-		
+
 		.has-data {
 			background-color: #409EFF;
 			color: #FFFFFF;
 			width: 26px;
 			height: 30px;
 		}
-		.el-backtop, .el-calendar-table td.is-today {
-		    color: #000000;
+
+		.el-backtop,
+		.el-calendar-table td.is-today {
+			color: #000000;
 		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
@@ -236,7 +251,9 @@
 					dataPickerOption: 'year',
 					value: new Date(),
 					showYear: 2022,
-					dayTime: ['2022-01-22','2022-01-23','2022-01-24','2022-01-25','2022-01-26','2022-01-27', '2022-01-18', '2022-03-28'],
+					dayTime: ['2022-01-22', '2022-01-23', '2022-01-24', '2022-01-25', '2022-01-26', '2022-01-27',
+						'2022-01-18', '2022-03-28'
+					],
 					fromDate: '',
 					endDate: '',
 					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
@@ -306,7 +323,7 @@
 					this.defaultYear += 1
 					this.createYearList(this.defaultYear)
 				},
-				hasData(data){
+				hasData(data) {
 					for (var i = 0; i < this.dayTime.length; i++) {
 						if (this.dayTime[i] == data.day) {
 							console.log(this.dayTime[i], data.day)

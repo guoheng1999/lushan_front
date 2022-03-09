@@ -1,5 +1,5 @@
 <div id="data-menu">
-	<el-menu default-active="1-1-1">
+	<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" unique-opened=true>
 		<el-submenu style="font-weight: bold; font-size: 18px;" index="1">
 			<template slot="title">
 				<span slot="title"><i class="el-icon-folder-opened" />0级历史观测数据</span>
@@ -45,13 +45,20 @@
 	new Vue({
 		el: '#data-menu',
 		data() {
-			return {}
+			return {
+				currentDataType: 0,
+			}
 		},
-		created() {
-
+		beforeMount() {
+			this.getCurrentDataType()
 		},
 		watch: {},
 		computed: {},
-		methods: {}
+		methods: {
+			getCurrentDataType(){
+				href_str = window.location.href
+				this.currentDataType = href_str.split('datasets_type=')[1][0]
+			}
+		}
 	})
 </script>
