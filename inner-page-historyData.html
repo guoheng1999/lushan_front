@@ -85,10 +85,10 @@
 			<section class="inner-page">
 				<div class="container">
 					<div class="row">
-							<!-- 展示与隐藏侧边栏 开始-->
-							<!-- <input type="checkbox" id="menu-btn">
+						<!-- 展示与隐藏侧边栏 开始-->
+						<!-- <input type="checkbox" id="menu-btn">
 					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
-							<!-- 展示与隐藏侧边栏 结束-->
+						<!-- 展示与隐藏侧边栏 结束-->
 						<div id="data-menu" class="menu-box">
 						</div>
 						<script>
@@ -101,7 +101,7 @@
 									<el-table
 										:data="historyData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
 										style="width: 100%">
-										<el-table-column min-width="15%" label="文件夹" prop="folder">
+										<el-table-column min-width="15%" label="文件名" prop="folder">
 										</el-table-column>
 										<el-table-column min-width="15%" label="记录时间" prop="time">
 										</el-table-column>
@@ -163,7 +163,8 @@
 														</el-table>
 														<el-pagination @size-change="handleSizeChange"
 															@current-change="handleCurrentChange"
-															:current-page="currentPage" :page-sizes="[9, 15, 20]" :page-size="pagesize"
+															:current-page="currentPage" :page-sizes="[9, 15, 20]"
+															:page-size="pagesize"
 															layout="total, sizes, prev, pager, next, jumper"
 															:total="tableData.length">
 														</el-pagination>
@@ -179,11 +180,43 @@
 										</el-table-column>
 									</el-table>
 									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-										:current-page="historyData_currentPage" :page-sizes="[10, 20, 50]" :page-size="historyData_pagesize"
+										:current-page="historyData_currentPage" :page-sizes="[10, 20, 50]"
+										:page-size="historyData_pagesize"
 										layout="total, sizes, prev, pager, next, jumper" :total="historyData.length">
 									</el-pagination>
 								</template>
+								<div>
+									<el-button @click="message_board()" class="message-board" icon="el-icon-chat-round">
+									</el-button>
+									<el-drawer title="留言板" :visible.sync="messageBoardVisible" direction="rtl"
+										size="40%">
+										<div class="block">
+											<!-- <span class="demonstration">请选择与您留言相关的文件名</span> -->
+											<el-cascader class="demonstration cascader" v-model="folder" :options="folders"
+												:props="{ expandTrigger: 'hover' }" @change="handleChange" placeholder="请选择与您留言相关的文件名">
+											</el-cascader>
+										</div>
+										<el-input type="textarea" :rows="9" placeholder="请输入您的留言"
+											v-model="message_board_text">
+										</el-input>
+										<el-upload
+										  class="upload-demo"
+										  drag
+										  :before-upload="beforeAvatarUpload"
+										  action="https://jsonplaceholder.typicode.com/posts/"
+										  multiple>
+										  <i class="el-icon-upload"></i>
+										  <div class="el-upload__text">将相关图片/PDF拖到此处，或<em>点击上传</em></div>
+										</el-upload>
+										<div class="demo-drawer__footer">
+											<el-button @click="cancelForm">取 消</el-button>
+											<el-button class="login-button" type="primary" @click="$refs.drawer.closeDrawer()"
+												:loading="loading">{{ loading ? '提交中 ...' : '确 定' }}</el-button>
+										</div>
+									</el-drawer>
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -225,7 +258,47 @@
 		.el-dialog__title {
 			float: left;
 		}
-
+		.login-button {
+			background-color: #1977CC;
+			border-color: #1977CC;
+			color: #fff;
+		}
+		.message-board {
+			top: 80%;
+			left: 90%;
+			color: #1977CC;
+			font-size: 3.125rem;
+			position: fixed;
+			border: 0;
+		}
+		.message-board:hover {
+			background-color: #FFFFFF;
+		}
+		.el-drawer__body {
+			margin-top: -30px;
+			padding-left: 20px;
+		}
+		.upload-demo{
+			margin-top: 10px;
+		}
+		.block {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+		}
+		.demonstration{
+			margin-bottom: 10px;
+		}
+		.cascader{
+			width: 338.5px;
+		}
+		.el-textarea__inner{
+			width: 360px;
+		}
+		.demo-drawer__footer{
+			margin-top: 160px;
+			margin-left: 45%;
+		}
 		.historyData-dialog {
 			margin-top: 2%;
 			width: 700.8px;
@@ -263,85 +336,85 @@
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14',
 						definition: '98.63%'
-					},{
+					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
@@ -398,7 +471,36 @@
 					pagesize: 9,
 					//dataShow
 					checkAll: false,
-					isIndeterminate: true
+					isIndeterminate: true,
+					messageBoardVisible: false,
+					loading: false,
+					timer: null,
+					message_board_text: '',
+					folder: '',
+					folders: [{
+						value: '01',
+						label: '云滴谱数据(A2/A3)',
+						children: [{
+							value: '01-1',
+							label: '云滴谱数据A2',
+						}, {
+							value: '01-2',
+							label: '云滴谱数据A3'
+						}]
+					}, {
+						value: '02',
+						label: '雾滴谱原始数据(a)'
+					}, {
+						value: '03',
+						label: '雨滴谱数据(B2/B3)',
+						children: [{
+							value: '01-1',
+							label: '雨滴谱数据A2',
+						}, {
+							value: '01-2',
+							label: '雨滴谱数据A3',
+						}]
+					}]
 				}
 			},
 			created() {
@@ -447,9 +549,53 @@
 				handleSelectionChange(val) {
 					this.multipleSelection = val;
 				},
-				showDialog(row){
+				showDialog(row) {
 					this.dialog_title = "文件夹  |" + row.folder + "|  包含的图片"
 					this.dialogVisible = true
+				},
+				message_board() {
+					//留言板
+					console.log(1111)
+					this.messageBoardVisible = true
+				},
+				handleChange(value) {
+					console.log(value);
+				},
+				handleClose(done) {
+					if (this.loading) {
+						return;
+					}
+					this.$confirm('确定要提交表单吗？')
+						.then(_ => {
+							this.loading = true;
+							this.timer = setTimeout(() => {
+								done();
+								// 动画关闭需要一定的时间
+								setTimeout(() => {
+									this.loading = false;
+								}, 400);
+							}, 2000);
+						})
+						.catch(_ => {});
+				},
+				cancelForm() {
+					this.loading = false;
+					this.messageBoardVisible = false;
+					clearTimeout(this.timer);
+				},
+				beforeAvatarUpload(file) {
+					const isJPG = file.type === 'image/jpeg';
+					const isPNG = file.type === 'image/png';
+					const isPDF = file.type === 'application/pdf';
+					const isPG = (isJPG || isPNG ||isPDF) //限制图片格式为jpg / png
+					const isLt4M = file.size / 1024 / 1024 < 4; //限制图片大小
+					if (!isPG) {
+						this.$message.error('上传文件只能是 JPG 或 PNG 格式图片或 PDF文档!');
+					}
+					if (!isLt2M) {
+						this.$message.error('上传文件大小不能超过 4MB!');
+					}
+					return isPG && isLt4M && isSize
 				}
 			}
 		})

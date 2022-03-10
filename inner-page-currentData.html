@@ -104,11 +104,12 @@
 												</el-button>
 											</div>
 										</el-header>
-										
+
 										<el-main style="text-align: center;">
 											<el-row style="display: inline-flex; margin-top: 10px;">
-												<el-button class="year-change" @click="pervious" style="margin-right: 5px;"
-													icon="el-icon-arrow-left" circle></el-button>
+												<el-button class="year-change" @click="pervious"
+													style="margin-right: 5px;" icon="el-icon-arrow-left" circle>
+												</el-button>
 												<el-radio-group v-model="showYear">
 													<el-radio-button style="margin: 0;" v-for="(item,index) in yearList"
 														:label="item"></el-radio-button>
@@ -122,7 +123,7 @@
 											</div>
 											<el-row v-if="isRefresh">
 												<el-col :span="6" v-for="(item,index) in monthList" :key="item">
-													<span style="margin-bottom: 5px;">{{item}}月</span>
+													<span style="margin-bottom: 5px;"><strong>{{item}}月</strong></span>
 													<el-calendar :value="showYear +'-' + item">
 														<template slot="dateCell" slot-scope="{ data }">
 															<div :class="hasData(data)">
@@ -133,14 +134,6 @@
 												</el-col>
 											</el-row>
 										</el-main>
-										<!-- <el-aside>
-											<el-col :span="2">
-												<el-tag>标签一</el-tag>
-											</el-col>
-											<el-col :span="2">
-												<el-tag>标签一</el-tag>
-											</el-col>
-										</el-aside> -->
 									</el-container>
 								</div>
 							</div>
@@ -184,41 +177,50 @@
 			margin-top: 5px;
 			margin-bottom: 15px;
 		}
-		.year-change,.year-change:focus{
+
+		.year-change,
+		.year-change:focus {
+			background-color: #FFFFFF;
+			border-color: #FFFFFF;
+			color: #1977CC;
+		}
+
+		.year-change:hover {
+			background-color: #F1F7FD;
+			border-color: #F1F7FD;
+			color: #1977CC;
+		}
+
+		.tips-hasData {
 			background-color: #1977CC;
 			border-color: #1977CC;
 			color: #FFFFFF;
 		}
-		.year-change:hover{
-			background-color: #FFFFFF;
-			border-color: #1977CC;
-			color: #1977CC;
-		}
-		.tips-hasData {
-		    background-color: #1977CC;
-		    border-color: #1977CC;
-			color: #FFFFFF;
-		}
-		.tips-noData{
+
+		.tips-noData {
 			background-color: #FFFFFF;
 			border-color: #1977CC;
 			color: #000000;
 		}
+
 		.el-radio-button__inner:hover {
-		    color: #1977CC;
+			color: #1977CC;
 		}
+
 		.el-radio-button__orig-radio:checked+.el-radio-button__inner {
-		    color: #FFF;
-		        background-color: #1977CC;
-		        border-color: #1977CC;
-		        -webkit-box-shadow: -1px 0 0 0 #1977CC;
-		        box-shadow: -1px 0 0 0 #1977CC;
+			color: #FFF;
+			background-color: #1977CC;
+			border-color: #1977CC;
+			-webkit-box-shadow: -1px 0 0 0 #1977CC;
+			box-shadow: -1px 0 0 0 #1977CC;
 		}
+
 		.el-button--primary {
-		    color: #FFF;
-		    background-color: #1977CC;
-		    border-color: #1977CC;
+			color: #FFF;
+			background-color: #1977CC;
+			border-color: #1977CC;
 		}
+
 		.el-row {
 			display: flex;
 			box-sizing: border-box;
@@ -281,6 +283,7 @@
 		.el-calendar-table td.is-today {
 			color: #000000;
 		}
+
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script>
@@ -299,7 +302,7 @@
 					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 					isRefresh: true,
 					defaultYear: 2022,
-					yearList: [2018, 2019, 2020, 2021, 2022],
+					yearList: [2018, 2019, 2020, 2021, 2022]
 				}
 			},
 			beforeMount() {
