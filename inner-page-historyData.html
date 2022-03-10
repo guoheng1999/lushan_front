@@ -189,7 +189,7 @@
 									<el-button @click="message_board()" class="message-board" icon="el-icon-chat-round">
 									</el-button>
 									<el-drawer title="留言板" :visible.sync="messageBoardVisible" direction="rtl"
-										size="40%">
+										size="400px">
 										<div class="block">
 											<!-- <span class="demonstration">请选择与您留言相关的文件名</span> -->
 											<el-cascader class="demonstration cascader" v-model="folder" :options="folders"
@@ -271,8 +271,11 @@
 			position: fixed;
 			border: 0;
 		}
-		.message-board:hover {
+		.message-board:hover,.message-board:focus {
 			background-color: #FFFFFF;
+		}
+		.message-board:focus {
+			color: #1977CC;
 		}
 		.el-drawer__body {
 			margin-top: -30px;
