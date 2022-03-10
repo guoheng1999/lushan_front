@@ -62,19 +62,20 @@
 					<el-form
 						style="display: flex; align-content: center; justify-content: center; flex-direction: column;"
 						:model="ruleForm" status-icon ref="ruleForm" class="demo-ruleForm">
-						<el-form-item  prop="email">
+						<el-form-item prop="email">
 							<el-input style="width: 90pv" placeholder="邮箱" type="text" v-model="ruleForm.email"
 								autocomplete="off">
 								<i slot="prefix" class="el-input__icon el-icon-user"></i>
 							</el-input>
 						</el-form-item>
 						<el-form-item prop="pass">
-							<el-input style="width: 90pv" placeholder="密码" type="password" v-model="ruleForm.pass" autocomplete="off">
+							<el-input style="width: 90pv" placeholder="密码" type="password" v-model="ruleForm.pass"
+								autocomplete="off">
 								<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
 							</el-input>
 						</el-form-item>
 						<el-form-item class="el-register-btn">
-							<el-button style="width: 40%;" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+							<el-button class="login-button" style="width: 40%;" type="primary" @click="submitForm('ruleForm')">登录</el-button>
 							<!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
 						</el-form-item>
 					</el-form>
@@ -129,5 +130,10 @@
 		flex-wrap: nowrap;
 		align-content: center;
 		justify-content: center;
+	}
+	.login-button {
+		background-color: #1977CC;
+		border-color: #1977CC;
+		color: #fff;
 	}
 </style>
