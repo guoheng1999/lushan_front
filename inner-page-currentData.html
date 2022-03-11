@@ -107,14 +107,14 @@
 
 										<el-main style="text-align: center;">
 											<el-row style="display: inline-flex; margin-top: 10px;">
-												<el-button class="year-change" @click="pervious"
+												<el-button class="year-change" @click="pervious" v-if="isShowPerviousButton"
 													style="margin-right: 5px;" icon="el-icon-arrow-left" circle>
 												</el-button>
 												<el-radio-group v-model="showYear">
 													<el-radio-button style="margin: 0;" v-for="(item,index) in yearList"
 														:label="item"></el-radio-button>
 												</el-radio-group>
-												<el-button class="year-change" @click="next" style="margin-left: 5px;"
+												<el-button class="year-change" @click="next" v-if="isShowNextButton" style="margin-left: 5px;"
 													icon="el-icon-arrow-right" circle></el-button>
 											</el-row>
 											<div id="data-tips">
@@ -302,7 +302,9 @@
 					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 					isRefresh: true,
 					defaultYear: 2022,
-					yearList: [2018, 2019, 2020, 2021, 2022]
+					yearList: [2018, 2019, 2020, 2021, 2022],
+					isShowPerviousButton: true,
+					isShowNextButton: true
 				}
 			},
 			beforeMount() {
@@ -313,6 +315,18 @@
 					this.fromDate = ''
 					this.endDate = ''
 				},
+				showYear() {
+					if (this.defaultYear >2015 && this.defaultYear < 2044){
+						this.isShowNextButton = true
+						this.isShowPerviousButton = true
+					}
+					if (this.defaultYear <= 2015){
+						this.isShowPerviousButton = false
+					}
+					if (this.defaultYear >= 2044){
+						this.isShowNextButton = false
+					}
+				}
 
 			},
 			computed: {
@@ -360,10 +374,12 @@
 
 				pervious() {
 					this.defaultYear -= 1
+					this.showYear -= 1
 					this.createYearList(this.defaultYear)
 				},
 				next() {
 					this.defaultYear += 1
+					this.showYear += 1
 					this.createYearList(this.defaultYear)
 				},
 				hasData(data) {
