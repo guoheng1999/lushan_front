@@ -170,7 +170,6 @@
 														</el-pagination>
 													</template>
 													<span slot="footer" class="dialog-footer">
-
 														<el-button type="primary" @click="download_csvData()">
 															下载
 														</el-button>
@@ -186,7 +185,8 @@
 									</el-pagination>
 								</template>
 								<div>
-									<el-button @click="message_board()" class="message-board" icon="el-icon-chat-round">
+									<span>数据反馈</span>
+									<el-button @click="message_board()" style="background-color: transparent;" class="message-board" icon="el-icon-chat-round">
 									</el-button>
 									<el-drawer title="数据反馈" :visible.sync="messageBoardVisible" direction="rtl"
 										size="400px">
@@ -266,7 +266,8 @@
 
 		.message-board {
 			top: 80%;
-			left: 90%;
+			float: right;
+			right: 1%;
 			color: #1977CC;
 			font-size: 3.125rem;
 			position: fixed;

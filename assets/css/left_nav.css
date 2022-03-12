@@ -31,7 +31,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 0.5px;
     position: relative;
-    width: 20%;
+    width: -webkit-fit-content;
     min-height: 100%;
     padding: 6px 12px;
     box-sizing: border-box;

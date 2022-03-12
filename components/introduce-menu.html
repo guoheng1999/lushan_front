@@ -1,0 +1,38 @@
+<div id="introduce-menu">
+	<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" unique-opened=true>
+		<el-submenu style="font-weight: bold; font-size: 18px;" index="1">
+			<template slot="title">
+				<span onclick="pushTo('inner-page-historyIntroduce.html')" style="margin-right: 25px;" slot="title"><i class="el-icon-folder-opened" />历史观测数据</span>
+			</template>
+		</el-submenu>
+		<el-submenu style="font-weight: bold; font-size: 18px;" index="2">
+			<template slot="title">
+				<span onclick="pushTo('inner-page-currentIntroduce.html')" slot="title"><i class="el-icon-folder-opened" />现代观测数据</span>
+			</template>
+		</el-submenu>
+	</el-menu>
+</div>
+<style>
+	
+</style>
+<script>
+	new Vue({
+		el: '#introduce-menu',
+		data() {
+			return {
+				currentDataType: 0,
+			}
+		},
+		beforeMount() {
+			this.getCurrentDataType()
+		},
+		watch: {},
+		computed: {},
+		methods: {
+			getCurrentDataType() {
+				href_str = window.location.href
+				this.currentDataType = href_str.split('datasets_type=')[1][0]
+			}
+		}
+	})
+</script>

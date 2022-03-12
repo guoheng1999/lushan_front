@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>现代数据概述</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.css">
+		<link href="assets/bootstrap-year-calendar/css/bootstrap-year-calendar.min.css">
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
+
+		<!-- 导入阿里的图标样式文件 -->
+		<link rel="stylesheet" href="assets/css/iconfont.css">
+		<link rel="stylesheet" href="assets/css/left_nav.css">
+
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/bootstrap-year-calendar/js/bootstrap-year-calendar.js"></script>
+		<script src="assets/bootstrap-year-calendar/js/bootstrap-year-calendar.min.js"></script>
+		<!-- import moment JavaScript -->
+		<script src="assets/js/moment.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<!-- import element-ui CSS -->
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import element-ui JavaScript -->
+		<script src="assets/js/element-ui/lib/index.js"></script>
+	</head>
+
+	<body>
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+		<main id="main" style="margin-top: 0;">
+			<section class="inner-page">
+				<div class="container">
+					<div class="row" style="margin-top: 6%;">
+						<!-- 展示与隐藏侧边栏 开始-->
+						<!-- <input type="checkbox" id="menu-btn">
+					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
+						<!-- 展示与隐藏侧边栏 结束-->
+						<div id="introduce-menu" class="menu-box">
+						</div>
+						<script>
+							$("#introduce-menu").load("components/introduce-menu.html")
+						</script>
+						<div class="col-lg-9 mt-4 mt-lg-0">
+							<div id="introduce"></div>
+							<script>
+								$("#introduce").load("components/current-introduce-1.html")
+							</script>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<!-- End #main -->
+
+
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+	</body>
+	<style>
+		.data-download {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.el-button--primary,
+		.el-button--primary:focus {
+			color: #FFF;
+			background-color: #1977CC;
+			border-color: #1977CC;
+			margin-bottom: 2%;
+			margin-bottom: 5%;
+		}
+
+		.el-link--inner {
+			color: #1977CC;
+		}
+
+		.el-link.el-link--primary {
+			color: #1977CC;
+		}
+	</style>
+	<script src="assets/js/login/login.js"></script>
+	<script>
+		// new Vue({
+		// 	el: '',
+		// 	data() {
+		// 	},
+		// 	beforeMount() {
+
+		// 	},
+		// 	watch: {
+		// 	},
+		// 	computed: {
+		// 	},
+		// 	methods: {
+
+		// 	}
+		// })
+	</script>
+</html>

@@ -1,0 +1,56 @@
+<div id="introduce">
+	<el-empty description="描述文字"></el-empty>
+	<el-button style="margin-left: 45%" type="primary" @click="pushTo('inner-page-historyData.html')" rounds>下载数据
+	</el-button>
+	<el-row
+		style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
+		<el-col :span="24">
+			<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关文档</div>
+		</el-col>
+	</el-row>
+	<el-row style="padding: 5px 5px 5px 15px;">
+		<el-col :span="24">
+			<div class="grid-content bg-purple-dark">
+				<span><i class="el-icon-magic-stick">&nbsp;方差分析相关资料：</i></span>
+				<el-link target="_blank" href="data/方差分析练习.pdf" type="primary">方差分析练习</el-link>
+			</div>
+		</el-col>
+	</el-row>
+
+
+</div>
+<style>
+	.el-button--primary {
+		color: #FFF; 
+		background-color: #1977CC;
+		border-color: #1977CC;
+		margin-bottom: 50px;
+	}
+
+	.el-link--inner {
+		color: #1977CC;
+	}
+
+	.el-link.el-link--primary {
+		color: #1977CC;
+	}
+</style>
+<script>
+	new Vue({
+		el: '#introduce',
+		data() {
+			return {}
+		},
+		beforeMount() {},
+		watch: {},
+		computed: {},
+		methods: {
+			downloadData() {
+				this.$message.success('请求成功，等待服务器响应！');
+			},
+			pushTo(url){
+				window.location.href=url;
+			}
+		}
+	})
+</script>
