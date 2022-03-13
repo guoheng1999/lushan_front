@@ -5,24 +5,12 @@
 		<nav id="navbar" class="navbar order-last order-lg-0">
 			<ul>
 				<li><a class="nav-link scrollto active" href="index.html#hero">主页<i class="fas"></i></a></li>
-				<li class="dropdown"><a href="index.html#devices"><span>观测设备</span> <i
-							class="bi bi-chevron-down"></i></a>
-					<ul>
-						<li><a href="inner-page-device.html?device_id=0">自动气象站</a></li>
-						<li><a href="inner-page-device.html?device_id=1">雨量筒</a></li>
-						<li><a href="inner-page-device.html?device_id=2">能见度仪</a></li>
-						<li><a href="inner-page-device.html?device_id=3">云高仪</a></li>
-						<li><a href="inner-page-device.html?device_id=4">雨滴谱仪</a></li>
-						<li><a href="inner-page-device.html?device_id=5">雾滴谱仪</a></li>
-						<li><a href="inner-page-device.html?device_id=6">颗粒物仪</a></li>
-						<li><a href="inner-page-device.html?device_id=7">微雨雷达</a></li>
-						<li><a href="inner-page-device.html?device_id=8">微波辐射计</a></li>
-					</ul>
+
 				<li class="dropdown"><a href="index.html#datasets"><span>数据产品</span> <i
 							class="bi bi-chevron-down"></i></a>
 					<ul>
 						<li><a href="inner-page-historyIntroduce.html">历史观测数据</a></li>
-						<li><a href="inner-page-currentIntroduce.html">现代观测数据</a></li>
+						<li><a href="inner-page-currentDataIntroduce.html">现代观测数据</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="index.html#customer">用户服务 <i class="bi bi-chevron-down"></i></a>
@@ -75,7 +63,8 @@
 							</el-input>
 						</el-form-item>
 						<el-form-item class="el-register-btn">
-							<el-button class="login-button" style="width: 40%;" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+							<el-button class="login-button" style="width: 40%;" type="primary"
+								@click="submitForm('ruleForm')">登录</el-button>
 							<!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
 						</el-form-item>
 					</el-form>
@@ -88,6 +77,8 @@
 		</div>
 	</div>
 </header>
+
+<script src="assets/js/main.js"></script>
 <script>
 	new Vue({
 		el: '#login',
@@ -131,6 +122,7 @@
 		align-content: center;
 		justify-content: center;
 	}
+
 	.login-button {
 		background-color: #1977CC;
 		border-color: #1977CC;

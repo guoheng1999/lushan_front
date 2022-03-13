@@ -33,7 +33,6 @@
 		<!-- Template Main CSS File -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/historyData/dataShow.css" rel="stylesheet">
-		<link href="assets/css/calendar.css" rel="stylesheet" type="text/css" media="all" />
 
 		<!-- 导入阿里的图标样式文件 -->
 		<link rel="stylesheet" href="assets/css/iconfont.css">
@@ -184,10 +183,10 @@
 										layout="total, sizes, prev, pager, next, jumper" :total="historyData.length">
 									</el-pagination>
 								</template>
-								<div>
-									<span>数据反馈</span>
-									<el-button @click="message_board()" style="background-color: transparent;" class="message-board" icon="el-icon-chat-round">
+								<div class="message-board">
+									<el-button @click="message_board()" style="background-color: transparent;" class="message-board-button" icon="el-icon-chat-round">
 									</el-button>
+									<span>数据反馈</span>
 									<el-drawer title="数据反馈" :visible.sync="messageBoardVisible" direction="rtl"
 										size="400px">
 										<div class="block">
@@ -265,21 +264,27 @@
 		}
 
 		.message-board {
-			top: 80%;
-			float: right;
+			display: flex;
+			flex-direction: column;
+			bottom: 10%;
+			float: right;/* 
+			writing-mode: tb-rl; */
 			right: 1%;
+			position: fixed;
+			color: #1977CC;
+		}
+		.message-board-button{
+			padding: 0;
+			border: 0;
 			color: #1977CC;
 			font-size: 3.125rem;
-			position: fixed;
-			border: 0;
 		}
-
-		.message-board:hover,
-		.message-board:focus {
+		.message-board-button:hover,
+		.message-board-button:focus {
 			background-color: #FFFFFF;
 		}
 
-		.message-board:focus {
+		.message-board-button:focus {
 			color: #1977CC;
 		}
 
