@@ -116,10 +116,10 @@
 							</div>
 
 							<div class="data-download">
-								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=0')"
+								<el-button type="primary" @click="toPage('inner-page-currentData.html?data-level=0')"
 									rounds>0级数据下载
 								</el-button>
-								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=1')"
+								<el-button type="primary" @click="toPage('inner-page-currentData.html?data-level=1')"
 									rounds>1级数据下载
 								</el-button>
 							</div>
@@ -276,9 +276,10 @@
 				downloadData() {
 					this.$message.success('请求成功，等待服务器响应！');
 				},
-				pushTo(url) {
-					console.log(this.active_id)
-					window.location.href = url;
+				toPage(url) {
+					// data-level=0&device-id=2
+					console.log(url + '&device-id=' + this.active_id)
+					window.location.href = url + '&device-id=' + this.active_id;
 				}
 			}
 		})

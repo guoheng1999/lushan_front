@@ -101,8 +101,6 @@
 										</el-table-column>
 										<el-table-column min-width="15%" label="页数" prop="pages">
 										</el-table-column>
-										<el-table-column min-width="15%" label="清晰度" prop="definition">
-										</el-table-column>
 										<el-table-column min-width="25%" align="right">
 											<template slot="header" slot-scope="scope">
 												<el-input v-model="search" size="mini" placeholder="按文件名搜索" />
@@ -177,11 +175,12 @@
 									</el-pagination>
 								</template>
 								<div class="message-board">
-									<el-button @click="message_board()" style="background-color: transparent;" class="message-board-button" icon="el-icon-chat-round">
+									<el-button @click="message_board()" style="background-color: transparent;"
+										class="message-board-button" icon="el-icon-chat-round">
 									</el-button>
 									<span>数据反馈</span>
-									<el-drawer append-to-body title="数据反馈" :visible.sync="messageBoardVisible" direction="rtl"
-										size="400px">
+									<el-drawer append-to-body title="数据反馈" :visible.sync="messageBoardVisible"
+										direction="rtl" size="400px">
 										<div class="block">
 											<!-- <span class="demonstration">请选择与您留言相关的文件名</span> -->
 											<el-cascader class="demonstration cascader" v-model="folder"
@@ -260,18 +259,21 @@
 			display: flex;
 			flex-direction: column;
 			bottom: 10%;
-			float: right;/* 
+			float: right;
+			/* 
 			writing-mode: tb-rl; */
 			right: 1%;
 			position: fixed;
 			color: #1977CC;
 		}
-		.message-board-button{
+
+		.message-board-button {
 			padding: 0;
 			border: 0;
 			color: #1977CC;
 			font-size: 3.125rem;
 		}
+
 		.message-board-button:hover,
 		.message-board-button:focus {
 			background-color: #FFFFFF;
@@ -348,92 +350,77 @@
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}, {
 						folder: 'A3-02',
 						time: '1962-1965',
 						site: '天控所',
-						pages: '14',
-						definition: '98.63%'
+						pages: '14'
 					}],
 					tableData: [{
 						id: '01',
