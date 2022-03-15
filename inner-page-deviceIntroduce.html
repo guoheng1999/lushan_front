@@ -49,6 +49,11 @@
 		<script src="assets/js/vue/vue.js"></script>
 		<!-- import element-ui JavaScript -->
 		<script src="assets/js/element-ui/lib/index.js"></script>
+
+		<!-- import api.js -->
+		<script src="assets/js/axios.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<script src="assets/js/api.js"></script>
 	</head>
 
 	<body>
@@ -70,8 +75,7 @@
 							<div class="container">
 								<el-container>
 									<el-aside width="13%">
-
-1										<el-col>
+										<el-col>
 											<el-menu class="el-menu-vertical-demo"
 												:default-active="this.device_list[this.activate_id]">
 												<!-- :index 要是字符串类型,而for中的index是数值,如果直接写会报错,但不影响运行.所以加个空转为字符串型就不错了 -->
@@ -86,13 +90,13 @@
 										<el-container>
 											<el-aside width="70%">
 												<div class="textBox">
-							
+
 													<h2>{{this.activate_device_name}}概述</h2>
 													<p>&nbsp; &nbsp;
 														HM-YQX5型产品
 													</p>
 													<h2>{{this.activate_device_name}}特点</h2>
-													<p>*采用先进的传感技术实时测量</p>								
+													<p>*采用先进的传感技术实时测量</p>
 													<h2>{{this.activate_device_name}}应用领域</h2>
 													<p>*气象监测</p>
 													<h2>{{this.activate_device_name}}技术参数表</h2>
@@ -109,12 +113,14 @@
 										</el-container>
 									</el-main>
 								</el-container>
-							</div>				
-							
+							</div>
+
 							<div class="data-download">
-								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=0')" rounds>0级数据下载
+								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=0')"
+									rounds>0级数据下载
 								</el-button>
-								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=1')" rounds>1级数据下载
+								<el-button type="primary" @click="pushTo('inner-page-currentData.html?data-level=1')"
+									rounds>1级数据下载
 								</el-button>
 							</div>
 							<el-row
@@ -131,10 +137,10 @@
 									</div>
 								</el-col>
 							</el-row>
-						
-						
+
+
 						</div>
-						
+
 					</div>
 				</div>
 			</section>
@@ -183,30 +189,31 @@
 		.el-link.el-link--primary {
 			color: #1977CC;
 		}
-		
-		.details{
+
+		.details {
 			background-color: #FFFFFF;
 		}
-			.data-download {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-		
-			.el-button--primary {
-				color: #FFF;
-				background-color: #1977CC;
-				border-color: #1977CC;
-				margin-bottom: 50px;
-			}
-		
-			.el-link--inner {
-				color: #1977CC;
-			}
-		
-			.el-link.el-link--primary {
-				color: #1977CC;
-			}
+
+		.data-download {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.el-button--primary {
+			color: #FFF;
+			background-color: #1977CC;
+			border-color: #1977CC;
+			margin-bottom: 50px;
+		}
+
+		.el-link--inner {
+			color: #1977CC;
+		}
+
+		.el-link.el-link--primary {
+			color: #1977CC;
+		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script>
@@ -222,22 +229,22 @@
 			},
 			beforeMount() {
 				this.deviceInfo()
-		
+
 				this.active_id = this.checkUrl()
-		
+
 				this.activate_device_name = this.device_list[this.active_id]
-				
-				this.active_src = 'assets/img/devices/' + this.activate_device_name +'.jpg'
+
+				this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 			},
 			watch: {
-		
+
 			},
 			computed: {},
 			methods: {
 				changeDevice(key) {
 					this.active_id = key
 					this.activate_device_name = this.device_list[this.active_id].deviceName
-					this.active_src = 'assets/img/devices/' + this.activate_device_name +'.jpg'
+					this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 				},
 				checkUrl() {
 					href_str = window.location.href
@@ -267,11 +274,12 @@
 					})
 				},
 				downloadData() {
-							this.$message.success('请求成功，等待服务器响应！');
-						},
-						pushTo(url) {
-							window.location.href = url;
-						}
+					this.$message.success('请求成功，等待服务器响应！');
+				},
+				pushTo(url) {
+					console.log(this.active_id)
+					window.location.href = url;
+				}
 			}
 		})
 	</script>

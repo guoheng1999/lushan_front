@@ -1,0 +1,62 @@
+<div id="breadcrumbs" class="container">
+
+	<div class="d-flex justify-content-between align-items-center">
+		<h2></h2>
+		<ol>
+			<li><a href="index.html">首页</a></li>
+			<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
+		</ol>
+	</div>
+</div>
+
+<script>
+	new Vue({
+		el: '#breadcrumbs',
+		data() {
+			return {
+				dataTypeDict: {
+					'0': '0级数据',
+					'1': '1级数据'
+				},
+				pageDict: {
+					'inner-page-historyData': '历史观测数据',
+					'inner-page-currentData': '现代观测数据'
+				},
+				breadcrumbs: []
+			}
+		},
+		beforeMount() {
+			this.initCurrentPageName()
+			this.initCurrentDataType()
+		},
+		methods: {
+			initCurrentDataType() {
+				if (window.location.href.lastIndexOf('data-level') != -1) {
+					if (window.location.href.split('data-level=')[1] != null) {
+						this.breadcrumbs.push(this.dataTypeDict[window.location.href.split('data-level=')[1]])
+					} else {
+						return;
+					}
+				}
+			},
+			initCurrentPageName() {
+				href_str = window.location.href.split('/').pop().split('.')[0].trim()
+				this.breadcrumbs.push(this.pageDict[href_str])
+			},
+			initCurrentBreadcrumbs() {
+
+			},
+			toPage(item) {
+				switch (item) {
+					case '现代观测数据':
+						pushTo('inner-page-currentDataIntroduce.html')
+						break
+
+					case '历史观测数据':
+						pushTo('inner-page-historyIntroduce.html')
+						break
+				}
+			}
+		}
+	})
+</script>
