@@ -61,27 +61,14 @@
 		<main id="main" style="margin-top: 0;">
 
 			<!-- ======= Breadcrumbs Section ======= -->
-			<section class="breadcrumbs">
-				<div class="container">
-
-					<div class="d-flex justify-content-between align-items-center">
-						<h2>数据产品</h2>
-						<ol>
-							<li><a href="index.html">首页</a></li>
-							<li>数据产品</li>
-						</ol>
-					</div>
-				</div>
+			<section id="breadcrumbs" class="breadcrumbs">
 			</section>
+			<script>
+				$('#breadcrumbs').load('components/breadcrumbs.html')
+			</script>
 			<!-- End Breadcrumbs Section -->
 			<section class="inner-page">
 				<div class="container">
-					<div class="row">
-						<div id="data-menu" class="menu-box">
-						</div>
-						<script>
-							$("#data-menu").load("components/data-menu.html")
-						</script>
 						<div class="col-lg-9 mt-4 mt-lg-0">
 							<div class="tab-content">
 								<p id="deviceName" style="margin-top: 10px;">便携式自动气象站

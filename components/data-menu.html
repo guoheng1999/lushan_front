@@ -1,44 +1,41 @@
 <div id="data-menu">
 	<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" unique-opened=true>
-		<el-submenu style="font-weight: bold; font-size: 18px;" index="1">
-			<template slot="title">
-				<span style="margin-right: 25px;" slot="title"><i class="el-icon-folder-opened" />0级历史观测数据</span>
-			</template>
-			<el-submenu index="1-1">
-				
-				<span slot="title"><i class="el-icon-folder" />云滴谱数据(A2/A3)</span>
-				<el-menu-item index="1-1-1"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=0')"><i class="el-icon-document"/></i> 云滴谱数据A2</span></el-menu-item>
-				<el-menu-item index="1-1-2"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=1')"><i class="el-icon-document"/></i> 云滴谱数据A3</span></el-menu-item>
-			</el-submenu>
-			<el-menu-item index="1-2"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=2')"><i class="el-icon-folder" />雾滴谱原始数据(a)</span></el-menu-item>
-			<el-submenu index="1-3">
-				<span slot="title"><i class="el-icon-folder" />雨滴谱数据(B2/B3)</span>
-				<el-menu-item index="1-3-1"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=3')"><i class="el-icon-document"/></i> 雨滴谱数据A2</span></el-menu-item>
-				<el-menu-item index="1-3-2"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=4')"><i class="el-icon-document"/></i> 雨滴谱数据A3</span></el-menu-item>
-			</el-submenu>
-			<el-submenu index="1-4">
-				
-				<span slot="title"><i class="el-icon-folder" />盐核数据(C1/C2)</span>
-				<el-menu-item index="1-4-1"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=5')"><i class="el-icon-document"/></i> 盐核数据C1</span></el-menu-item>
-				<el-menu-item index="1-4-2"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=6')"><i class="el-icon-document"/></i> 盐核数据C2</span></el-menu-item>
-			</el-submenu>
-			
-			<el-menu-item index="1-5"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=7')"><i class="el-icon-folder" />云的宏观观测数据(D1)</span></el-menu-item>
-			<el-menu-item index="1-6"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=8')"><i class="el-icon-folder" />双经纬仪测云数据(F3)</span></el-menu-item>
+		<el-submenu index="1-1">
+
+			<span slot="title"><i class="el-icon-folder" />云滴谱数据</span>
+			<el-menu-item index="1-1-1"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=0')"><i
+						class="el-icon-document" /></i> 云滴谱数据A2</span></el-menu-item>
+			<el-menu-item index="1-1-2"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=1')"><i
+						class="el-icon-document" /></i> 云滴谱数据A3</span></el-menu-item>
 		</el-submenu>
-		<el-submenu style="font-weight: bold; font-size: 18px;" index="2">
-			<template slot="title">
-				<span slot="title"><i class="el-icon-folder-opened" />1级现代观测数据</span>
-			</template>
-			<el-menu-item index="2-1"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=0')"><i class="el-icon-folder"/></i> 便携式六要素自动气象站<span></el-menu-item>
-			<el-menu-item index="2-2"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=1')"><i class="el-icon-folder"/></i> 雨量筒</span></el-menu-item>
-			<el-menu-item index="2-3"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=2')"><i class="el-icon-folder"/></i> 能见度仪</span></el-menu-item>
-			<el-menu-item index="2-4"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=3')"><i class="el-icon-folder"/></i> 云高仪</span></el-menu-item>
-			<el-menu-item index="2-5"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=4')"><i class="el-icon-folder"/></i> 雨滴谱仪</span></el-menu-item>
-			<el-menu-item index="2-6"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=5')"><i class="el-icon-folder"/></i> 雾滴谱仪</span></el-menu-item>
-			<el-menu-item index="2-7"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=6')"><i class="el-icon-folder"/></i> 颗粒物仪</span></el-menu-item>
-			<el-menu-item index="2-8"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=7')"><i class="el-icon-folder"/></i> 微雨雷达</span></el-menu-item>
-			<el-menu-item index="2-9"><span onclick="pushTo('inner-page-currentData.html?datasets_type=1&device-id=8')"><i class="el-icon-folder"/></i> 微波辐射计</span></el-menu-item>
+		<el-menu-item index="1-2"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=2')"><i
+					class="el-icon-folder" />雾滴谱原始数据</span></el-menu-item>
+		<el-submenu index="1-3">
+			<span slot="title"><i class="el-icon-folder" />雨滴谱数据</span>
+			<el-menu-item index="1-3-1"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=3')"><i
+						class="el-icon-document" /></i> 雨滴谱数据B2</span></el-menu-item>
+			<el-menu-item index="1-3-2"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=4')"><i
+						class="el-icon-document" /></i> 雨滴谱数据B3</span></el-menu-item>
+		</el-submenu>
+		<el-submenu index="1-4">
+
+			<span slot="title"><i class="el-icon-folder" />盐核数据</span>
+			<el-menu-item index="1-4-1"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=5')"><i
+						class="el-icon-document" /></i> 盐核数据C1</span></el-menu-item>
+			<el-menu-item index="1-4-2"><span
+					onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=6')"><i
+						class="el-icon-document" /></i> 盐核数据C2</span></el-menu-item>
+		</el-submenu>
+
+		<el-menu-item index="1-5"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=7')"><i
+					class="el-icon-folder" />云的宏观观测数据</span></el-menu-item>
+		<el-menu-item index="1-6"><span onclick="pushTo('inner-page-historyData.html?datasets_type=0&device-id=8')"><i
+					class="el-icon-folder" />双经纬仪测云数据</span></el-menu-item>
 	</el-menu>
 </div>
 <script>
@@ -55,7 +52,7 @@
 		watch: {},
 		computed: {},
 		methods: {
-			getCurrentDataType(){
+			getCurrentDataType() {
 				href_str = window.location.href
 				this.currentDataType = href_str.split('datasets_type=')[1][0]
 			}

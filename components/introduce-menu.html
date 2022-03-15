@@ -1,15 +1,15 @@
 <div id="introduce-menu">
 	<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" unique-opened=true>
-		<el-submenu style="font-weight: bold; font-size: 18px;" index="1">
+		<el-menu-item onclick="pushTo('inner-page-historyIntroduce.html')" style="font-size: 16px;" index="1">
 			<template slot="title">
-				<span onclick="pushTo('inner-page-historyIntroduce.html')" style="margin-right: 25px;" slot="title"><i class="el-icon-folder-opened" />历史观测数据</span>
+				<span style="margin-right: 25px;" slot="title"><i class="el-icon-folder-opened" />历史观测数据</span>
 			</template>
-		</el-submenu>
-		<el-submenu style="font-weight: bold; font-size: 18px;" index="2">
+		</el-menu-item>
+		<el-menu-item onclick="pushTo('inner-page-currentDataIntroduce.html')" style="font-size: 16px;" index="2">
 			<template slot="title">
-				<span onclick="pushTo('inner-page-currentDataIntroduce.html')" slot="title"><i class="el-icon-folder-opened" />现代观测数据</span>
+				<span slot="title"><i class="el-icon-folder-opened" />现代观测数据</span>
 			</template>
-		</el-submenu>
+		</el-menu-item>
 	</el-menu>
 </div>
 <style>
