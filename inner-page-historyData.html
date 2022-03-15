@@ -120,13 +120,13 @@
 													:visible.sync="dialogVisible"
 													style="text-align: center; margin-top: -13vh;">
 													<template>
-														<el-table ref="multipleTable"
+														<el-table ref="multipleTable" max-height="500"
 															@selection-change="handleSelectionChange"
 															:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
 															style="width: 100%">
-															<el-table-column label="Date" prop="id" type="selection">
+															<el-table-column label="编号" prop="id" type="selection">
 															</el-table-column>
-															<el-table-column label="Name" prop="name">
+															<el-table-column label="图片" prop="name">
 															</el-table-column>
 															<el-table-column align="right">
 																<template slot="header" slot-scope="scope">
@@ -134,20 +134,12 @@
 																		placeholder="按图像名搜索" />
 																</template>
 																<template slot-scope="scope">
-																	<el-button size="mini"
-																		@click="img_dialogVisible = true">
-																		查看
-																	</el-button>
-																	<!-- 具体图像 -->
-																	<el-dialog custom-class="login-dialog img-dialog"
-																		title="" :visible.sync="img_dialogVisible"
-																		style="text-align: center;" append-to-body>
-																		<div class="demo-image__placeholder">
-																			<div class="block">
-																				<el-image :src="src"></el-image>
-																			</div>
-																		</div>
-																	</el-dialog>
+																	<div class="demo-image__preview">
+																		<el-image style="width: 100px; height: 100px"
+																			:src="src"
+																			:preview-src-list="previewSrcList">
+																		</el-image>
+																	</div>
 																</template>
 															</el-table-column>
 														</el-table>
@@ -182,7 +174,6 @@
 									<el-drawer append-to-body title="数据反馈" :visible.sync="messageBoardVisible"
 										direction="rtl" size="400px">
 										<div class="block">
-											<!-- <span class="demonstration">请选择与您留言相关的文件名</span> -->
 											<el-cascader class="demonstration cascader" v-model="folder"
 												:options="folders" :props="{ expandTrigger: 'hover' }"
 												@change="handleChange" placeholder="请选择需要反馈的数据名称">
@@ -316,10 +307,10 @@
 		}
 
 		.historyData-dialog {
-			margin-top: 2%;
+			/* 	margin-top: 2%;
 			width: 700.8px;
 			height: 700px;
-			overflow: auto;
+			overflow: auto; */
 		}
 
 		.el-checkbox:last-of-type {
@@ -345,6 +336,7 @@
 			data() {
 				return {
 					src: 'assets/img/about.jpg',
+					previewSrcList: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
 					dialog_title: '',
 					historyData: [{
 						folder: 'A3-02',
@@ -352,116 +344,116 @@
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-01',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-03',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-04',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-05',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-06',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-07',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-08',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-09',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-10',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-11',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-12',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-13',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-14',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}, {
-						folder: 'A3-02',
+						folder: 'A3-15',
 						time: '1962-1965',
 						site: '天控所',
 						pages: '14'
 					}],
 					tableData: [{
 						id: '01',
-						name: '文件名01'
+						name: '图片名01'
 					}, {
 						id: '02',
-						name: '文件名02'
+						name: '图片名02'
 					}, {
 						id: '03',
-						name: '文件名03'
+						name: '图片名03'
 					}, {
 						id: '04',
-						name: '文件名04'
+						name: '图片名04'
 					}, {
 						id: '05',
-						name: '文件名05'
+						name: '图片名05'
 					}, {
 						id: '06',
-						name: '文件名06'
+						name: '图片名06'
 					}, {
 						id: '07',
-						name: '文件名07'
+						name: '图片名07'
 					}, {
 						id: '08',
-						name: '文件名08'
+						name: '图片名08'
 
 					}, {
 						id: '09',
-						name: '文件名09'
+						name: '图片名09'
 					}, {
 						id: '10',
-						name: '文件名10'
+						name: '图片名10'
 					}, {
 						id: '11',
-						name: '文件名11'
+						name: '图片名11'
 					}, {
 						id: '12',
-						name: '文件名12'
+						name: '图片名12'
 					}, {
 						id: '13',
-						name: '文件名13'
+						name: '图片名13'
 					}],
 					search: '',
 					dialogVisible: false,

@@ -68,63 +68,80 @@
 			</script>
 			<!-- End Breadcrumbs Section -->
 			<section class="inner-page">
-				<div class="container">
-						<div class="col-lg-9 mt-4 mt-lg-0">
-							<div class="tab-content">
-								<p id="deviceName" style="margin-top: 10px;">便携式自动气象站
-								<p>
-								<div id="calender">
-									<el-container>
-										<el-header>
-											<div style="text-align: center;">
-												<span class="demonstration">起始日</span>
-												<el-date-picker v-model="fromDate" type='date' placeholder="选择日">
+				<div class="container calendar-content-center">
+					<div class="col-lg-9 mt-4 mt-lg-0">
+						<div class="tab-content">
+							<p id="deviceName" style="margin-top: 10px;">便携式自动气象站
+							<p>
+							<div id="calender">
+								<el-container>
+									<el-header style="height: 100%;">
+										<div class="choose-box">
+											<div style="padding: 5px;"><span style="margin-top: 5px;"
+													class="demonstration">起始日</span>
+												<el-date-picker style="margin-top: 5px;" v-model="fromDate" type='date'
+													placeholder="选择日">
 												</el-date-picker>
+											</div>
 
-												<span class="demonstration">结束日</span>
-												<el-date-picker v-model="endDate" type='date' placeholder="选择日">
+											<div style="padding: 5px;"><span style="margin-top: 5px;"
+													class="demonstration">结束日</span>
+												<el-date-picker style="margin-top: 5px;" v-model="endDate" type='date'
+													placeholder="选择日">
 												</el-date-picker>
-
-												<el-button style="margin-left: 1.25rem;" type="primary"
-													@click="downloadData()" rounds>下载数据
-												</el-button>
 											</div>
-										</el-header>
-
-										<el-main style="text-align: center;">
-											<el-row style="display: inline-flex; margin-top: 10px;">
-												<el-button class="year-change" @click="pervious" v-if="isShowPerviousButton"
-													style="margin-right: 5px;" icon="el-icon-arrow-left" circle>
-												</el-button>
-												<el-radio-group v-model="showYear">
-													<el-radio-button style="margin: 0;" v-for="(item,index) in yearList"
-														:label="item"></el-radio-button>
-												</el-radio-group>
-												<el-button class="year-change" @click="next" v-if="isShowNextButton" style="margin-left: 5px;"
-													icon="el-icon-arrow-right" circle></el-button>
-											</el-row>
-											<div id="data-tips">
-												<el-tag class="tips-hasData">有数据</el-tag>
-												<el-tag class="tips-noData">无数据</el-tag>
+											<div style="margin-left: 1.25rem;">
+												<!-- <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
+													@change="handleCheckAllChange">全选</el-checkbox>
+												<div style="margin: 15px 0;"></div> -->
+												<el-checkbox-group v-model="checkedType"
+													@change="handleCheckedTypeChange">
+													<el-checkbox v-for="type in types" :label="type" :key="type">
+														{{type}}格式
+													</el-checkbox>
+												</el-checkbox-group>
 											</div>
-											<el-row v-if="isRefresh">
-												<el-col :span="6" v-for="(item,index) in monthList" :key="item">
-													<span style="margin-bottom: 5px;"><strong>{{item}}月</strong></span>
-													<el-calendar :value="showYear +'-' + item">
-														<template slot="dateCell" slot-scope="{ data }">
-															<div :class="hasData(data)">
-																{{ data.day.split('-').slice(2).join('-') }}
-															</div>
-														</template>
-													</el-calendar>
-												</el-col>
-											</el-row>
-										</el-main>
-									</el-container>
-								</div>
+											<el-button
+												style="width: -webkit-fit-content; height: 100%;"
+												type="primary" @click="downloadData()" rounds>下载数据
+											</el-button>
+										</div>
+									</el-header>
+
+									<el-main style="text-align: center;">
+										<el-row style="display: inline-flex; margin-top: 10px;">
+											<el-button class="year-change" @click="pervious" v-if="isShowPerviousButton"
+												style="margin-right: 5px;" icon="el-icon-arrow-left" circle>
+											</el-button>
+											<el-radio-group v-model="showYear">
+												<el-radio-button style="margin: 0;" v-for="(item,index) in yearList"
+													:label="item"></el-radio-button>
+											</el-radio-group>
+											<el-button class="year-change" @click="next" v-if="isShowNextButton"
+												style="margin-left: 5px;" icon="el-icon-arrow-right" circle></el-button>
+										</el-row>
+										<div id="data-tips">
+											<el-tag class="tips-hasData">有数据</el-tag>
+											<el-tag class="tips-noData">无数据</el-tag>
+										</div>
+										<el-row v-if="isRefresh">
+											<el-col :span="6" v-for="(item,index) in monthList" :key="item">
+												<span style="margin-bottom: 5px;"><strong>{{item}}月</strong></span>
+												<el-calendar :value="showYear +'-' + item">
+													<template slot="dateCell" slot-scope="{ data }">
+														<div :class="hasData(data)">
+															{{ data.day.split('-').slice(2).join('-') }}
+														</div>
+													</template>
+												</el-calendar>
+											</el-col>
+										</el-row>
+									</el-main>
+								</el-container>
 							</div>
 						</div>
 					</div>
+				</div>
 				</div>
 				</div>
 			</section>
@@ -159,6 +176,32 @@
 		<script src="assets/js/main.js"></script>
 	</body>
 	<style>
+		.choose-box {
+			text-align: center;
+			margin: 0.3125rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-content: center;
+			justify-content: center;
+			align-items: center;
+		}
+		.el-checkbox-group{
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.el-checkbox:last-of-type {
+		    margin-right: 30px;
+		}
+		.calendar-content-center {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-content: center;
+			justify-content: center;
+		}
+
 		#data-tips {
 			margin-top: 5px;
 			margin-bottom: 15px;
@@ -170,11 +213,13 @@
 			border-color: #FFFFFF;
 			color: #1977CC;
 		}
+
 		.year-change:hover {
 			background-color: #F1F7FD;
 			border-color: #F1F7FD;
 			color: #1977CC;
 		}
+
 		.tips-hasData {
 			background-color: #1977CC;
 			border-color: #1977CC;
@@ -267,10 +312,10 @@
 		.el-calendar-table td.is-today {
 			color: #000000;
 		}
-
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script>
+		const chooseDownloadTypeOptions = ['csv', 'nc']
 		new Vue({
 			el: '#calender',
 			data() {
@@ -288,7 +333,11 @@
 					defaultYear: 2022,
 					yearList: [2018, 2019, 2020, 2021, 2022],
 					isShowPerviousButton: true,
-					isShowNextButton: true
+					isShowNextButton: true,
+					checkAll: false,
+					checkedType: ['csv'],
+					types: chooseDownloadTypeOptions,
+					isIndeterminate: true
 				}
 			},
 			beforeMount() {
@@ -300,14 +349,14 @@
 					this.endDate = ''
 				},
 				showYear() {
-					if (this.defaultYear >2015 && this.defaultYear < 2044){
+					if (this.defaultYear > 2015 && this.defaultYear < 2044) {
 						this.isShowNextButton = true
 						this.isShowPerviousButton = true
 					}
-					if (this.defaultYear <= 2015){
+					if (this.defaultYear <= 2015) {
 						this.isShowPerviousButton = false
 					}
-					if (this.defaultYear >= 2044){
+					if (this.defaultYear >= 2044) {
 						this.isShowNextButton = false
 					}
 				}
@@ -373,6 +422,15 @@
 							return 'has-data'
 						}
 					}
+				},
+				handleCheckAllChange(val) {
+					this.checkedType = val ? chooseDownloadTypeOptions : [];
+					this.isIndeterminate = false;
+				},
+				handleCheckedTypeChange(value) {
+					let checkedCount = value.length;
+					this.checkAll = checkedCount === this.types.length;
+					this.isIndeterminate = checkedCount > 0 && checkedCount < this.types.length;
 				}
 			}
 		})
