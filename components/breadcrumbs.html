@@ -1,9 +1,10 @@
 <div id="breadcrumbs" class="container">
 	<div class="d-flex justify-content-between align-items-center">
-		<h2></h2>
+		<h2><el-button type="text" @click="goBack()"> <i class="el-icon-back"></i></el-button></h2>
 		<ol>
 			<li><a href="index.html">首页</a></li>
 			<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
+			<li>{{  }}</li>
 		</ol>
 	</div>
 </div>
@@ -16,52 +17,54 @@
 		el: '#breadcrumbs',
 		data() {
 			return {
-				dataTypeDict: {
+				dataLevelDict: {
 					'0': '0级数据',
 					'1': '1级数据'
 				},
-				pageDict: {
-					'inner-page-historyData': '历史观测数据',
-					'inner-page-currentData': '现代观测数据'
+				dataTypeDict: {
+					'0': '历史观测数据',
+					'1': '现代观测数据'
 				},
+				pageName: '',
 				breadcrumbs: [],
 				deviceList: []
 			}
 		},
-		mounted() {
-		},
+		mounted() {},
 		created() {
-			this.initDeviceList()
-			this.initCurrentPageName()			
+			this.initeDataTypeName()
+			this.initDeviceName()
+			this.initDataLevel()
+			this.initPageName()
 		},
 		methods: {
-			initCurrentPageName() {
-				href_str = window.location.href.split('/').pop().split('.')[0].trim()
-				this.breadcrumbs.push(this.pageDict[href_str])
+			initeDataTypeName() {
+				if (this.getDataType() != null) {
+					this.breadcrumbs.push(this.pageDict[this.getDataType()])
+				}
 			},
-			initDeviceList() {
-				response = getDeviceInfo()
-				response.then(res => {
-					this.deviceList = res.data.data || ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪",
-						"颗粒物仪", "微雨雷达", "微波辐射计"
-					]
-					
-					if (window.location.href.lastIndexOf('data-level') != -1) {
-						if (window.location.href.split('data-level=')[1] != null) {
+			initDeviceName() {
+				if (this.getDeviceId() != null) {
+					response = getDeviceInfo()
+					response.then(res => {
+						this.deviceList = res.data.data || ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪",
+							"颗粒物仪", "微雨雷达", "微波辐射计"]
 							deviceId = this.getDeviceId()
 							dName = this.deviceList[deviceId].deviceName || ''
-							this.breadcrumbs.push(dName + this.dataTypeDict[window.location.href.split(
-								'data-level=')[1][0]])
-						} else {
-							return;
-						}
-					}
-				}).catch(err => {
-					this.deviceList = ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达",
-						"微波辐射计"
-					]
-				})		
-
+							this.breadcrumbs.push(dName)
+					}).catch(err => {
+						this.deviceList = ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达",
+							"微波辐射计"]
+					})
+				}
+			},
+			initDataLevel() {
+				if (this.getDataLevel() != null){
+					
+				}
+			},
+			initPageName() {
+				
 			},
 			toPage(item) {
 				switch (item) {
@@ -74,12 +77,24 @@
 						break
 				}
 			},
-			getDeviceId(){
-				if (window.location.href.lastIndexOf('device-id=')!=-1)
-				{
+			getDataType() {
+				if (window.location.href.lastIndexOf('data-type=')!=-1){
+					return window.location.href.split('data-type=')[1][0]
+				}
+			},
+			getDeviceId() {
+				if (window.location.href.lastIndexOf('device-id=') != -1) {
 					return window.location.href.split('device-id=')[1][0]
 				}
-			}
+			},
+			getDataLevel() {
+				if (window.location.href.lastIndexOf('data-level=') != -1) {
+					return window.location.href.split('data-level=')[1][0]
+				}
+			},
+			goBack(){
+				window.history.back()
+			},
 		}
 	})
 </script>

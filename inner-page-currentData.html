@@ -126,7 +126,7 @@
 										</div>
 										<el-row v-if="isRefresh">
 											<el-col :span="6" v-for="(item,index) in monthList" :key="item">
-												<span style="margin-bottom: 5px;"><strong>{{item}}月</strong></span>
+												<span style="margin-bottom: 5px;"><strong>{{ monthSet[index] }}月</strong></span>
 												<el-calendar :value="showYear +'-' + item">
 													<template slot="dateCell" slot-scope="{ data }">
 														<div :class="hasData(data)">
@@ -393,7 +393,6 @@
 				},
 
 				downloadData() {
-					console.log(this.getMonthArea(0))
 					if (this.datePickStatus) {
 						console.log(this.getDayArr(this.fromDate, this.endDate))
 						this.$message.success('请求成功，等待服务器响应！');
@@ -418,7 +417,6 @@
 				hasData(data) {
 					for (var i = 0; i < this.dayTime.length; i++) {
 						if (this.dayTime[i] == data.day) {
-							console.log(this.dayTime[i], data.day)
 							return 'has-data'
 						}
 					}
