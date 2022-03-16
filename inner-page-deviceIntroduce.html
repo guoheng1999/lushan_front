@@ -71,7 +71,7 @@
 				$('#breadcrumbs').load('components/breadcrumbs.html')
 			</script>
 			<!-- End Breadcrumbs Section -->
-			
+
 			<section class="inner-page" style="padding-top: 0px;">
 				<div class="container">
 					<div class="row">
@@ -119,36 +119,57 @@
 												</el-image>
 											</el-main>
 										</el-container>
+										<div class="data-download">
+											<el-button type="primary"
+												@click="toPage('inner-page-currentData.html?data-level=0')" rounds>
+												0级数据下载
+											</el-button>
+											<el-button type="primary"
+												@click="toPage('inner-page-currentData.html?data-level=1')" rounds>
+												1级数据下载
+											</el-button>
+										</div>
+										<div>
+											<el-row
+												style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark el-icon-document">
+														&nbsp;相关文档</div>
+												</el-col>
+											</el-row>
+											<el-row style="padding: 5px 5px 5px 15px;">
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i
+																class="el-icon-magic-stick">&nbsp;春季吉林地区层状冷云中冰晶的形成与雪晶增长特点相关资料：：</i></span>
+														<el-link target="_blank"
+															href="data/春季吉林地区层状冷云中冰晶的形成与雪晶增长特点_游来光.pdf" type="primary">
+															春季吉林地区层状冷云中冰晶的形成与雪晶增长特点</el-link>
+													</div>
+												</el-col>
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i
+																class="el-icon-magic-stick">&nbsp;南极冰雪晶的形态分析相关资料：</i></span>
+														<el-link target="_blank" href="data/南极冰雪晶的形态分析.pdf"
+															type="primary">南极冰雪晶的形态分析</el-link>
+													</div>
+												</el-col>
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i
+																class="el-icon-magic-stick">&nbsp;云室实验室对空心冰颗粒散射特性的调查_埃尔塞维尔增强读取器相关资料：</i></span>
+														<el-link target="_blank"
+															href="data/云室实验室对空心冰颗粒散射特性的调查_埃尔塞维尔增强读取器.pdf"
+															type="primary">云室实验室对空心冰颗粒散射特性的调查</el-link>
+													</div>
+												</el-col>
+											</el-row>
+										</div>
 									</el-main>
 								</el-container>
 							</div>
-
-							<div class="data-download">
-								<el-button type="primary" @click="toPage('inner-page-currentData.html?data-level=0')"
-									rounds>0级数据下载
-								</el-button>
-								<el-button type="primary" @click="toPage('inner-page-currentData.html?data-level=1')"
-									rounds>1级数据下载
-								</el-button>
-							</div>
-							<el-row
-								style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
-								<el-col :span="24">
-									<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关文档</div>
-								</el-col>
-							</el-row>
-							<el-row style="padding: 5px 5px 5px 15px;">
-								<el-col :span="24">
-									<div class="grid-content bg-purple-dark">
-										<span><i class="el-icon-magic-stick">&nbsp;方差分析相关资料：</i></span>
-										<el-link target="_blank" href="data/方差分析练习.pdf" type="primary">方差分析练习</el-link>
-									</div>
-								</el-col>
-							</el-row>
-
-
 						</div>
-
 					</div>
 				</div>
 			</section>
@@ -170,6 +191,22 @@
 		</script>
 	</body>
 	<style>
+		/* 面包屑样式 start*/
+		.breadcrumbs {
+			margin-top: 100px;
+			padding: 10px 0;
+		}
+		/* 返回按钮大小 */
+		.el-button--text {
+			color: #1977CC;
+			font-size: 24px;
+		}
+
+		.breadcrumbs ol {
+			font-size: 16px;
+		}
+
+		/* 面包屑样式 end*/
 		#copyright {
 			margin-top: 10%;
 			width: 100%;
