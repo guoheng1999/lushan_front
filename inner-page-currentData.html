@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-		<title>1级现代观测数据</title>
+		<title>数据下载</title>
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 
@@ -92,7 +92,7 @@
 												<!-- <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
 													@change="handleCheckAllChange">全选</el-checkbox>
 												<div style="margin: 15px 0;"></div> -->
-												<el-checkbox-group v-model="checkedType"
+												<el-checkbox-group v-if="isShowFileCheckBox" v-model="checkedType"
 													@change="handleCheckedTypeChange">
 													<el-checkbox v-for="type in types" :label="type" :key="type">
 														{{type}}格式
@@ -127,7 +127,7 @@
 													style="margin-bottom: 5px;"><strong>{{ monthSet[index] }}月</strong></span>
 												<el-calendar :value="showYear +'-' + item">
 													<template slot="dateCell" slot-scope="{ data }">
-														<div :class="hasData(data)">
+														<div :class="hasData(data)" @click="chooseDay(data.day)">
 															{{ data.day.split('-').slice(2).join('-') }}
 														</div>
 													</template>
@@ -179,14 +179,17 @@
 			margin-top: 80px;
 			padding: 10px 0;
 		}
+
 		/* 返回按钮大小 */
 		.el-button--text {
-		    color: #1977CC;
-		    font-size: 24px;
+			color: #1977CC;
+			font-size: 24px;
 		}
+
 		.breadcrumbs ol {
 			font-size: 16px;
 		}
+
 		/* 面包屑样式 end*/
 		.choose-box {
 			text-align: center;
@@ -344,12 +347,13 @@
 					fromDate: '',
 					endDate: '',
 					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-					monthSet:['一','二','三','四','五','六','七','八','九','十','十一','十二'],
+					monthSet: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
 					isRefresh: true,
 					defaultYear: 2022,
 					yearList: [2018, 2019, 2020, 2021, 2022],
 					isShowPerviousButton: true,
 					isShowNextButton: true,
+					isShowFileCheckBox: true,
 					checkAll: false,
 					checkedType: ['csv'],
 					types: chooseDownloadTypeOptions,
@@ -358,6 +362,7 @@
 			},
 			beforeMount() {
 				this.createYearList(this.defaultYear)
+				this.initFileTypeCheckBox()
 			},
 			watch: {
 				dataPickerOption() {
@@ -445,6 +450,73 @@
 					let checkedCount = value.length;
 					this.checkAll = checkedCount === this.types.length;
 					this.isIndeterminate = checkedCount > 0 && checkedCount < this.types.length;
+				},
+				initFileTypeCheckBox() {
+					if (window.location.href.indexOf('data-level=') != null) {
+						data_level = window.location.href.split('data-level=')[1][0]
+						if (data_level == 0) {
+							this.isShowFileCheckBox = false
+						} else {
+							this.isShowFileCheckBox = true
+						}
+					}
+				},
+				chooseDay(day) {
+					// 在日历picker组件中的×，点击后会将fromDate和endDate对象置为null，因此需要重新赋为空字符串。
+					if (this.fromDate instanceof Date) {
+						this.fromDate = moment(new Date(this.fromDate)).format('YYYY-MM-DD')
+					}
+					if (this.endDate instanceof Date) {
+						this.endDate = moment(new Date(this.endDate)).format('YYYY-MM-DD')
+					}
+					if (this.fromDate == null) {
+						this.fromDate = ''
+					}
+					if (this.endDate == null) {
+						this.endDate = ''
+					}
+					// 起始日期和结束日期都未进行选择时。
+					if (this.fromDate == '' && this.endDate == '') {
+						this.fromDate = day
+						return
+					}
+					// 选择起始日期
+					if (this.fromDate != '' && this.endDate == '') {
+						// 起始日期晚于选择的日期择设为起始日期
+						if (this.fromDate > day) {
+							this.endDate = this.fromDate
+							this.fromDate = day
+						} else {
+							this.endDate = day
+						}
+						return
+					}
+					// 如果结束日期选择
+					if (this.endDate != '' && this.fromDate == '') {
+						if (this.endDate < day) {
+							this.fromDate = this.endDate
+							this.endDate = day
+						} else {
+							this.fromDate = day
+						}
+						return
+					}
+					// 如果开始和结束日期都进行了选择
+					if (this.endDate != '' && this.fromDate != '') {
+						// 如果新选择的日期处于开始与结束日期之间，
+						if (this.endDate > day && day > this.fromDate) {
+							this.endDate = day
+						}
+						// 如果新选择日期晚于当前结束日期
+						else if (this.fromDate >= day) {
+							this.fromDate = day
+						}
+						// 如果新选择日期早于当前开始日期
+						else if (this.endDate <= day) {
+							this.endDate = day
+						}
+					}
+
 				}
 			}
 		})

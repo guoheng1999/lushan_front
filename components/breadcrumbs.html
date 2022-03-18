@@ -4,7 +4,7 @@
 		<ol>
 			<li><a href="index.html">首页</a></li>
 			<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
-			<li>{{  }}</li>
+			<li>{{ pageName }}</li>
 		</ol>
 	</div>
 </div>
@@ -34,16 +34,17 @@
 		created() {
 			this.initeDataTypeName()
 			this.initDeviceName()
-			this.initDataLevel()
+			// this.initDataLevel()
 			this.initPageName()
 		},
 		methods: {
 			initeDataTypeName() {
 				if (this.getDataType() != null) {
-					this.breadcrumbs.push(this.pageDict[this.getDataType()])
+					this.breadcrumbs.push(this.dataTypeDict[this.getDataType()])
 				}
 			},
 			initDeviceName() {
+				if (this.getDataLevel() == null) return
 				if (this.getDeviceId() != null) {
 					response = getDeviceInfo()
 					response.then(res => {
@@ -52,6 +53,8 @@
 							deviceId = this.getDeviceId()
 							dName = this.deviceList[deviceId].deviceName || ''
 							this.breadcrumbs.push(dName)
+							
+							this.initDataLevel()
 					}).catch(err => {
 						this.deviceList = ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达",
 							"微波辐射计"]
@@ -60,11 +63,11 @@
 			},
 			initDataLevel() {
 				if (this.getDataLevel() != null){
-					
+					this.breadcrumbs.push(this.dataLevelDict[this.getDataLevel()])
 				}
 			},
 			initPageName() {
-				
+				this.pageName = document.title
 			},
 			toPage(item) {
 				switch (item) {
@@ -76,6 +79,24 @@
 						pushTo('inner-page-historyIntroduce.html')
 						break
 				}
+				
+				if (item.endsWith('级数据')){
+						deviceName = this.breadcrumbs[this.breadcrumbs.indexOf(item)-1]
+						for (var i = 0; i < this.deviceList.length; i++) {
+							if (this.deviceList[i].deviceName == deviceName)
+							{
+								pushTo('inner-page-deviceIntroduce.html?data-type=1&device-id=' + i)
+							}
+						}
+				}
+				for (var i = 0; i < this.deviceList.length; i++) {
+					if (this.deviceList[i].deviceName == item)
+					{
+						pushTo('inner-page-deviceIntroduce.html?data-type=1&device-id=' + i)
+					}
+				}
+				
+				
 			},
 			getDataType() {
 				if (window.location.href.lastIndexOf('data-type=')!=-1){

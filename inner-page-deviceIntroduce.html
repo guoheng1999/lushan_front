@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-		<title>现代数据概述</title>
+		<title>现代观测设备概述</title>
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 
@@ -121,11 +121,11 @@
 										</el-container>
 										<div class="data-download">
 											<el-button type="primary"
-												@click="toPage('inner-page-currentData.html?data-level=0')" rounds>
+												@click="toPage('inner-page-currentData.html?data-level=0&data-type=1')" rounds>
 												0级数据下载
 											</el-button>
 											<el-button type="primary"
-												@click="toPage('inner-page-currentData.html?data-level=1')" rounds>
+												@click="toPage('inner-page-currentData.html?data-level=1&data-type=1')" rounds>
 												1级数据下载
 											</el-button>
 										</div>
@@ -301,12 +301,6 @@
 			},
 			beforeMount() {
 				this.deviceInfo()
-
-				this.active_id = this.checkUrl()
-
-				this.activate_device_name = this.device_list[this.active_id]
-
-				this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 			},
 			watch: {
 
@@ -320,18 +314,7 @@
 				},
 				checkUrl() {
 					href_str = window.location.href
-					if (href_str.indexOf("device_id") != -1) {
-						buffer = href_str.substring(href_str.lastIndexOf('device_id'))
-						buffer = buffer.split("=")[1]
-						try {
-							id = parseInt(buffer)
-							return id
-						} catch (e) {
-							//TODO handle the exception
-							return 0
-						}
-					}
-					return 0
+					this.active_id = href_str.split("device-id=")[1][0]
 				},
 				deviceInfo() {
 					response = getDeviceInfo()
@@ -339,6 +322,11 @@
 						this.device_list = res.data.data || ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪",
 							"颗粒物仪", "微雨雷达", "微波辐射计"
 						]
+						this.checkUrl()
+						console.log('active_id', this.active_id)
+						console.log('activate_device_name', this.activate_device_name)
+						this.activate_device_name = this.device_list[this.active_id].deviceName
+						this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 					}).catch(err => {
 						this.device_list = ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达",
 							"微波辐射计"
@@ -349,8 +337,6 @@
 					this.$message.success('请求成功，等待服务器响应！');
 				},
 				toPage(url) {
-					// data-level=0&device-id=2
-					console.log(url + '&device-id=' + this.active_id)
 					window.location.href = url + '&device-id=' + this.active_id;
 				}
 			}
