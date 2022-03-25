@@ -1,11 +1,11 @@
 <div id="introduce-menu">
-	<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" unique-opened=true>
-		<el-menu-item onclick="pushTo('inner-page-historyIntroduce.html')" style="font-size: 16px;" index="1">
+	<el-menu :default-active="this.currentDataType" unique-opened=true>
+		<el-menu-item onclick="pushTo('inner-page-historyIntroduce.html?datasets-type=1')" style="font-size: 18px;" index="1">
 			<template slot="title">
 				<span style="margin-right: 25px;" slot="title"><i class="el-icon-folder-opened" />历史观测数据</span>
 			</template>
 		</el-menu-item>
-		<el-menu-item onclick="pushTo('inner-page-currentDataIntroduce.html')" style="font-size: 16px;" index="2">
+		<el-menu-item onclick="pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')" style="font-size: 18px;" index="2">
 			<template slot="title">
 				<span slot="title"><i class="el-icon-folder-opened" />现代设备观测数据</span>
 			</template>
@@ -31,7 +31,7 @@
 		methods: {
 			getCurrentDataType() {
 				href_str = window.location.href
-				this.currentDataType = href_str.split('datasets_type=')[1][0]
+				this.currentDataType = href_str.split('datasets-type=')[1][0]
 			}
 		}
 	})

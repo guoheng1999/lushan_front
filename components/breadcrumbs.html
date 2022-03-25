@@ -23,7 +23,7 @@
 				},
 				dataTypeDict: {
 					'0': '历史观测数据',
-					'1': '现代观测数据'
+					'1': '现代设备观测数据'
 				},
 				pageName: '',
 				breadcrumbs: [],
@@ -32,6 +32,7 @@
 		},
 		mounted() {},
 		created() {
+			this.initDatasetsName()
 			this.initeDataTypeName()
 			this.initDeviceName()
 			// this.initDataLevel()
@@ -69,14 +70,19 @@
 			initPageName() {
 				this.pageName = document.title
 			},
+			initDatasetsName() {
+				if (this.getDatasetsType() != null){
+					this.breadcrumbs.push('数据产品')
+				}
+			},
 			toPage(item) {
 				switch (item) {
-					case '现代观测数据':
-						pushTo('inner-page-currentDataIntroduce.html')
+					case '现代设备观测数据':
+						pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
 						break
 
 					case '历史观测数据':
-						pushTo('inner-page-historyIntroduce.html')
+						pushTo('inner-page-historyIntroduce.html?datasets-type=1')
 						break
 				}
 				
@@ -85,18 +91,23 @@
 						for (var i = 0; i < this.deviceList.length; i++) {
 							if (this.deviceList[i].deviceName == deviceName)
 							{
-								pushTo('inner-page-deviceIntroduce.html?data-type=1&device-id=' + i)
+								pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
 							}
 						}
 				}
 				for (var i = 0; i < this.deviceList.length; i++) {
 					if (this.deviceList[i].deviceName == item)
 					{
-						pushTo('inner-page-deviceIntroduce.html?data-type=1&device-id=' + i)
+						pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
 					}
 				}
 				
 				
+			},
+			getDatasetsType() {
+				if (window.location.href.lastIndexOf('datasets-type=')!=-1){
+					return window.location.href.split('datasets-type=')[1][0]
+				}
 			},
 			getDataType() {
 				if (window.location.href.lastIndexOf('data-type=')!=-1){

@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-		<title>数据下载</title>
+		<title>下载数据</title>
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 
@@ -127,7 +127,7 @@
 													style="margin-bottom: 5px;"><strong>{{ monthSet[index] }}月</strong></span>
 												<el-calendar :value="showYear +'-' + item">
 													<template slot="dateCell" slot-scope="{ data }">
-														<div :class="hasData(data)" @click="chooseDay(data.day)">
+														<div :class="hasData(data)">
 															{{ data.day.split('-').slice(2).join('-') }}
 														</div>
 													</template>

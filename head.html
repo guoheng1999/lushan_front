@@ -9,8 +9,8 @@
 				<li class="dropdown"><a href="index.html#datasets"><span>数据产品</span> <i
 							class="bi bi-chevron-down"></i></a>
 					<ul>
-						<li><a href="inner-page-historyIntroduce.html">历史观测数据</a></li>
-						<li><a href="inner-page-currentDataIntroduce.html">现代设备观测数据</a></li>
+						<li><a href="inner-page-historyIntroduce.html?datasets-type=1">历史观测数据</a></li>
+						<li><a href="inner-page-currentDataIntroduce.html?datasets-type=2">现代设备观测数据</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="index.html#customer">用户服务 <i class="bi bi-chevron-down"></i></a>
@@ -37,7 +37,7 @@
 		</nav>
 		<!-- .navbar -->
 		<!-- 登录注册 -->
-		<div id="login">
+		<div id="login" v-if="!isLogin">
 			<el-button
 				style="background: #1977cc; border-radius: 50px; margin-left: 25px; color: #fff; cursor: pointer; padding: 8px 25px; white-space: nowrap; font-size: 14px;"
 				size="mini" @click="login_dialogVisible = true">
@@ -89,7 +89,8 @@
 				ruleForm: {
 					pass: '',
 					email: ''
-				}
+				},
+				isLogin: false
 			}
 		},
 		methods: {
