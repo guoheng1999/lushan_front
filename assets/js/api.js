@@ -113,7 +113,7 @@ function getHistoryData(params) {
 	}).get("historyXlsxData/type/" + params)
 }
 //获取原始记录
-function getOriginData(params) {
+function getOriginDataList(params) {
 	return axios.create({
 		baseURL: LUSHAN_CONFIG['BASE_URL'],
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
@@ -121,7 +121,7 @@ function getOriginData(params) {
 			'Access-Control-Allow-Origin': '*',
 			'token': localStorage.getItem('logintoken') || ''
 		}
-	}).get("historyXlsxData/type/" + params)
+	}).get("historyPictureData/historyDataName/" + params)
 }
 //下载历史数据
 function downloadHistoryData(params) {

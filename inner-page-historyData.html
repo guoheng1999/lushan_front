@@ -153,7 +153,7 @@
 													<template>
 														<el-table ref="multipleTable" max-height="500"
 															@selection-change="handleSelectionChange"
-															:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+															:data="originData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
 															style="width: 100%">
 															<el-table-column align="right">
 																<template slot="header" slot-scope="scope">
@@ -172,7 +172,7 @@
 																		<el-link
 																			@click="download_historyImg(scope.row.filePathName)"
 																			type="primary">
-																			{{scope.row.filePathName+'.'+scope.row.fileType}}
+																			{{scope.row.picName}}
 																		</el-link>
 																	</template>
 																</el-table-column>
@@ -184,7 +184,7 @@
 															:current-page="currentPage" :page-sizes="[9, 15, 20]"
 															:page-size="pagesize"
 															layout="total, sizes, prev, pager, next, jumper"
-															:total="tableData.length">
+															:total="originData.length">
 														</el-pagination>
 													</template>
 													<span slot="footer" class="dialog-footer">
@@ -402,47 +402,7 @@
 					originalRecord: false, //原始记录按钮默认不可见
 					deviceName: 'A2', //当前设备默认显示云滴谱数据A2
 					historyData: [],
-					tableData: [{
-						id: '01',
-						name: '图片名01'
-					}, {
-						id: '02',
-						name: '图片名02'
-					}, {
-						id: '03',
-						name: '图片名03'
-					}, {
-						id: '04',
-						name: '图片名04'
-					}, {
-						id: '05',
-						name: '图片名05'
-					}, {
-						id: '06',
-						name: '图片名06'
-					}, {
-						id: '07',
-						name: '图片名07'
-					}, {
-						id: '08',
-						name: '图片名08'
-
-					}, {
-						id: '09',
-						name: '图片名09'
-					}, {
-						id: '10',
-						name: '图片名10'
-					}, {
-						id: '11',
-						name: '图片名11'
-					}, {
-						id: '12',
-						name: '图片名12'
-					}, {
-						id: '13',
-						name: '图片名13'
-					}],
+					originData: [],
 					userForm: {
 						email: ''
 					}, //用户信息列表
@@ -653,13 +613,13 @@
 				},
 				//获取原始记录
 				getOriginData(row) {
-					this.dialog_title = "文件夹  |" + row.dataName + "|  包含的图片"
+					this.dialog_title = "|" + row.dataName + "|  包含的图片"
 					this.dialogVisible = true
-					getOriginData(params)
+					getOriginDataList(row.dataName)
 						.then(res => {
 							res = res.data
 							if (res.code == 2000) {
-								this.historyData = res.data
+								this.originData = res.data
 							} else {
 								this.$message({
 									type: 'info',
