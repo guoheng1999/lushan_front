@@ -1,5 +1,5 @@
 const LUSHAN_CONFIG = {
-	BASE_URL: 'http://127.0.0.1:8081/lushan',
+	BASE_URL: 'http://10.23.107.96:8081/lushan',
 	TIME_OUT: 100000
 }
 
@@ -8,7 +8,7 @@ const instance = axios.create({
 	timeout: LUSHAN_CONFIG['TIME_OUT'],
 	headers: {
 		'Access-Control-Allow-Origin': '*',
-		'token': sessionStorage.getItem('')
+		'token': localStorage.getItem('logintoken') || ''
 	}
 });
 
@@ -18,51 +18,192 @@ const fileUploadInstance = axios.create({
 	headers: {
 		'Access-Control-Allow-Origin': '*',
 		// 'token': sessionStorage.getItem(''),
-		'token': 'eFhyenM4STFZd0JrRGc1WlVacHhvNE0wNkJGdTN1SXRVNGJFNHRZeG4vRkRoVXk2S0FRbzFhTVMzYjA2ajJXNQ==',
+		'token': localStorage.getItem('logintoken') || '',
 		'Conten-Type': "multipart/form-data"
-	}
+	},
+	responseType: 'blob'
 });
 
 
 /***
 	User Api
 */
-// 用户登录
-function userLogin(data) {
-	const {
-		email,
-		password
-	} = data
-	return instance.post('/login', {
-		'email': email,
-		'password': password
-	}).then(res => {
-		console.log(res)
-	}).catch(err => {
-		console.error(err)
-	})
+
+function userLogin(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).post('/login', params)
+}
+//重置密码
+function findPWD(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).put('/user/password', params)
+}
+//发送邮件
+function seedMessage(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).post("/email", params)
+}
+
+//发送验证码
+function sendValidateMessage(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).post("/email/resetPassword", params)
 }
 // 用户注册
 function userRegister(userInfo) {
-	return instance.post(
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).post(
 		'/register',
 		userInfo
 	)
 }
-
+//获取用户信息
+function UserList(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).get("user/" + params)
+}
 /***
 	Device Api
 */
+//获取历史数据
+function getHistoryData(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).get("historyXlsxData/type/" + params)
+}
+//获取原始记录
+function getOriginData(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).get("historyXlsxData/type/" + params)
+}
+//下载历史数据
+function downloadHistoryData(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		},
+		responseType: 'blob'
+	}).get("file/download/historyData?dataName=" + params)
+}
+//下载历史数据图片
+function downloadHistoryImg(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		},
+		responseType: 'blob'
+	}).get("file/download/historyData?dataName=" + params)
+}
+
+//获取现代数据
+function getDayTime(dataLevel,deviceId) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).get("currentData/deviceId/dataLevel/times?dataLevel=" +dataLevel+"&deviceId="+deviceId)
+}
+
+//下载现代数据
+function downloadCurrentData(params) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		}
+	}).post("file/download/currentData", params)
+}
+
 function getDeviceInfo() {
-	return instance.get('/device/')
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': localStorage.getItem('logintoken') || ''
+		}
+	}).get('/device/')
 }
 
 /***
 	DataFile Api
 */
 
-function downloadFile (url, formData) {
-    return fileUploadInstance.get(url, formData).then(res=>res)
+function downloadFile(url, formData) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		}
+	}).get(url, formData).then(res => res)
 }
 
 
@@ -70,7 +211,16 @@ function downloadFile (url, formData) {
 	UserProof Api
 */
 function uploadUserProof(formData) {
-	return fileUploadInstance.post(
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		}
+	}).post(
 		'/file/upload/user/proof',
 		formData
 	)
@@ -89,7 +239,16 @@ function uploadUserProof(formData) {
 */
 
 function uploadFile() {
-	return fileUploadInstance.post('/file/upload/user/proof', formData).then(res => {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': localStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		}
+	}).post('/file/upload/user/proof', formData).then(res => {
 		res.data
 	})
 }

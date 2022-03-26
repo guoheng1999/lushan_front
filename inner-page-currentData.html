@@ -49,6 +49,11 @@
 		<script src="assets/js/vue/vue.js"></script>
 		<!-- import element-ui JavaScript -->
 		<script src="assets/js/element-ui/lib/index.js"></script>
+		<!-- import api.js -->
+		<script src="assets/js/axios.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<script src="assets/js/api.js"></script>
+		<script src="assets/js/utils/util.js"></script>
 	</head>
 
 	<body>
@@ -174,6 +179,11 @@
 		<script src="assets/js/main.js"></script>
 	</body>
 	<style>
+		/*解决记住密码样式冲突*/
+		.dataShowButton {
+			margin-right: 0px !important;
+		}
+
 		/* 面包屑样式 start*/
 		.breadcrumbs {
 			margin-top: -30px;
@@ -328,6 +338,7 @@
 		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
+	<script src="assets/js/components/breadcrumbs.js"></script>
 	<script>
 		const chooseDownloadTypeOptions = ['csv', 'nc']
 		new Vue({
@@ -336,24 +347,30 @@
 				return {
 					dataPickerOption: 'year',
 					value: new Date(),
-					showYear: 2022,
-					dayTime: ['2022-01-22', '2022-01-23', '2022-01-24', '2022-01-25', '2022-01-26', '2022-01-27',
-						'2022-01-18', '2022-03-28'
-					],
+					showYear: 2016,
+					dayTime: [],
 					fromDate: '',
 					endDate: '',
 					monthList: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 					monthSet: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
 					isRefresh: true,
-					defaultYear: 2022,
-					yearList: [2018, 2019, 2020, 2021, 2022],
+					defaultYear: 2016,
+					yearList: [2016, 2017, 2018, 2019, 2020, 2021, 2022],
 					isShowPerviousButton: true,
 					isShowNextButton: true,
 					isShowFileCheckBox: true,
 					checkAll: false,
 					checkedType: ['csv'],
 					types: chooseDownloadTypeOptions,
-					isIndeterminate: true
+					isIndeterminate: true,
+					//请求下载的参数
+					downloadMessage: {
+						dataLevel: '',
+						deviceId: '',
+						email: '',
+						endDay: '',
+						fromDay: ''
+					}
 				}
 			},
 			beforeMount() {
@@ -389,7 +406,39 @@
 					}
 				},
 			},
+			created() {
+				const localStorageDayTime = localStorage.getItem('dayTime')
+				console.log(typeof(localStorageDayTime))
+				if (localStorageDayTime == null || localStorageDayTime == 'undefined') {
+					console.log('调用daytime')
+					this.getDayTimeData()
+				} else {
+					this.getYearList()
+					console.log(this.dayTime)
+				}
+			},
 			methods: {
+				// 获取设备与数据等级
+				getDatasetsType() {
+					if (window.location.href.lastIndexOf('datasets-type=') != -1) {
+						return window.location.href.split('datasets-type=')[1][0]
+					}
+				},
+				getDataType() {
+					if (window.location.href.lastIndexOf('data-type=') != -1) {
+						return window.location.href.split('data-type=')[1][0]
+					}
+				},
+				getDeviceId() {
+					if (window.location.href.lastIndexOf('device-id=') != -1) {
+						return window.location.href.split('device-id=')[1][0]
+					}
+				},
+				getDataLevel() {
+					if (window.location.href.lastIndexOf('data-level=') != -1) {
+						return window.location.href.split('data-level=')[1][0]
+					}
+				},
 				/**
 				 * 得到开始和结束日期，得到中间所有天返回数组
 				 * @param {String} string 开始日期'2021-7-1'
@@ -412,7 +461,33 @@
 				downloadData() {
 					if (this.datePickStatus) {
 						console.log(this.getDayArr(this.fromDate, this.endDate))
-						this.$message.success('请求成功，等待服务器响应！');
+						// this.$message.success('请求成功，等待服务器响应！');
+						this.downloadMessage.dataLevel = this.getDataLevel()
+						this.downloadMessage.deviceId = this.getDeviceId()
+						this.downloadMessage.email = JSON.parse(localStorage.getItem('userInfo')).email
+						console.log(this.downloadMessage.email)
+						this.downloadMessage.endDay = this.endDate
+						this.downloadMessage.fromDay = this.fromDate
+						downloadCurrentData(this.downloadMessage)
+							.then(res => {
+								res = res.data
+								console.log(res.data)
+								if (res.code == 2000) {
+									this.$message({
+										type: 'success',
+										message:'已向您的邮箱发送相关数据，请注意查收！'
+									})
+								} else {
+									this.$message({
+										type: 'info',
+										message: res.msg
+									})
+								}
+							})
+							.catch(err => {
+								this.loading = false
+								this.$message.error('现代数据获取失败，请稍后重试！')
+							})
 					} else {
 						this.$message.error('请先选择下载日期！');
 					}
@@ -425,12 +500,52 @@
 					this.defaultYear -= 1
 					this.showYear -= 1
 					this.createYearList(this.defaultYear)
+					this.getYearList()
 				},
 				next() {
 					this.defaultYear += 1
 					this.showYear += 1
 					this.createYearList(this.defaultYear)
+					this.getYearList()
 				},
+				// 获取dayTime
+				getDayTimeData() {
+					const dataLevel = this.getDataLevel()
+					const deviceId = (Number(this.getDeviceId()) + Number(1))
+					getDayTime(dataLevel, deviceId)
+						.then(res => {
+							res = res.data
+							console.log(res.data)
+							if (res.code == 2000) {
+								localStorage.setItem('dayTime', JSON.stringify(res.data))
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.msg
+								})
+							}
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('现代数据获取失败，请稍后重试！')
+						})
+				},
+				//按年分割时间
+				getYearList() {
+					const localStorageDayTime = JSON.parse(localStorage.getItem('dayTime'))
+					console.log(localStorageDayTime)
+					console.log(typeof(this.showYear.toString()))
+					for (var i = 0; i < localStorageDayTime.length; i++) {
+						console.log(localStorageDayTime[i])
+						// console.log(localStorageDayTime[i].startsWith(this.showYear))
+						// console.log(localStorageDayTime[i].startsWith(this.showYear.toString()))
+						if (localStorageDayTime[i].startsWith(this.showYear)) {
+							this.dayTime.push(localStorageDayTime[i])
+						}
+					}
+					console.log(this.dayTime)
+				},
+				/*渲染有数据的部分*/
 				hasData(data) {
 					for (var i = 0; i < this.dayTime.length; i++) {
 						if (this.dayTime[i] == data.day) {

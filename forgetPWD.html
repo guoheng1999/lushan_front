@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>忘记密码</title>
+		<meta content="" name="description">
+		<meta content="" name="keywords">
+
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+			rel="stylesheet">
+
+		<!-- Vendor CSS Files -->
+		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+		<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+		<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+		<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+		<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+		<!-- Template Main CSS File -->
+		<link href="assets/css/style.css" rel="stylesheet">
+		<!--element-ui css-->
+		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
+		<!--注册-->
+		<link href="assets/css/register.css" rel="stylesheet" type="text/css" media="all">
+		<link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+		<!-- js -->
+		<script src="assets/js/jquery.min.js"></script>
+		<!-- Vendor JS Files -->
+		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+		<script src="assets/vendor/php-email-form/validate.js"></script>
+		<script src="assets/vendor/purecounter/purecounter.js"></script>
+		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="assets/js/main.js"></script>
+		<!-- import Vue before Element -->
+		<script src="assets/js/vue/vue.js"></script>
+		<!-- import JavaScript -->
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<!-- import api.js -->
+		<script src="assets/js/axios.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<script src="assets/js/api.js"></script>
+		<script src="assets/js/utils/util.js"></script>
+	</head>
+
+	<body>
+		<!-- ======= Header ======= -->
+		<div id="head"></div>
+		<script>
+			$("#head").load("head.html");
+		</script>
+		<!-- End Header -->
+
+
+		<main id="main" style="margin-top: 107.19px;">
+
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs">
+				<div class="container">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<ol>
+							<li><a href="index.html">首页</a></li>
+							<li>忘记密码</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+			<!-- End Breadcrumbs Section -->
+
+			<section class="inner-page">
+				<div class="main-agileits">
+					<div class="sub-main" id="forgetPWD-form">
+						<el-form class="register-form" :model="ruleForm" status-icon :rules="rules" ref="ruleForm"
+							class="demo-ruleForm">
+							<div class="form-text">
+								<el-form-item prop="email">
+									<el-input placeholder="邮箱" type="text" :disabled="disabled" v-model="ruleForm.email"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-message"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item class="el-register-btn" v-if="!isSeedCode">
+									<el-button type="primary" @click="seedCode()">发送验证码</el-button>
+								</el-form-item>
+								<el-form-item prop="code" v-if="isSeedCode">
+									<el-input placeholder="输入验证码" type="text" v-model="ruleForm.code"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-phone"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item prop="pass" v-if="isSeedCode">
+									<el-input placeholder="密码" type="password" v-model="ruleForm.password"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item prop="checkPass" v-if="isSeedCode">
+									<el-input placeholder="确认密码" type="password" v-model="ruleForm.checkPassword"
+										autocomplete="off">
+										<i slot="prefix" class="el-input__icon el-icon-lock"></i>
+									</el-input>
+								</el-form-item>
+								<el-form-item class="el-register-btn" v-if="isSeedCode">
+									<el-button type="primary" @click="checkCode()">重置密码</el-button>
+								</el-form-item>
+							</div>
+						</el-form>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</section>
+
+		</main>
+		<!-- End #main -->
+
+		<!-- ======= Footer ======= -->
+		<footer id="footer">
+			<div class="container d-md-flex py-4">
+
+				<div class="me-md-auto text-center text-md-start">
+					<div class="copyright">
+						&copy; Copyright <strong><span style="font-weight: bold;">中国气象局人工影响天气中心</span></strong>. All
+						Rights Reserved
+					</div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
+
+		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+				class="bi bi-arrow-up-short"></i></a>
+
+
+	</body>
+
+	<script src="assets/js/login/login.js"></script>
+	<script>
+		new Vue({
+			el: '#forgetPWD-form',
+			data() {
+				var validatePass = (rule, value, callback) => {
+					if (value === '') {
+						callback(new Error('请输入密码'));
+					} else {
+						if (this.ruleForm.checkPass !== '') {
+							this.$refs.ruleForm.validateField('checkPass');
+						}
+						callback();
+					}
+				};
+				var validatePass2 = (rule, value, callback) => {
+					if (value === '') {
+						callback(new Error('请再次输入密码'));
+					} else if (value !== this.ruleForm.pass) {
+						callback(new Error('两次输入密码不一致!'));
+					} else {
+						callback();
+					}
+				};
+				return {
+					//是否发送验证码
+					isSeedCode: false,
+					//邮箱输入是否禁用
+					disabled: false,
+					ruleForm: {
+						email: '',
+						code: '',
+						password: '',
+						checkPassword: ''
+					},
+					seedCodeForm: {
+						email: '',
+						type: 2
+					},
+					checkCodeForm: {
+						email: '',
+						code: '',
+						password: ''
+					},
+					rules: {
+						pass: [{
+							validator: validatePass,
+							trigger: 'blur'
+						}],
+						checkPass: [{
+							validator: validatePass2,
+							trigger: 'blur'
+						}]
+					}
+				};
+			},
+			methods: {
+				checkCode() {
+					this.checkCodeForm.email = this.ruleForm.email
+					this.checkCodeForm.code = this.ruleForm.code
+					this.checkCodeForm.password = this.ruleForm.password
+					findPWD(this.checkCodeForm)
+						.then(res => {
+							console.log(res)
+							if (res.data.code == 2000) {
+								this.$message({
+									type: 'success',
+									message: '密码重置成功!'
+								})
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.data.msg
+								})
+							}
+							window.location.href = 'index.html'
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('密码重置失败，请您稍后重试！')
+						})
+				},
+				seedCode() {
+					this.seedCodeForm.email = this.ruleForm.email
+					sendValidateMessage(this.seedCodeForm)
+						.then(res => {
+							console.log(res)
+							if (res.data.code == 2000) {
+								this.$message({
+									type: 'success',
+									message: '已向您的邮箱发送了验证码!'
+								})
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.data.msg
+								})
+							}
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('验证码发送失败，请您稍后重试！')
+						})
+					this.isSeedCode = true
+					this.disabled = true
+				}
+			}
+		})
+	</script>
+	<style>
+		/* 面包屑样式 start*/
+		.breadcrumbs {
+			margin-top: -3px;
+			padding: 0 0;
+		}
+
+		.breadcrumbs ol {
+			font-size: 16px;
+		}
+
+		/* 面包屑样式 end*/
+		.el-button--primary {
+			color: #FFF;
+			background-color: #1977CC;
+			border-color: #1977CC;
+			width: 335.5px;
+		}
+
+		#footer {
+			position: fixed;
+			margin-top: 320px;
+			width: 100%;
+		}
+	</style>
+</html>

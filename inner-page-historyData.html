@@ -45,6 +45,11 @@
 		<!-- import element-ui JavaScript -->
 		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
+		<!-- import api.js -->
+		<script src="assets/js/axios.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<script src="assets/js/api.js"></script>
+		<script src="assets/js/utils/util.js"></script>
 		<!-- =======================================================
   * Template Name: Medilab - v4.3.0
   * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -76,32 +81,57 @@
 
 			<section class="inner-page">
 				<div class="container">
-					<div class="row">
-						<!-- 展示与隐藏侧边栏 开始-->
-						<!-- <input type="checkbox" id="menu-btn">
-					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
-						<!-- 展示与隐藏侧边栏 结束-->
-						<div id="data-menu" class="menu-box">
+					<div id="history-list" class="row">
+						<div class="menu-box">
+							<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" :unique-opened="true">
+								<el-submenu index="1-1">
+
+									<span slot="title"><i class="el-icon-folder"></i>云滴谱数据</span>
+									<el-menu-item index="1-1-1"><span @click="setDeviceName('A2')"><i
+												class="el-icon-document"></i> 云滴谱数据A2</span></el-menu-item>
+									<el-menu-item index="1-1-2"><span @click="setDeviceName('A3')"><i
+												class="el-icon-document"></i> 云滴谱数据A3</span></el-menu-item>
+								</el-submenu>
+								<el-menu-item index="1-2"><span @click="setDeviceName('a')"><i
+											class="el-icon-folder"></i>雾滴谱原始数据</span></el-menu-item>
+								<el-submenu index="1-3">
+									<span slot="title"><i class="el-icon-folder"></i>雨滴谱数据</span>
+									<el-menu-item index="1-3-1"><span @click="setDeviceName('B2')"><i
+												class="el-icon-document"></i> 雨滴谱数据B2</span></el-menu-item>
+									<el-menu-item index="1-3-2"><span @click="setDeviceName('B3')"><i
+												class="el-icon-document"></i> 雨滴谱数据B3</span></el-menu-item>
+								</el-submenu>
+								<el-submenu index="1-4">
+
+									<span slot="title"><i class="el-icon-folder"></i>盐核数据</span>
+									<el-menu-item index="1-4-1"><span @click="setDeviceName('C1')"><i
+												class="el-icon-document"></i> 盐核数据C1</span></el-menu-item>
+									<el-menu-item index="1-4-2"><span @click="setDeviceName('C2')"><i
+												class="el-icon-document"></i> 盐核数据C2</span></el-menu-item>
+								</el-submenu>
+
+								<el-menu-item index="1-5"><span @click="setDeviceName('D1')"><i
+											class="el-icon-folder"></i>云的宏观观测数据</span></el-menu-item>
+								<el-menu-item index="1-6"><span @click="setDeviceName('F3')"><i
+											class="el-icon-folder"></i>双经纬仪测云数据</span></el-menu-item>
+							</el-menu>
 						</div>
-						<script>
-							$("#data-menu").load("components/data-menu.html")
-						</script>
 						<div class="col-lg-9 mt-4 mt-lg-0">
-							<div id="history-list">
+							<div>
 								<!-- 历史数据名称列表 -->
 								<template>
 									<el-table
-										:data="historyData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-										style="width: 100%">
-										<el-table-column min-width="15%" label="文件名" prop="folder">
+										:data="historyData.filter(data => !search || data.dataName.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
+										style="width: 90%">
+										<el-table-column min-width="16%" label="文件名" prop="dataName">
 										</el-table-column>
-										<el-table-column min-width="15%" label="记录时间" prop="time">
+										<el-table-column min-width="16%" label="记录时间" prop="logTime">
 										</el-table-column>
-										<el-table-column min-width="15%" label="站点" prop="site">
+										<el-table-column min-width="16%" label="站点" prop="station">
 										</el-table-column>
-										<el-table-column min-width="15%" label="页数" prop="pages">
+										<el-table-column min-width="16%" label="页数" prop="pages">
 										</el-table-column>
-										<el-table-column min-width="25%" align="right">
+										<el-table-column min-width="20%" align="right">
 											<template slot="header" slot-scope="scope">
 												<el-input v-model="search" size="mini" placeholder="按文件名搜索" />
 											</template>
@@ -111,7 +141,8 @@
 													@click="download_csvData(scope.$index,scope.row)">
 													下载
 												</el-button>
-												<el-button size="mini" @click="showDialog(scope.row)">
+												<el-button size="mini" @click="getOriginData(scope.row)"
+													v-if="originalRecord">
 													原始记录
 												</el-button>
 												<!-- 图片列表弹窗 -->
@@ -124,24 +155,29 @@
 															@selection-change="handleSelectionChange"
 															:data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
 															style="width: 100%">
-															<el-table-column label="编号" prop="id" type="selection">
-															</el-table-column>
-															<el-table-column label="图片" prop="name">
-															</el-table-column>
 															<el-table-column align="right">
 																<template slot="header" slot-scope="scope">
 																	<el-input v-model="search" size="mini"
 																		placeholder="按图像名搜索" />
 																</template>
-																<template slot-scope="scope">
-																	<div class="demo-image__preview">
-																		<el-image style="width: 100px; height: 100px"
-																			:src="src"
-																			:preview-src-list="previewSrcList">
-																		</el-image>
-																	</div>
-																</template>
+																<el-table-column label="编号" prop="id" type="selection">
+																</el-table-column>
+																<el-table-column prop="" label="编号" width="100px">
+																	<template slot-scope="scope">
+																		{{scope.$index+1}}
+																	</template>
+																</el-table-column>
+																<el-table-column label="链接" width="300px">
+																	<template slot-scope="scope">
+																		<el-link
+																			@click="download_historyImg(scope.row.filePathName)"
+																			type="primary">
+																			{{scope.row.filePathName+'.'+scope.row.fileType}}
+																		</el-link>
+																	</template>
+																</el-table-column>
 															</el-table-column>
+
 														</el-table>
 														<el-pagination @size-change="handleSizeChange"
 															@current-change="handleCurrentChange"
@@ -152,7 +188,7 @@
 														</el-pagination>
 													</template>
 													<span slot="footer" class="dialog-footer">
-														<el-button type="primary" @click="download_csvData()">
+														<el-button type="primary" @click="download_historySelectImg()">
 															下载
 														</el-button>
 													</span>
@@ -166,7 +202,7 @@
 										layout="total, sizes, prev, pager, next, jumper" :total="historyData.length">
 									</el-pagination>
 								</template>
-								<div class="message-board">
+								<div class="message-board" v-if="originalRecord">
 									<el-button @click="message_board()" style="background-color: transparent;"
 										class="message-board-button" icon="el-icon-chat-round">
 									</el-button>
@@ -233,9 +269,13 @@
 
 		<!-- Template Main JS File -->
 		<script src="assets/js/main.js"></script>
-
 	</body>
 	<style>
+		/*解决记住密码样式冲突*/
+		.dataShowButton {
+			margin-right: 0px !important;
+		}
+
 		/* 面包屑样式 start*/
 		.breadcrumbs {
 			margin-top: -5px;
@@ -321,10 +361,17 @@
 			margin-top: 160px;
 			margin-left: 45%;
 		}
+
 		/* table样式 start */
-		.el-table td,.el-table th{
+		.el-table td,
+		.el-table th {
 			text-align: center !important;
 		}
+
+		.historyData-dialog {
+			width: 490px !important;
+		}
+
 		/* table样式 end */
 		.el-checkbox:last-of-type {
 			margin-right: 30px;
@@ -343,90 +390,18 @@
 		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
+	<script src="assets/js/components/breadcrumbs.js"></script>
 	<script>
 		new Vue({
 			el: '#history-list',
 			data() {
 				return {
 					src: 'assets/img/about.jpg',
-					previewSrcList: 'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+					previewSrcList: ['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'],
 					dialog_title: '',
-					historyData: [{
-						folder: 'A3-02',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-01',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-03',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-04',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-05',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-06',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-07',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-08',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-09',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-10',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-11',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-12',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-13',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-14',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}, {
-						folder: 'A3-15',
-						time: '1962-1965',
-						site: '天控所',
-						pages: '14'
-					}],
+					originalRecord: false, //原始记录按钮默认不可见
+					deviceName: 'A2', //当前设备默认显示云滴谱数据A2
+					historyData: [],
 					tableData: [{
 						id: '01',
 						name: '图片名01'
@@ -468,6 +443,9 @@
 						id: '13',
 						name: '图片名13'
 					}],
+					userForm: {
+						email: ''
+					}, //用户信息列表
 					search: '',
 					dialogVisible: false,
 					img_dialogVisible: false,
@@ -529,12 +507,67 @@
 					]
 				}
 			},
+			// 创建完毕状态(里面是操作)
 			created() {
-				// this.handleUserList()
+				// const token = localStorage.getItem('logintoken') || ''
+				// console.log(localStorage.getItem('logintoken'))
+				// if (token != null && token != '') {
+				// 	this.getuserpwd()
+				// 	this.getUserList()
+				// }
+				this.getUserList()
+				this.setDeviceName('A2')
 			},
 			methods: {
-				open(index, row) {
-					console.log(index, row);
+				// 获取用户信息以确定是否显示原始记录
+				getUserList() {
+					console.log(localStorage.getItem('userInfo'))
+					const roleId = JSON.parse(localStorage.getItem('userInfo')).roleId
+					if (roleId >= 1) {
+						this.originalRecord = true
+					}
+				},
+				download_historyImg(params) {
+					/*下载原始记录的图片*/
+					downloadHistoryImg(params).then(res => {
+						let blob = new Blob([res.data])
+						let contentDisposition = res.headers[
+								'content-disposition'
+								] //从response的headers中获取filename, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
+						let patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
+						let result = patt.exec(contentDisposition)
+						console.log(result)
+						let thename = decodeURI(result[1]) //使用decodeURI对名字进行解码
+						let downloadElement = document.createElement('a')
+						let href = window.URL.createObjectURL(blob) //创建下载的链接
+						downloadElement.style.display = 'none'
+						downloadElement.href = href
+						downloadElement.download = thename //下载后文件名
+						document.body.appendChild(downloadElement)
+						downloadElement.click() //点击下载
+						document.body.removeChild(downloadElement) //下载完成移除元素
+						window.URL.revokeObjectURL(href) //释放掉blob对象
+					})
+				},
+				/*设置设备名称并获取相关历史数据*/
+				setDeviceName(params) {
+					this.deviceName = params
+					getHistoryData(this.deviceName)
+						.then(res => {
+							res = res.data
+							if (res.code == 2000) {
+								this.historyData = res.data
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.msg
+								})
+							}
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('历史数据获取失败，请稍后重试！')
+						})
 				},
 				// 初始页currentPage、初始每页数据数pagesize和数据data
 				handleSizeChange: function(size) {
@@ -558,10 +591,53 @@
 					this.checkAll = checkedCount === this.cities.length;
 					this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
 				},
-
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
-					this.$message.success('请求成功，等待服务器响应！');
+					const token = localStorage.getItem('logintoken') || ''
+					if (token != null && token != '') {
+						console.log(token)
+						downloadHistoryData(data.dataName)
+							.then(res => {
+								let blob = new Blob([res.data])
+								let contentDisposition = res.headers[
+									'content-disposition'
+								] //从response的headers中获取filename, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
+								let patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
+								let result = patt.exec(contentDisposition)
+								console.log(result)
+								let thename = decodeURI(result[1]) //使用decodeURI对名字进行解码
+								let downloadElement = document.createElement('a')
+								let href = window.URL.createObjectURL(blob) //创建下载的链接
+								downloadElement.style.display = 'none'
+								downloadElement.href = href
+								downloadElement.download = thename //下载后文件名
+								document.body.appendChild(downloadElement)
+								downloadElement.click() //点击下载
+								document.body.removeChild(downloadElement) //下载完成移除元素
+								window.URL.revokeObjectURL(href) //释放掉blob对象
+							})
+							.catch(err => {
+								this.loading = false
+								this.$message.error('历史数据下载失败，请稍后重试！')
+							})
+					} else {
+						this.$confirm('提示', {
+								message: '您还未登录，请登录后下载',
+								confirmButtonText: '登录',
+								cancelButtonText: '取消',
+								type: 'warning'
+							})
+							.then(() => {
+								console.log('跳转')
+								window.location.href = "login.html"
+							})
+							.catch(() => {
+								this.$message({
+									type: 'info',
+									message: '已取消登录！'
+								})
+							})
+					}
 				},
 				toggleSelection(rows) {
 					if (rows) {
@@ -575,9 +651,26 @@
 				handleSelectionChange(val) {
 					this.multipleSelection = val;
 				},
-				showDialog(row) {
-					this.dialog_title = "文件夹  |" + row.folder + "|  包含的图片"
+				//获取原始记录
+				getOriginData(row) {
+					this.dialog_title = "文件夹  |" + row.dataName + "|  包含的图片"
 					this.dialogVisible = true
+					getOriginData(params)
+						.then(res => {
+							res = res.data
+							if (res.code == 2000) {
+								this.historyData = res.data
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.msg
+								})
+							}
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('历史数据获取失败，请稍后重试！')
+						})
 				},
 				message_board() {
 					//留言板
@@ -589,6 +682,7 @@
 				handleClose(done) {
 					if (this.loading) {
 						return;
+
 					}
 					this.$confirm('确定要提交表单吗？')
 						.then(_ => {

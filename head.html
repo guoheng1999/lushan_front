@@ -37,10 +37,17 @@
 		</nav>
 		<!-- .navbar -->
 		<!-- 登录注册 -->
-		<div id="login" v-if="!isLogin">
+
+		<div id="login">
+			<div class="loginEmail" v-if="isLogin">
+				<p>欢迎您的登录：<br />{{this.ruleForm.email}}</p>
+				<el-button @click="loginOut" icon="el-icon-switch-button"
+					style="border: 0;color: #1977CC;border-radius: 50%;padding: 15px;margin-left: 15px;height: 100%;">
+				</el-button>
+			</div>
 			<el-button
 				style="background: #1977cc; border-radius: 50px; margin-left: 25px; color: #fff; cursor: pointer; padding: 8px 25px; white-space: nowrap; font-size: 14px;"
-				size="mini" @click="login_dialogVisible = true">
+				size="mini" @click="login_dialogVisible = true" :loading="logining" v-if="!isLogin">
 				登录/注册
 			</el-button>
 			<el-dialog custom-class="login-dialog" title="登录" :visible.sync="login_dialogVisible"
@@ -62,6 +69,7 @@
 								<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
 							</el-input>
 						</el-form-item>
+						<el-checkbox class="remember dataShowButton" v-model="rememberpwd">记住密码</el-checkbox>
 						<el-form-item class="el-register-btn">
 							<el-button class="login-button" style="width: 40%;" type="primary"
 								@click="submitForm('ruleForm')">登录</el-button>
@@ -70,7 +78,7 @@
 					</el-form>
 					<div class="login-footer">
 						<a href="register.html">注册</a>
-						<a href="#" style="margin-left: 65%;">忘记密码？</a>
+						<a href="forgetPWD.html" style="margin-left: 65%;">忘记密码？</a>
 					</div>
 				</div>
 			</el-dialog>
@@ -90,19 +98,108 @@
 					pass: '',
 					email: ''
 				},
+				// 记住密码
+				rememberpwd: false,
+				logining: false,
 				isLogin: false
 			}
 		},
+		// 创建完毕状态(里面是操作)
+		created() {
+			this.getuserpwd()
+			const token = localStorage.getItem('logintoken') || ''
+			if (token != null && token != '') {
+				this.ruleForm.email = JSON.parse(localStorage.getItem('userdata')).email
+				this.isLogin = true
+			}
+		},
 		methods: {
+			// 获取用户名密码
+			getuserpwd() {
+				console.log(getCookie('email'))
+				if (getCookie('email') != '' && getCookie('pwd') != '') {
+					this.ruleForm.email = getCookie('eamil')
+					this.ruleForm.pass = getCookie('pwd')
+					this.rememberpwd = true
+					this.ruleForm.email = localStorage.getItem('userdata').email
+				}
+			},
+			loginOut() {
+				this.isLogin = false
+				//删除cookie、缓存信息
+				delCookie('email')
+				delCookie('pwd')
+				localStorage.removeItem('userdata')
+				localStorage.removeItem('logintoken')
+				localStorage.removeItem('userInfo')
+				window.location.reload()
+			},
 			submitForm(formName) {
-				this.$refs[formName].validate((valid) => {
+				this.$refs[formName].validate(valid => {
 					if (valid) {
-						alert('submit!');
+						this.logining = true
+						const params = {
+							email: this.ruleForm.email,
+							password: this.ruleForm.pass
+						}
+						userLogin(params).then(res => {
+							res = res.data
+							if (res.code === 2000) {
+								if (this.rememberpwd) {
+									//保存帐号到cookie，有效期7天
+									setCookie('email', this.ruleForm.email, 7)
+									//保存密码到cookie，有效期7天
+									setCookie('pwd', this.ruleForm.pass, 7)
+								} else {
+									delCookie('email')
+									delCookie('pwd')
+								}
+								this.isLogin = true //登陆成功，隐藏登录按钮
+								this.login_dialogVisible = false
+								//如果请求成功就缓存信息
+								setTimeout(() => {
+									this.logining = false
+									// 缓存token
+									localStorage.setItem('logintoken', res.data.token)
+									console.log('缓存')
+									console.log(res.data.token)
+									// 缓存用户个人信息
+									localStorage.setItem('userdata', JSON.stringify(res
+										.data))
+									//获取用户信息以确定是否显示原始记录
+									UserList(this.ruleForm.email)
+										.then(res => {
+											res = res.data
+											if (res.code == 2000) {
+												localStorage.setItem('userInfo', JSON
+													.stringify(res
+														.data))
+												// 登录成功刷新当前页面
+												// window.location.reload()
+											} else {
+												this.$message({
+													type: 'info',
+													message: res.msg
+												})
+											}
+										})
+										.catch(err => {
+											this.loading = false
+											this.$message.error('原始记录需要登录后才可以查看！')
+										})
+								}, 1000)
+							} else {
+								this.$message.error(res.msg)
+								this.logining = false
+								return false
+							}
+						})
 					} else {
-						console.log('error submit!!');
-						return false;
+						this.$message.error('请输入用户名密码！')
+						this.logining = false
+						return false
 					}
-				});
+				})
 			},
 			resetForm(formName) {
 				this.$refs[formName].resetFields();
@@ -111,6 +208,17 @@
 	})
 </script>
 <style>
+	.loginEmail {
+		color: #1977CC;
+		margin-left: 30%;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.remember {
+		margin: 0px 0px 15px -75%;
+	}
+
 	.login-dialog {
 		width: 360px;
 		/* height: 320px; */
