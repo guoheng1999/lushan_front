@@ -40,9 +40,9 @@
 
 		<div id="login">
 			<div class="loginEmail" v-if="isLogin">
-				<p>欢迎您的登录：<br />{{this.ruleForm.email}}</p>
+				<p style="width: 180px; text-align: center; margin-bottom: 0;height: 44px;line-height: 44px;">{{realName +','}}欢迎您!</p>
 				<el-button @click="loginOut" icon="el-icon-switch-button"
-					style="border: 0;color: #1977CC;border-radius: 50%;padding: 15px;margin-left: 15px;height: 100%;">
+					style="border: 0;color: #1977CC;border-radius: 50%;padding: 15px;height: 100%;">
 				</el-button>
 			</div>
 			<el-button
@@ -111,6 +111,12 @@
 			if (token != null && token != '') {
 				this.ruleForm.email = JSON.parse(sessionStorage.getItem('userdata')).email
 				this.isLogin = true
+			}
+		},
+		computed: {
+			realName() {
+				console.log(sessionStorage.getItem('userInfo'))
+				return JSON.parse(sessionStorage.getItem('userInfo')).realName
 			}
 		},
 		methods: {
@@ -188,6 +194,7 @@
 											this.$message.error('原始记录需要登录后才可以查看！')
 										})
 								}, 1000)
+
 							} else {
 								this.$message.error(res.msg)
 								this.logining = false
