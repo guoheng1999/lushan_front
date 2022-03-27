@@ -250,7 +250,7 @@
 					}
 					userRegister(userInfo).then(res => {
 						if (res.data.code === 2000) {
-							sessionStorage.setItem('token', res.data.token)
+							sessionStorage.setItem('logintoken', res.data.token)
 							this.$refs.upload.submit();
 							this.resetForm()
 							this.loading.close()
@@ -359,7 +359,10 @@
 						let resp = res.data
 						if (resp.code == 2000) {
 							that.uploadTemplateDialog = false;
-							that.$message.success(resp.msg);
+							that.$message.success( {
+								message:'注册成功！请耐心等待审核...',
+								duration: 6000,
+								});
 							//that.queryData();//更新数据
 						} else {
 							that.uploadTemplateDialog = false;

@@ -117,7 +117,7 @@
 											</el-button>
 											<el-radio-group v-model="showYear">
 												<el-radio-button style="margin: 0;" v-for="(item,index) in yearList"
-													:label="item"></el-radio-button>
+													:label="item" @click="clickYear(item)"></el-radio-button>
 											</el-radio-group>
 											<el-button class="year-change" @click="next" v-if="isShowNextButton"
 												style="margin-left: 5px;" icon="el-icon-arrow-right" circle></el-button>
@@ -336,6 +336,12 @@
 		.el-calendar-table td.is-today {
 			color: #000000;
 		}
+		/*隐藏日历中非本月份日期*/
+		.el-calendar-table:not(.is-range) td.next,
+		.el-calendar-table:not(.is-range) td.prev {
+		  visibility: hidden;
+		 
+		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script src="assets/js/components/breadcrumbs.js"></script>
@@ -407,15 +413,7 @@
 				},
 			},
 			created() {
-				const localStorageDayTime = localStorage.getItem('dayTime')
-				console.log(typeof(localStorageDayTime))
-				if (localStorageDayTime == null || localStorageDayTime == 'undefined') {
-					console.log('调用daytime')
-					this.getDayTimeData()
-				} else {
-					this.getYearList()
-					console.log(this.dayTime)
-				}
+				this.getDayTimeData()
 			},
 			methods: {
 				// 获取设备与数据等级
@@ -459,38 +457,65 @@
 				},
 
 				downloadData() {
-					if (this.datePickStatus) {
-						console.log(this.getDayArr(this.fromDate, this.endDate))
-						// this.$message.success('请求成功，等待服务器响应！');
-						this.downloadMessage.dataLevel = this.getDataLevel()
-						this.downloadMessage.deviceId = this.getDeviceId()
-						this.downloadMessage.email = JSON.parse(localStorage.getItem('userInfo')).email
-						console.log(this.downloadMessage.email)
-						this.downloadMessage.endDay = this.endDate
-						this.downloadMessage.fromDay = this.fromDate
-						downloadCurrentData(this.downloadMessage)
-							.then(res => {
-								res = res.data
-								console.log(res.data)
-								if (res.code == 2000) {
-									this.$message({
-										type: 'success',
-										message:'已向您的邮箱发送相关数据，请注意查收！'
-									})
-								} else {
-									this.$message({
-										type: 'info',
-										message: res.msg
-									})
-								}
-							})
-							.catch(err => {
-								this.loading = false
-								this.$message.error('现代数据获取失败，请稍后重试！')
-							})
+					console.log(this.getDayArr(this.fromDate, this.endDate))
+					const token = sessionStorage.getItem('logintoken') || ''
+					if (token != null && token != '') {
+						console.log(token)
+
+						if (this.datePickStatus) {
+							// this.$message.success('请求成功，等待服务器响应！');
+							this.downloadMessage.dataLevel = this.getDataLevel()
+							this.downloadMessage.deviceId = this.getDeviceId()
+							this.downloadMessage.email = JSON.parse(sessionStorage.getItem('userInfo')).email
+							console.log(this.downloadMessage.email)
+							this.downloadMessage.endDay = this.endDate
+							this.downloadMessage.fromDay = this.fromDate
+							downloadCurrentData(this.downloadMessage)
+								.then(res => {
+									res = res.data
+									console.log(res.data)
+									if (res.code == 2000) {
+										this.$message({
+											type: 'success',
+											duration: 5000,
+											message: '正在打包您的数据，稍后会将下载链接发送至您的邮箱，请注意查收！'
+										})
+									} else {
+										this.$message({
+											type: 'info',
+											message: res.msg
+										})
+									}
+								})
+								.catch(err => {
+									this.loading = false
+									this.$message.error('现代数据获取失败，请稍后重试！')
+								})
+						} else {
+							this.$message.error('请先选择下载日期！');
+						}
 					} else {
-						this.$message.error('请先选择下载日期！');
+						this.$confirm('提示', {
+								message: '您还未登录，请登录后下载',
+								confirmButtonText: '登录',
+								cancelButtonText: '取消',
+								type: 'warning'
+							})
+							.then(() => {
+								console.log('跳转')
+								window.location.href = "login.html"
+							})
+							.catch(() => {
+								this.$message({
+									type: 'info',
+									message: '已取消登录！'
+								})
+							})
 					}
+				},
+				clickYear(item){
+					this.showYear=item
+					this.getDayTimeData()
 				},
 				createYearList(indexYear) {
 					this.yearList = Array(7).fill(0).map((v, i) => i + indexYear)
@@ -500,24 +525,24 @@
 					this.defaultYear -= 1
 					this.showYear -= 1
 					this.createYearList(this.defaultYear)
-					this.getYearList()
+					this.getDayTimeData()
 				},
 				next() {
 					this.defaultYear += 1
 					this.showYear += 1
 					this.createYearList(this.defaultYear)
-					this.getYearList()
+					this.getDayTimeData()
 				},
 				// 获取dayTime
 				getDayTimeData() {
 					const dataLevel = this.getDataLevel()
 					const deviceId = (Number(this.getDeviceId()) + Number(1))
-					getDayTime(dataLevel, deviceId)
+					getDayTimeYear(dataLevel, deviceId, this.showYear)
 						.then(res => {
 							res = res.data
 							console.log(res.data)
 							if (res.code == 2000) {
-								localStorage.setItem('dayTime', JSON.stringify(res.data))
+								this.dayTime = res.data || []
 							} else {
 								this.$message({
 									type: 'info',
@@ -529,21 +554,6 @@
 							this.loading = false
 							this.$message.error('现代数据获取失败，请稍后重试！')
 						})
-				},
-				//按年分割时间
-				getYearList() {
-					const localStorageDayTime = JSON.parse(localStorage.getItem('dayTime'))
-					console.log(localStorageDayTime)
-					console.log(typeof(this.showYear.toString()))
-					for (var i = 0; i < localStorageDayTime.length; i++) {
-						console.log(localStorageDayTime[i])
-						// console.log(localStorageDayTime[i].startsWith(this.showYear))
-						// console.log(localStorageDayTime[i].startsWith(this.showYear.toString()))
-						if (localStorageDayTime[i].startsWith(this.showYear)) {
-							this.dayTime.push(localStorageDayTime[i])
-						}
-					}
-					console.log(this.dayTime)
 				},
 				/*渲染有数据的部分*/
 				hasData(data) {

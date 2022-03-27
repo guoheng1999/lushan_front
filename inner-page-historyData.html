@@ -170,7 +170,7 @@
 																<el-table-column label="链接" width="300px">
 																	<template slot-scope="scope">
 																		<el-link
-																			@click="download_historyImg(scope.row.filePathName)"
+																			@click="download_historyImg(scope.row.picName)"
 																			type="primary">
 																			{{scope.row.picName}}
 																		</el-link>
@@ -469,8 +469,8 @@
 			},
 			// 创建完毕状态(里面是操作)
 			created() {
-				// const token = localStorage.getItem('logintoken') || ''
-				// console.log(localStorage.getItem('logintoken'))
+				// const token = sessionStorage.getItem('logintoken') || ''
+				// console.log(sessionStorage.getItem('logintoken'))
 				// if (token != null && token != '') {
 				// 	this.getuserpwd()
 				// 	this.getUserList()
@@ -481,19 +481,22 @@
 			methods: {
 				// 获取用户信息以确定是否显示原始记录
 				getUserList() {
-					console.log(localStorage.getItem('userInfo'))
-					const roleId = JSON.parse(localStorage.getItem('userInfo')).roleId
+					console.log(sessionStorage.getItem('userInfo'))
+					const roleId = JSON.parse(sessionStorage.getItem('userInfo')).roleId
 					if (roleId >= 1) {
 						this.originalRecord = true
 					}
 				},
-				download_historyImg(params) {
+				download_historyImg(picName) {
+					const dataName = this.dialog_title.split('|')[1]
+					console.log(picName, dataName)
+
 					/*下载原始记录的图片*/
-					downloadHistoryImg(params).then(res => {
+					downloadHistoryImg(picName, dataName).then(res => {
 						let blob = new Blob([res.data])
 						let contentDisposition = res.headers[
-								'content-disposition'
-								] //从response的headers中获取filename, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
+							'content-disposition'
+						] //从response的headers中获取filename, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
 						let patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
 						let result = patt.exec(contentDisposition)
 						console.log(result)
@@ -553,9 +556,13 @@
 				},
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
-					const token = localStorage.getItem('logintoken') || ''
+					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
 						console.log(token)
+						this.$message({
+							type: 'success',
+							message: '正在为您下载数据，请稍后！'
+						})
 						downloadHistoryData(data.dataName)
 							.then(res => {
 								let blob = new Blob([res.data])

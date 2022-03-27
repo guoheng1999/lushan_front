@@ -1,5 +1,9 @@
+
+DEV_BASE_URL = 'http://10.23.107.96:8081/lushan'
+TEST_BASE_URL = 'http://106.12.109.129:8849/lushan'
+
 const LUSHAN_CONFIG = {
-	BASE_URL: 'http://10.23.107.96:8081/lushan',
+	BASE_URL: DEV_BASE_URL,
 	TIME_OUT: 100000
 }
 
@@ -8,7 +12,7 @@ const instance = axios.create({
 	timeout: LUSHAN_CONFIG['TIME_OUT'],
 	headers: {
 		'Access-Control-Allow-Origin': '*',
-		'token': localStorage.getItem('logintoken') || ''
+		'token': sessionStorage.getItem('logintoken') || ''
 	}
 });
 
@@ -18,7 +22,7 @@ const fileUploadInstance = axios.create({
 	headers: {
 		'Access-Control-Allow-Origin': '*',
 		// 'token': sessionStorage.getItem(''),
-		'token': localStorage.getItem('logintoken') || '',
+		'token': sessionStorage.getItem('logintoken') || '',
 		'Conten-Type': "multipart/form-data"
 	},
 	responseType: 'blob'
@@ -35,7 +39,7 @@ function userLogin(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).post('/login', params)
 }
@@ -46,7 +50,7 @@ function findPWD(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).put('/user/password', params)
 }
@@ -57,7 +61,7 @@ function seedMessage(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).post("/email", params)
 }
@@ -69,7 +73,7 @@ function sendValidateMessage(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).post("/email/resetPassword", params)
 }
@@ -80,7 +84,7 @@ function userRegister(userInfo) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).post(
 		'/register',
@@ -94,7 +98,7 @@ function UserList(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).get("user/" + params)
 }
@@ -108,7 +112,7 @@ function getHistoryData(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).get("historyXlsxData/type/" + params)
 }
@@ -119,7 +123,7 @@ function getOriginDataList(params) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).get("historyPictureData/historyDataName/" + params)
 }
@@ -131,25 +135,25 @@ function downloadHistoryData(params) {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		},
 		responseType: 'blob'
 	}).get("file/download/historyData?dataName=" + params)
 }
 //下载历史数据图片
-function downloadHistoryImg(params) {
+function downloadHistoryImg(picName, dataName) {
 	return axios.create({
 		baseURL: LUSHAN_CONFIG['BASE_URL'],
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		},
 		responseType: 'blob'
-	}).get("file/download/historyData?dataName=" + params)
+	}).get("file/download/historyData/picture?dataName=" + dataName +"&picName=" + picName)
 }
 
 //获取现代数据
@@ -159,9 +163,21 @@ function getDayTime(dataLevel,deviceId) {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).get("currentData/deviceId/dataLevel/times?dataLevel=" +dataLevel+"&deviceId="+deviceId)
+}
+
+//获取现代数据
+function getDayTimeYear(dataLevel,deviceId, year) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': sessionStorage.getItem('logintoken') || ''
+		}
+	}).get("currentData/deviceId/dataLevel/year?dataLevel=" +dataLevel+"&deviceId="+deviceId + "&year=" + year)
 }
 
 //下载现代数据
@@ -172,7 +188,7 @@ function downloadCurrentData(params) {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		}
 	}).post("file/download/currentData", params)
@@ -184,7 +200,7 @@ function getDeviceInfo() {
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-			'token': localStorage.getItem('logintoken') || ''
+			'token': sessionStorage.getItem('logintoken') || ''
 		}
 	}).get('/device/')
 }
@@ -200,7 +216,7 @@ function downloadFile(url, formData) {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		}
 	}).get(url, formData).then(res => res)
@@ -217,7 +233,7 @@ function uploadUserProof(formData) {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		}
 	}).post(
@@ -245,7 +261,7 @@ function uploadFile() {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			// 'token': sessionStorage.getItem(''),
-			'token': localStorage.getItem('logintoken') || '',
+			'token': sessionStorage.getItem('logintoken') || '',
 			'Conten-Type': "multipart/form-data"
 		}
 	}).post('/file/upload/user/proof', formData).then(res => {

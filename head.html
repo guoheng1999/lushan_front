@@ -107,9 +107,9 @@
 		// 创建完毕状态(里面是操作)
 		created() {
 			this.getuserpwd()
-			const token = localStorage.getItem('logintoken') || ''
+			const token = sessionStorage.getItem('logintoken') || ''
 			if (token != null && token != '') {
-				this.ruleForm.email = JSON.parse(localStorage.getItem('userdata')).email
+				this.ruleForm.email = JSON.parse(sessionStorage.getItem('userdata')).email
 				this.isLogin = true
 			}
 		},
@@ -121,7 +121,7 @@
 					this.ruleForm.email = getCookie('eamil')
 					this.ruleForm.pass = getCookie('pwd')
 					this.rememberpwd = true
-					this.ruleForm.email = localStorage.getItem('userdata').email
+					this.ruleForm.email = sessionStorage.getItem('userdata').email
 				}
 			},
 			loginOut() {
@@ -129,9 +129,9 @@
 				//删除cookie、缓存信息
 				delCookie('email')
 				delCookie('pwd')
-				localStorage.removeItem('userdata')
-				localStorage.removeItem('logintoken')
-				localStorage.removeItem('userInfo')
+				sessionStorage.removeItem('userdata')
+				sessionStorage.removeItem('logintoken')
+				sessionStorage.removeItem('userInfo')
 				window.location.reload()
 			},
 			submitForm(formName) {
@@ -160,22 +160,22 @@
 								setTimeout(() => {
 									this.logining = false
 									// 缓存token
-									localStorage.setItem('logintoken', res.data.token)
+									sessionStorage.setItem('logintoken', res.data.token)
 									console.log('缓存')
 									console.log(res.data.token)
 									// 缓存用户个人信息
-									localStorage.setItem('userdata', JSON.stringify(res
+									sessionStorage.setItem('userdata', JSON.stringify(res
 										.data))
 									//获取用户信息以确定是否显示原始记录
 									UserList(this.ruleForm.email)
 										.then(res => {
 											res = res.data
 											if (res.code == 2000) {
-												localStorage.setItem('userInfo', JSON
+												sessionStorage.setItem('userInfo', JSON
 													.stringify(res
 														.data))
 												// 登录成功刷新当前页面
-												// window.location.reload()
+												window.location.reload()
 											} else {
 												this.$message({
 													type: 'info',
