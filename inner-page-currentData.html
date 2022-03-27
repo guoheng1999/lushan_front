@@ -465,7 +465,7 @@
 						if (this.datePickStatus) {
 							// this.$message.success('请求成功，等待服务器响应！');
 							this.downloadMessage.dataLevel = this.getDataLevel()
-							this.downloadMessage.deviceId = this.getDeviceId()
+							this.downloadMessage.deviceId = (Number(this.getDeviceId()) + Number(1))
 							this.downloadMessage.email = JSON.parse(sessionStorage.getItem('userInfo')).email
 							console.log(this.downloadMessage.email)
 							this.downloadMessage.endDay = this.endDate

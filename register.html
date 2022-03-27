@@ -54,6 +54,7 @@
 		<script src="assets/js/axios.js"></script>
 		<script src="assets/js/axios.min.js"></script>
 		<script src="assets/js/api.js"></script>
+		<script src="assets/js/utils/util.js"></script>
 	</head>
 
 	<body>
@@ -146,7 +147,7 @@
 									:before-upload="beforeUpload" :on-preview="handlePreview" :on-remove="handleRemove"
 									:file-list="fileList" :auto-upload="false">
 									<el-button slot="trigger" size="small" type="primary">选取审核文件</el-button>
-									<div slot="tip" class="el-upload_tip">只能上传pdf,png, jpg文件,且不超过1M</div>
+									<div slot="tip" class="el-upload_tip">只能上传pdf,png, jpg文件,且不超过5M</div>
 								</el-upload>
 
 								<el-form-item class="el-register-btn">
@@ -335,13 +336,13 @@
 					//读取文件大小
 					var fileSize = file.size;
 					console.log(fileSize);
-					if (fileSize > 1048576) {
+					if (fileSize > 1048576 * 5) {
 						that.uploadTemplateDialog = false;
 						that.$message({
 							type: 'error',
 							showClose: true,
 							duration: 3000,
-							message: file.name + '文件大于1M!'
+							message: file.name + '文件大于5M!'
 						})
 						return false;
 					}

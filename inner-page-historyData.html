@@ -83,7 +83,7 @@
 				<div class="container">
 					<div id="history-list" class="row">
 						<div class="menu-box">
-							<el-menu :default-active="this.currentDataType==0?'1-1-1': '2-1'" :unique-opened="true">
+							<el-menu default-active="1-1-1" :unique-opened="true">
 								<el-submenu index="1-1">
 
 									<span slot="title"><i class="el-icon-folder"></i>云滴谱数据</span>
@@ -121,8 +121,9 @@
 								<!-- 历史数据名称列表 -->
 								<template>
 									<el-table
-										:data="historyData.filter(data => !search || data.dataName.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
-										style="width: 90%">
+										:data="historyData.filter(data => !search || data.dataName.toLowerCase().includes(search.toLowerCase())).slice((historyData_currentPage-1)*historyData_pagesize,historyData_currentPage*historyData_pagesize)"
+										style="width: 90%"
+										:key='deviceName'>
 										<el-table-column min-width="16%" label="文件名" prop="dataName">
 										</el-table-column>
 										<el-table-column min-width="16%" label="记录时间" prop="logTime">
@@ -196,7 +197,7 @@
 											</template>
 										</el-table-column>
 									</el-table>
-									<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+									<el-pagination @size-change="handleHistorySizeChange" @current-change="handleHistoryCurrentChange"
 										:current-page="historyData_currentPage" :page-sizes="[10, 20, 50]"
 										:page-size="historyData_pagesize"
 										layout="total, sizes, prev, pager, next, jumper" :total="historyData.length">
@@ -400,7 +401,7 @@
 					previewSrcList: ['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'],
 					dialog_title: '',
 					originalRecord: false, //原始记录按钮默认不可见
-					deviceName: 'A2', //当前设备默认显示云滴谱数据A2
+					deviceName: '', //当前设备默认显示云滴谱数据A2
 					historyData: [],
 					originData: [],
 					userForm: {
@@ -467,6 +468,27 @@
 					]
 				}
 			},
+			watch: {
+				deviceName(newData, oldData) {
+					console.log(oldData)
+					getHistoryData(this.deviceName)
+						.then(res => {
+							res = res.data
+							if (res.code == 2000) {
+								this.historyData = res.data
+							} else {
+								this.$message({
+									type: 'info',
+									message: res.msg
+								})
+							}
+						})
+						.catch(err => {
+							this.loading = false
+							this.$message.error('历史数据获取失败，请稍后重试！')
+						})
+				}
+			},
 			// 创建完毕状态(里面是操作)
 			created() {
 				// const token = sessionStorage.getItem('logintoken') || ''
@@ -475,13 +497,18 @@
 				// 	this.getuserpwd()
 				// 	this.getUserList()
 				// }
+
+				console.log('CHECK POINT 1')
 				this.getUserList()
 				this.setDeviceName('A2')
+				console.log('CHECK POINT 2')
 			},
 			methods: {
 				// 获取用户信息以确定是否显示原始记录
 				getUserList() {
-					console.log(sessionStorage.getItem('userInfo'))
+					if (sessionStorage.getItem('userInfo') == null) {
+						return
+					}
 					const roleId = JSON.parse(sessionStorage.getItem('userInfo')).roleId
 					if (roleId >= 1) {
 						this.originalRecord = true
@@ -515,30 +542,25 @@
 				/*设置设备名称并获取相关历史数据*/
 				setDeviceName(params) {
 					this.deviceName = params
-					getHistoryData(this.deviceName)
-						.then(res => {
-							res = res.data
-							if (res.code == 2000) {
-								this.historyData = res.data
-							} else {
-								this.$message({
-									type: 'info',
-									message: res.msg
-								})
-							}
-						})
-						.catch(err => {
-							this.loading = false
-							this.$message.error('历史数据获取失败，请稍后重试！')
-						})
+					this.historyData_currentPage=1
 				},
 				// 初始页currentPage、初始每页数据数pagesize和数据data
 				handleSizeChange: function(size) {
 					this.pagesize = size;
 					console.log(this.pagesize) //每页下拉显示数据
 				},
+				handleHistorySizeChange: function(size) {
+					this.historyData_pagesize = size;
+					console.log(this.pagesize) //每页下拉显示数据
+				},
 				handleCurrentChange: function(currentPage) {
+					console.log('嘿嘿嘿')
 					this.currentPage = currentPage;
+					console.log(this.currentPage) //点击第几页
+				},
+				handleHistoryCurrentChange: function(currentPage) {
+					console.log('嘿嘿嘿')
+					this.historyData_currentPage = currentPage;
 					console.log(this.currentPage) //点击第几页
 				},
 				// handleUserList() {
@@ -558,17 +580,16 @@
 					console.log(index, data); //点击第几页
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
-						console.log(token)
-						this.$message({
-							type: 'success',
-							message: '正在为您下载数据，请稍后！'
-						})
 						downloadHistoryData(data.dataName)
 							.then(res => {
+								this.$message({
+									type: 'success',
+									message: '服务器正在响应，请稍后！'
+								})
 								let blob = new Blob([res.data])
 								let contentDisposition = res.headers[
 									'content-disposition'
-								] //从response的headers中获取filename, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
+								] //从response的headers中获取filena me, 后端response.setHeader("Content-disposition", "attachment; filename=xxxx.docx") 设置的文件名;
 								let patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*')
 								let result = patt.exec(contentDisposition)
 								console.log(result)
@@ -584,8 +605,10 @@
 								window.URL.revokeObjectURL(href) //释放掉blob对象
 							})
 							.catch(err => {
-								this.loading = false
-								this.$message.error('历史数据下载失败，请稍后重试！')
+								// this.loading = false
+								setTimeout(() => {
+									this.$message.error('历史数据下载失败，请稍后重试！')
+								},1000)
 							})
 					} else {
 						this.$confirm('提示', {
@@ -635,7 +658,7 @@
 							}
 						})
 						.catch(err => {
-							this.loading = false
+							// this.loading = false
 							this.$message.error('历史数据获取失败，请稍后重试！')
 						})
 				},
