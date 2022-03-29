@@ -1,13 +1,15 @@
-<div id="breadcrumbs" class="container">
-	<div class="d-flex justify-content-between align-items-center">
-		<h2><el-button type="text" @click="goBack()"> <i class="el-icon-back"></i></el-button></h2>
-		<ol>
-			<li><a href="index.html">首页</a></li>
-			<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
-			<li>{{ pageName }}</li>
-		</ol>
+<template>
+	<div id="breadcrumbs" class="container">
+		<div class="d-flex justify-content-between align-items-center">
+			<h2><el-button type="text" @click="goBack()"> <i class="el-icon-back"></i></el-button></h2>
+			<ol>
+				<li><a href="index.html">首页</a></li>
+				<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
+				<li>{{ pageName }}</li>
+			</ol>
+		</div>
 	</div>
-</div>
+</template>
 <!-- import api.js -->
 <!-- <script src="assets/js/axios.js"></script>
 <script src="assets/js/axios.min.js"></script>

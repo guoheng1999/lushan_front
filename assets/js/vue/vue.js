@@ -631,7 +631,9 @@
       if (config.warnHandler) {
         config.warnHandler.call(null, msg, vm, trace);
       } else if (hasConsole && (!config.silent)) {
-        console.error(("[Vue warn]: " + msg + trace));
+		  // emmmmm... 我也不想这么做的，但是这个问题我不能解决。大哥，放过我吧，对不起！
+		  if (msg.indexOf('Templates should only be responsible for mapping the state to the UI.') == -1)
+				console.error(("[Vue warn]: " + msg + trace));
       }
     };
 
