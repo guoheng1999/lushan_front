@@ -1,0 +1,15 @@
+/*表格样式 start*/
+#my-table {
+	text-align: center;
+	text-decoration: blink;
+	width: 100%;
+	border-style: dotted;
+	border-color: rgb(25, 119, 204);
+}
+
+table thead tr {
+	border-style: dotted;
+	border-top-color: rgb(25, 119, 204);
+}
+
+/*表格样式 end*/

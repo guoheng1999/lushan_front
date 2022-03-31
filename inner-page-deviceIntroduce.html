@@ -95,9 +95,9 @@
 										</el-col>
 									</el-aside>
 									<el-main>
-										<el-container>
+										<el-container class="main_style">
 											<el-aside width="70%">
-												<div class="textBox">
+												<!-- <div class="textBox">
 
 													<h2>{{this.activate_device_name}}概述</h2>
 													<p>&nbsp; &nbsp;
@@ -109,10 +109,21 @@
 													<p>*气象监测</p>
 													<h2>{{this.activate_device_name}}技术参数表</h2>
 													<p>*桥梁隧道</p>
+												</div> -->
+												<div id="device-table">
+													<div id="yungaoyi" v-if="flag===0"></div>
+													<div id="bianxieshizidongqixiangzhan" v-if="flag===1"></div>
+													<div id="yuliangtong" v-if="flag===2"></div>
+													<div id="nengjianduyi" v-if="flag===3"></div>
+													<div id="yudipuyi" v-if="flag===4"></div>
+													<div id="wudipuyi" v-if="flag===5"></div>
+													<div id="keliwuyi" v-if="flag===6"></div>
+													<div id="weiyuleida" v-if="flag===7"></div>
+													<div id="weibofusheji" v-if="flag===8"></div>
 												</div>
 											</el-aside>
 											<el-main>
-												<el-image :src="active_src">
+												<el-image style="height: 360px;" :src="active_src">
 													<div slot="error" class="image-slot">
 														<i class="el-icon-picture-outline"></i>
 													</div>
@@ -121,11 +132,13 @@
 										</el-container>
 										<div class="data-download">
 											<el-button type="primary"
-												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=0&data-type=1')" rounds>
+												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=0&data-type=1')"
+												rounds>
 												0级数据下载
 											</el-button>
 											<el-button type="primary"
-												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=1&data-type=1')" rounds>
+												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=1&data-type=1')"
+												rounds>
 												1级数据下载
 											</el-button>
 										</div>
@@ -188,6 +201,15 @@
 		<script src="assets/js/main.js"></script>
 		<script>
 			$("#copyright").load("components/copyright.html")
+			$("#bianxieshizidongqixiangzhan").load("components/device/bianxieshizidongqixiangzhan.html")
+			$("#keliwuyi").load("components/device/keliwuyi.html")
+			$("#nengjianduyi").load("components/device/nengjianduyi.html")
+			$("#weibofusheji").load("components/device/weibofusheji.html")
+			$("#weiyuleida").load("components/device/weiyuleida.html")
+			$("#wudipuyi").load("components/device/wudipuyi.html")
+			$("#yudipuyi").load("components/device/yudipuyi.html")
+			$("#yuliangtong").load("components/device/yuliangtong.html")
+			$("#yungaoyi").load("components/device/yungaoyi.html")
 		</script>
 	</body>
 	<style>
@@ -196,6 +218,7 @@
 			margin-top: -5px;
 			padding: 0 0;
 		}
+
 		/* 返回按钮大小 */
 		.el-button--text {
 			color: #1977CC;
@@ -286,6 +309,49 @@
 			color: #062640;
 			margin: 6px 0 !important;
 		}
+
+		/*el-side start*/
+		.el-aside {
+			overflow: hidden;
+		}
+
+		/*el-side end*/
+
+		/*表格样式 start*/
+		thead,
+		tbody,
+		tfoot,
+		tr,
+		td,
+		th {
+			text-align: center;
+			border-color: rgb(25, 119, 204) !important;
+			border-style: dotted !important;
+			border-width: 1px !important;
+			line-height: 24px;
+			letter-spacing: 1px;
+			word-spacing: 2px;
+			/* font-family: "Raleway", serif, sans-serif; */
+			/*cursive, */
+			font-size: 18px;
+			font-weight: 200;
+		}
+		table{
+			width: 100%;
+		}
+		td{
+			height: 40px;
+		}
+		/*表格样式 end*/
+		/*main*/
+		.main_style {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-content: center;
+			justify-content: center;
+			align-items: center;
+		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
 	<script src="assets/js/components/breadcrumbs.js"></script>
@@ -294,6 +360,7 @@
 			el: '#device-introduce',
 			data() {
 				return {
+					flag: 0,
 					device_list: ["自动气象站", "雨量筒", "能见度仪", "云高仪", "雨滴谱仪", "雾滴谱仪", "颗粒物仪", "微雨雷达", "微波辐射计", ],
 					active_id: 0,
 					activate_device_name: "自动气象站",
@@ -310,6 +377,7 @@
 			methods: {
 				changeDevice(key) {
 					this.active_id = key
+					this.flag = key
 					this.activate_device_name = this.device_list[this.active_id].deviceName
 					this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 				},

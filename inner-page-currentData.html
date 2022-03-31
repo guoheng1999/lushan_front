@@ -536,7 +536,7 @@
 				// 获取dayTime
 				getDayTimeData() {
 					const dataLevel = this.getDataLevel()
-					const deviceId = (Number(this.getDeviceId()) + Number(1))
+					const deviceId = (Number(this.getDeviceId()))/* + Number(1)*/
 					getDayTimeYear(dataLevel, deviceId, this.showYear)
 						.then(res => {
 							res = res.data

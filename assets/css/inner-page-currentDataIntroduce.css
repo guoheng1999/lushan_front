@@ -1,0 +1,76 @@
+/*导航栏start*/
+.el-menu-item.is-active {
+	color: #1977CC !important;
+}
+
+/*导航栏 end*/
+/*介绍样式 start*/
+.Introduce-div {
+	margin: 2% 0px 2%;
+}
+
+.Introduce-div h2 {
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	position: relative;
+	color: #2c4964;
+}
+
+.Introduce-div p {
+	text-indent: 2em;
+	line-height: 25px;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	font-family: "Raleway", serif, sans-serif;
+	/*cursive, */
+	font-size: 18px;
+	font-weight: 200;
+}
+
+/*介绍样式 end*/
+/* 面包屑样式 start*/
+.breadcrumbs {
+	margin-top: -5px;
+	padding: 0 0;
+}
+
+/* 返回按钮大小 */
+.el-button--text {
+	color: #1977CC;
+	font-size: 24px;
+}
+
+.breadcrumbs ol {
+	font-size: 16px;
+}
+
+/* 面包屑样式 end*/
+#copyright {
+	margin-top: 6%;
+	width: 100%;
+}
+
+.data-download {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.el-button--primary,
+.el-button--primary:focus {
+	color: #FFF;
+	background-color: #1977CC;
+	border-color: #1977CC;
+	margin-bottom: 2%;
+	margin-bottom: 5%;
+}
+
+.el-link--inner {
+	color: #1977CC;
+}
+
+.el-link.el-link--primary {
+	color: #1977CC;
+}

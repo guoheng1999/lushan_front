@@ -1,6 +1,12 @@
 <div id="introduce">
-	<el-empty description="描述文字"></el-empty>
-	<el-button style="margin-left: 45%" type="primary" @click="pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=0')" rounds>设备数据下载
+	<div class="Introduce-div">
+		<h2>现代观测设备介绍</h2>
+		<p>
+			现代观测设备数据集里面收录了2015年11月-2020年10月期间在庐山云雾试验站便携式自动气象站、雨量筒、能见度仪、云高仪、雨滴谱仪、雾滴谱仪、微雨雷达7种现代观测设备的数据，0级数据集是原始数据文件经标准命名后的数据集，1级数据集是原始数据文件经过标准命名后、结构规范、质量控制和格式统一后的数据集，数据格式具有文本csv和NetCDF格式可供使用。此外提供了颗粒物仪和微波辐射计两种观测设备的测试数据集。
+		</p>
+	</div>
+	<el-button style="margin-left: 45%" type="primary"
+		@click="pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=0')" rounds>设备数据下载
 	</el-button>
 	<el-row
 		style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
@@ -12,7 +18,8 @@
 		<el-col :span="24">
 			<div class="grid-content bg-purple-dark">
 				<span><i class="el-icon-magic-stick">&nbsp;春季吉林地区层状冷云中冰晶的形成与雪晶增长特点相关资料：</i></span>
-				<el-link target="_blank" href="data/春季吉林地区层状冷云中冰晶的形成与雪晶增长特点_游来光.pdf" type="primary">春季吉林地区层状冷云中冰晶的形成与雪晶增长特点</el-link>
+				<el-link target="_blank" href="data/春季吉林地区层状冷云中冰晶的形成与雪晶增长特点_游来光.pdf" type="primary">
+					春季吉林地区层状冷云中冰晶的形成与雪晶增长特点</el-link>
 			</div>
 		</el-col>
 		<el-col :span="24">
@@ -24,7 +31,8 @@
 		<el-col :span="24">
 			<div class="grid-content bg-purple-dark">
 				<span><i class="el-icon-magic-stick">&nbsp;云室实验室对空心冰颗粒散射特性的调查_埃尔塞维尔增强读取器相关资料：</i></span>
-				<el-link target="_blank" href="data/云室实验室对空心冰颗粒散射特性的调查_埃尔塞维尔增强读取器.pdf" type="primary">云室实验室对空心冰颗粒散射特性的调查</el-link>
+				<el-link target="_blank" href="data/云室实验室对空心冰颗粒散射特性的调查_埃尔塞维尔增强读取器.pdf" type="primary">云室实验室对空心冰颗粒散射特性的调查
+				</el-link>
 			</div>
 		</el-col>
 
@@ -36,9 +44,9 @@
 		</el-col>
 	</el-row>
 </div>
-<style>
+<!-- <style>
 	.el-button--primary {
-		color: #FFF; 
+		color: #FFF;
 		background-color: #1977CC;
 		border-color: #1977CC;
 		margin-bottom: 50px;
@@ -51,7 +59,7 @@
 	.el-link.el-link--primary {
 		color: #1977CC;
 	}
-</style>
+</style> -->
 <script>
 	new Vue({
 		el: '#introduce',
@@ -65,8 +73,8 @@
 			downloadData() {
 				this.$message.success('请求成功，等待服务器响应！');
 			},
-			pushTo(url){
-				window.location.href=url;
+			pushTo(url) {
+				window.location.href = url;
 			}
 		}
 	})

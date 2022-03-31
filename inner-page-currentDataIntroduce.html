@@ -49,6 +49,8 @@
 		<script src="assets/js/vue/vue.js"></script>
 		<!-- import element-ui JavaScript -->
 		<script src="assets/js/element-ui/lib/index.js"></script>
+		<!-- 本页样式 -->
+		<link rel="stylesheet" href="assets/css/inner-page-currentDataIntroduce.css" />
 		<!-- import api.js -->
 		<script src="assets/js/axios.js"></script>
 		<script src="assets/js/axios.min.js"></script>
@@ -71,28 +73,28 @@
 				$('#breadcrumbs').load('components/breadcrumbs.html')
 			</script>
 			<!-- End Breadcrumbs Section -->
-				<div class="container">
-					<div class="row">
-						<!-- 展示与隐藏侧边栏 开始-->
-						<!-- <input type="checkbox" id="menu-btn">
+			<div class="container">
+				<div class="row">
+					<!-- 展示与隐藏侧边栏 开始-->
+					<!-- <input type="checkbox" id="menu-btn">
 					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
-						<!-- 展示与隐藏侧边栏 结束-->
-						<div id="data-introduce-menu" class="menu-box">
-						</div>
-						<script>
-							$("#data-introduce-menu").load("components/introduce-menu.html")
-						</script>
-						<div class="col-lg-9 mt-4 mt-lg-0">
-							<div id="introduce"></div>
-							<script>
-								$("#introduce").load("components/currentDataIntroduce.html")
-							</script>
-						</div>
-						
-						
-						
+					<!-- 展示与隐藏侧边栏 结束-->
+					<div id="introduce-menu" class="menu-box">
 					</div>
+					<script>
+						$("#introduce-menu").load("components/introduce-menu.html")
+					</script>
+					<div class="col-lg-9 mt-4 mt-lg-0">
+						<div id="introduce"></div>
+						<script>
+							$("#introduce").load("components/currentDataIntroduce.html")
+						</script>
+					</div>
+
+
+
 				</div>
+			</div>
 			</section>
 		</main>
 		<!-- End #main -->
@@ -111,50 +113,6 @@
 			$("#copyright").load("components/copyright.html")
 		</script>
 	</body>
-	<style>
-			/* 面包屑样式 start*/
-			.breadcrumbs {
-				margin-top: -5px;
-				padding: 0 0;
-			}
-			/* 返回按钮大小 */
-			.el-button--text {
-			    color: #1977CC;
-			    font-size: 24px;
-			}
-			.breadcrumbs ol {
-				font-size: 16px;
-			}
-			/* 面包屑样式 end*/
-		#copyright {
-			margin-top: 6%;
-			width: 100%;
-		}
-
-		.data-download {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.el-button--primary,
-		.el-button--primary:focus {
-			color: #FFF;
-			background-color: #1977CC;
-			border-color: #1977CC;
-			margin-bottom: 2%;
-			margin-bottom: 5%;
-		}
-
-		.el-link--inner {
-			color: #1977CC;
-		}
-
-		.el-link.el-link--primary {
-			color: #1977CC;
-		}
-	</style>
 	<script src="assets/js/login/login.js"></script>
-	<script src="assets/js/components/introduce_menu.js"></script>
 	<script src="assets/js/components/breadcrumbs.js"></script>
 </html>
