@@ -77,13 +77,13 @@
 					<div class="col-lg-9 mt-4 mt-lg-0">
 						<div class="tab-content">
 							<div id="calender">
-								<div id="yungaoyi_level" v-if="this.getDataLevel()==0 && this.getDeviceId()==0" style="display: flex;justify-content: center;">
+								<div id="yungaoyi_level" v-if="this.getDeviceId()==0" style="display: flex;justify-content: center;">
 									<el-radio-group size="small" v-model="yungaoyi">
 										<el-radio-button label="二级数据"></el-radio-button>
 										<el-radio-button label="三级数据"></el-radio-button>
 									</el-radio-group>
 								</div>
-								<div id="weiyuleida_level"  v-if="this.getDataLevel()==0 && this.getDeviceId()==7" style="display: flex;justify-content: center;">
+								<div id="weiyuleida_level"  v-if="this.getDeviceId()==7" style="display: flex;justify-content: center;">
 									<el-radio-group size="small" v-model="weiyuleida">
 										<el-radio-button label="原始数据"></el-radio-button>
 										<el-radio-button label="平均数据"></el-radio-button>
