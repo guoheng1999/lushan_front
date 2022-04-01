@@ -1,7 +1,8 @@
 /*导航栏start*/
 .el-menu-item.is-active {
-    color: #1977CC!important;
+	color: #1977CC !important;
 }
+
 /*导航栏 end*/
 /* 面包屑样式 start*/
 .breadcrumbs {
@@ -12,6 +13,7 @@
 .el-button.el-button--text {
 	/* padding: 0px; */
 }
+
 .el-button--text {
 	color: #1977CC;
 	font-size: 24px;
@@ -33,19 +35,19 @@
 .el-button--primary,
 .el-button--primary:focus {
 	color: #FFF;
-	background-color: #1977CC!important;
-	border-color: #1977CC!important;
+	background-color: #1977CC !important;
+	border-color: #1977CC !important;
 	margin-bottom: 2%;
 	margin-bottom: 5%;
 }
 
 /* 相关文档链接样式start */
 .el-link--inner {
-	color: #1977CC!important;
+	color: #1977CC !important;
 }
 
 .el-link.el-link--primary {
-	color: #1977CC!important;
+	color: #1977CC !important;
 }
 
 /* 相关文档链接样式end */
@@ -72,6 +74,16 @@
 	/*cursive, */
 	font-size: 18px;
 	font-weight: 200;
+}
+
+.document-col {
+	color: #1977CC;
+	font-size: 18px;
+	font-weight: bold;
+	/* border-right: 2px solid #1977CC */
+	/* padding: 0 15px; */
+	width: fit-content;
+	/* border-radius: 15px; */
 }
 
 /*表格样式 start*/

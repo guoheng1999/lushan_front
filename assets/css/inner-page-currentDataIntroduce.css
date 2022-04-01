@@ -67,6 +67,15 @@
 	margin-bottom: 5%;
 }
 
+.document-col {
+	color: #1977CC;
+	font-size: 18px;
+	font-weight: bold;
+	/* border-right: 2px solid #1977CC */
+	/* padding: 0 15px; */
+	width: fit-content;
+	/* border-radius: 15px; */
+}
 .el-link--inner {
 	color: #1977CC;
 }

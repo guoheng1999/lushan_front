@@ -143,9 +143,8 @@
 											</el-button>
 										</div>
 										<div>
-											<el-row
-												style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
-												<el-col :span="24">
+											<el-row style="padding: 5px 5px 5px 15px;border-bottom:2px #1977CC solid;">
+												<el-col class="document-col" :span="24">
 													<div class="grid-content bg-purple-dark el-icon-document">
 														&nbsp;相关文档</div>
 												</el-col>
@@ -250,6 +249,17 @@
 			margin-bottom: 5%;
 		}
 
+		.document-col {
+			color: #1977CC;
+			font-size: 18px;
+			font-weight: bold;
+			/* border-right: 2px solid #1977CC */
+			/* padding: 0 15px; */
+			width: fit-content;
+			/* border-radius: 15px; */
+		}
+		}
+
 		.el-link--inner {
 			color: #1977CC;
 		}
@@ -336,12 +346,15 @@
 			font-size: 18px;
 			font-weight: 200;
 		}
-		table{
+
+		table {
 			width: 100%;
 		}
-		td{
+
+		td {
 			height: 40px;
 		}
+
 		/*表格样式 end*/
 		/*main*/
 		.main_style {
@@ -373,6 +386,7 @@
 			watch: {
 
 			},
+			created() {},
 			computed: {},
 			methods: {
 				changeDevice(key) {

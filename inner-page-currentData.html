@@ -77,6 +77,19 @@
 					<div class="col-lg-9 mt-4 mt-lg-0">
 						<div class="tab-content">
 							<div id="calender">
+								<div id="yungaoyi_level" v-if="this.getDataLevel()==0 && this.getDeviceId()==0" style="display: flex;justify-content: center;">
+									<el-radio-group size="small" v-model="yungaoyi">
+										<el-radio-button label="二级数据"></el-radio-button>
+										<el-radio-button label="三级数据"></el-radio-button>
+									</el-radio-group>
+								</div>
+								<div id="weiyuleida_level"  v-if="this.getDataLevel()==0 && this.getDeviceId()==7" style="display: flex;justify-content: center;">
+									<el-radio-group size="small" v-model="weiyuleida">
+										<el-radio-button label="原始数据"></el-radio-button>
+										<el-radio-button label="平均数据"></el-radio-button>
+										<el-radio-button label="处理后数据"></el-radio-button>
+									</el-radio-group>
+								</div>
 								<el-container>
 									<el-header style="height: 100%;">
 										<div class="choose-box">
@@ -336,11 +349,12 @@
 		.el-calendar-table td.is-today {
 			color: #000000;
 		}
+
 		/*隐藏日历中非本月份日期*/
 		.el-calendar-table:not(.is-range) td.next,
 		.el-calendar-table:not(.is-range) td.prev {
-		  visibility: hidden;
-		 
+			visibility: hidden;
+
 		}
 	</style>
 	<script src="assets/js/login/login.js"></script>
@@ -375,8 +389,12 @@
 						deviceId: '',
 						email: '',
 						endDay: '',
-						fromDay: ''
-					}
+						fromDay: '',
+						dataType: 0
+					},
+					weiyuleida: '原始数据',
+					yungaoyi: '二级数据',
+					dataType: 0
 				}
 			},
 			beforeMount() {
@@ -399,8 +417,29 @@
 					if (this.defaultYear >= 2044) {
 						this.isShowNextButton = false
 					}
+					this.getDayTimeData()
+				},
+				yungaoyi(){
+					if(this.yungaoyi==='三级数据'){
+						this.dataType=1
+						this.getDayTimeData()
+					}else{
+						this.dataType=0
+						this.getDayTimeData()
+					}
+				},
+				weiyuleida(){
+					if(this.weiyuleida==='平均数据'){
+						this.dataType=1
+						this.getDayTimeData()
+					}else if(this.weiyuleida==='处理后数据'){
+						this.dataType=2
+						this.getDayTimeData()
+					}else{
+						this.dataType=0
+						this.getDayTimeData()
+					}
 				}
-
 			},
 			computed: {
 				datePickStatus: function() {
@@ -460,16 +499,16 @@
 					console.log(this.getDayArr(this.fromDate, this.endDate))
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
-						console.log(token)
-
 						if (this.datePickStatus) {
 							// this.$message.success('请求成功，等待服务器响应！');
 							this.downloadMessage.dataLevel = this.getDataLevel()
+							this.downloadMessage.dataType = this.dataType
 							this.downloadMessage.deviceId = this.getDeviceId()
 							this.downloadMessage.email = JSON.parse(sessionStorage.getItem('userInfo')).email
 							console.log(this.downloadMessage.email)
 							this.downloadMessage.endDay = this.endDate
 							this.downloadMessage.fromDay = this.fromDate
+							console.log(this.downloadMessage)
 							downloadCurrentData(this.downloadMessage)
 								.then(res => {
 									res = res.data
@@ -513,8 +552,8 @@
 							})
 					}
 				},
-				clickYear(item){
-					this.showYear=item
+				clickYear(item) {
+					this.showYear = item
 					this.getDayTimeData()
 				},
 				createYearList(indexYear) {
@@ -536,8 +575,10 @@
 				// 获取dayTime
 				getDayTimeData() {
 					const dataLevel = this.getDataLevel()
-					const deviceId = (Number(this.getDeviceId()))/* + Number(1)*/
-					getDayTimeYear(dataLevel, deviceId, this.showYear)
+					const deviceId = (Number(this.getDeviceId())) /* + Number(1)*/
+					const dataType = this.dataType
+					console.log('dataType'+dataType)
+					getDayTimeYear(dataLevel, dataType, deviceId, this.showYear)
 						.then(res => {
 							res = res.data
 							console.log(res.data)

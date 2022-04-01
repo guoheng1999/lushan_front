@@ -3,7 +3,7 @@ DEV_BASE_URL = 'http://10.23.107.96:8081/lushan'
 TEST_BASE_URL = 'http://106.12.109.129:8849/lushan'
 
 const LUSHAN_CONFIG = {
-	BASE_URL: TEST_BASE_URL,
+	BASE_URL: DEV_BASE_URL,
 	TIME_OUT: 100000
 }
 
@@ -169,7 +169,7 @@ function getDayTime(dataLevel,deviceId) {
 }
 
 //获取现代数据
-function getDayTimeYear(dataLevel,deviceId, year) {
+function getDayTimeYear(dataLevel,dataType,deviceId, year) {
 	return axios.create({
 		baseURL: LUSHAN_CONFIG['BASE_URL'],
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
@@ -177,7 +177,7 @@ function getDayTimeYear(dataLevel,deviceId, year) {
 			'Access-Control-Allow-Origin': '*',
 			'token': sessionStorage.getItem('logintoken') || ''
 		}
-	}).get("currentData/deviceId/dataLevel/year?dataLevel=" +dataLevel+"&deviceId="+deviceId + "&year=" + year)
+	}).get("currentData/deviceId/dataLevel/year?dataLevel=" +dataLevel+"&dataType="+dataType+"&deviceId="+deviceId + "&year=" + year)
 }
 
 //下载现代数据
