@@ -106,16 +106,16 @@
 													placeholder="选择日期">
 												</el-date-picker>
 											</div>
-											<div style="margin-left: 1.25rem;">
+											<div class="data-type-radio-group" style="margin-left: 1.25rem;">
 												<!-- <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll"
 													@change="handleCheckAllChange">全选</el-checkbox>
 												<div style="margin: 15px 0;"></div> -->
-												<el-checkbox-group v-if="isShowFileCheckBox" v-model="checkedType"
+												<el-radio-group v-if="isShowFileCheckBox" v-model="checkedType"
 													@change="handleCheckedTypeChange">
-													<el-checkbox v-for="type in types" :label="type" :key="type">
+													<el-radio v-for="type in types" :label="type" :key="type">
 														{{type}}格式
-													</el-checkbox>
-												</el-checkbox-group>
+													</el-radio>
+												</el-radio-group>
 											</div>
 											<el-button style="width: -webkit-fit-content; height: 100%;" type="primary"
 												@click="downloadData()" rounds>下载数据
@@ -225,13 +225,13 @@
 			align-items: center;
 		}
 
-		.el-checkbox-group {
+		.data-type-radio-group .el-radio-group {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 		}
 
-		.el-checkbox:last-of-type {
+		.data-type-radio-group .el-radio:last-of-type {
 			margin-right: 30px;
 		}
 
@@ -380,7 +380,7 @@
 					isShowNextButton: true,
 					isShowFileCheckBox: true,
 					checkAll: false,
-					checkedType: ['csv'],
+					checkedType: 'csv',
 					types: chooseDownloadTypeOptions,
 					isIndeterminate: true,
 					//请求下载的参数
@@ -390,6 +390,7 @@
 						email: '',
 						endDay: '',
 						fromDay: '',
+						fileFormat: '',
 						dataType: 0
 					},
 					weiyuleida: '原始数据',
@@ -508,6 +509,7 @@
 							console.log(this.downloadMessage.email)
 							this.downloadMessage.endDay = this.endDate
 							this.downloadMessage.fromDay = this.fromDate
+							this.downloadMessage.fileFormat = this.checkedType
 							console.log(this.downloadMessage)
 							downloadCurrentData(this.downloadMessage)
 								.then(res => {
@@ -577,7 +579,6 @@
 					const dataLevel = this.getDataLevel()
 					const deviceId = (Number(this.getDeviceId())) /* + Number(1)*/
 					const dataType = this.dataType
-					console.log('dataType'+dataType)
 					getDayTimeYear(dataLevel, dataType, deviceId, this.showYear)
 						.then(res => {
 							res = res.data

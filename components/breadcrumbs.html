@@ -127,7 +127,13 @@
 				}
 			},
 			goBack(){
-				window.history.back()
+				console.log(document.referrer)
+				// window.location.href = document.referrer
+				if (window.location.href.indexOf('inner-page-currentData.html') != -1){
+					pushTo(document.referrer.split('/').pop())
+				}else{
+					window.location.back()
+				}
 			},
 		}
 	})

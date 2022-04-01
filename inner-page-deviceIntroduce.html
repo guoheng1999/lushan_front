@@ -111,15 +111,15 @@
 													<p>*桥梁隧道</p>
 												</div> -->
 												<div id="device-table">
-													<div id="yungaoyi" v-if="flag===0"></div>
-													<div id="bianxieshizidongqixiangzhan" v-if="flag===1"></div>
-													<div id="yuliangtong" v-if="flag===2"></div>
-													<div id="nengjianduyi" v-if="flag===3"></div>
-													<div id="yudipuyi" v-if="flag===4"></div>
-													<div id="wudipuyi" v-if="flag===5"></div>
-													<div id="keliwuyi" v-if="flag===6"></div>
-													<div id="weiyuleida" v-if="flag===7"></div>
-													<div id="weibofusheji" v-if="flag===8"></div>
+													<div id="yungaoyi" v-if="flag==0"></div>
+													<div id="bianxieshizidongqixiangzhan" v-if="flag==1"></div>
+													<div id="yuliangtong" v-if="flag==2"></div>
+													<div id="nengjianduyi" v-if="flag==3"></div>
+													<div id="yudipuyi" v-if="flag==4"></div>
+													<div id="wudipuyi" v-if="flag==5"></div>
+													<div id="keliwuyi" v-if="flag==6"></div>
+													<div id="weiyuleida" v-if="flag==7"></div>
+													<div id="weibofusheji" v-if="flag==8"></div>
 												</div>
 											</el-aside>
 											<el-main>
@@ -143,8 +143,9 @@
 											</el-button>
 										</div>
 										<div>
-											<el-row style="padding: 5px 5px 5px 15px;border-bottom:2px #1977CC solid;">
-												<el-col class="document-col" :span="24">
+											<el-row
+												style="color: #FFFFFF;padding: 5px 5px 5px 15px;background: url(assets/img/data_recommend_bgBlue.png) 0px 0px no-repeat;">
+												<el-col :span="24">
 													<div class="grid-content bg-purple-dark el-icon-document">
 														&nbsp;相关文档</div>
 												</el-col>
@@ -209,6 +210,7 @@
 			$("#yudipuyi").load("components/device/yudipuyi.html")
 			$("#yuliangtong").load("components/device/yuliangtong.html")
 			$("#yungaoyi").load("components/device/yungaoyi.html")
+			console.log('!!!!!!!!')
 		</script>
 	</body>
 	<style>
@@ -247,17 +249,6 @@
 			border-color: #1977CC;
 			margin-bottom: 2%;
 			margin-bottom: 5%;
-		}
-
-		.document-col {
-			color: #1977CC;
-			font-size: 18px;
-			font-weight: bold;
-			/* border-right: 2px solid #1977CC */
-			/* padding: 0 15px; */
-			width: fit-content;
-			/* border-radius: 15px; */
-		}
 		}
 
 		.el-link--inner {
@@ -346,15 +337,12 @@
 			font-size: 18px;
 			font-weight: 200;
 		}
-
-		table {
+		table{
 			width: 100%;
 		}
-
-		td {
+		td{
 			height: 40px;
 		}
-
 		/*表格样式 end*/
 		/*main*/
 		.main_style {
@@ -380,24 +368,27 @@
 					active_src: ''
 				}
 			},
-			beforeMount() {
+			created() {
 				this.deviceInfo()
+				this.$forceUpdate()
 			},
 			watch: {
-
+				flag(){
+					console.log(this.flag)
+				}
 			},
-			created() {},
 			computed: {},
 			methods: {
 				changeDevice(key) {
 					this.active_id = key
-					this.flag = key
+					this.flag = this.active_id
 					this.activate_device_name = this.device_list[this.active_id].deviceName
 					this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 				},
 				checkUrl() {
 					href_str = window.location.href
 					this.active_id = href_str.split("device-id=")[1][0]
+					this.flag = this.active_id
 				},
 				deviceInfo() {
 					response = getDeviceInfo()
@@ -408,6 +399,8 @@
 						this.checkUrl()
 						console.log('active_id', this.active_id)
 						console.log('activate_device_name', this.activate_device_name)
+						console.log('flag', this.flag)
+						console.log('flag==0', this.flag==0)
 						this.activate_device_name = this.device_list[this.active_id].deviceName
 						this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 					}).catch(err => {
