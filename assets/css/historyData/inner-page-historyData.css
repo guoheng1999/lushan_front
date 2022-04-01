@@ -1,0 +1,117 @@
+/*解决记住密码样式冲突*/
+.dataShowButton {
+	margin-right: 0px !important;
+}
+
+/* 面包屑样式 start*/
+.breadcrumbs {
+	margin-top: -5px;
+	padding: 0 0;
+}
+
+.el-button--text {
+	color: #1977CC;
+	font-size: 24px;
+}
+
+.breadcrumbs ol {
+	font-size: 16px;
+}
+
+/* 面包屑样式 end*/
+.el-dialog__title {
+	float: left;
+}
+
+.login-button {
+	background-color: #1977CC;
+	border-color: #1977CC;
+	color: #fff;
+}
+
+.message-board {
+	display: flex;
+	flex-direction: column;
+	bottom: 10%;
+	float: right;
+	/* 
+			writing-mode: tb-rl; */
+	right: 1%;
+	position: fixed;
+	color: #1977CC;
+}
+
+.message-board-button {
+	padding: 0;
+	border: 0;
+	color: #1977CC;
+	font-size: 3.125rem;
+}
+
+.message-board-button:hover,
+.message-board-button:focus {
+	background-color: #FFFFFF;
+}
+
+.message-board-button:focus {
+	color: #1977CC;
+}
+
+.el-drawer__body {
+	margin-top: -30px;
+	padding-left: 20px;
+}
+
+.upload-demo {
+	margin-top: 10px;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.demonstration {
+	margin-bottom: 10px;
+}
+
+.cascader {
+	width: 338.5px;
+}
+
+.el-textarea__inner {
+	width: 360px;
+}
+
+.demo-drawer__footer {
+	margin-top: 160px;
+	margin-left: 45%;
+}
+
+/* table样式 start */
+.el-table td,
+.el-table th {
+	text-align: center !important;
+}
+
+.historyData-dialog {
+	width: 550px !important;
+}
+
+/* table样式 end */
+.el-checkbox:last-of-type {
+	margin-right: 30px;
+}
+
+@media (max-width: 736px) {
+	.el-dialog {
+		width: 382.8px;
+	}
+}
+
+@media (max-width:320px) {
+	.el-dialog {
+		width: 90%;
+	}
+}

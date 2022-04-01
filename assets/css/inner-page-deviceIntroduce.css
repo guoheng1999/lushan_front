@@ -1,0 +1,151 @@
+/* 面包屑样式 start*/
+.breadcrumbs {
+	margin-top: -5px;
+	padding: 0 0;
+}
+
+/* 返回按钮大小 */
+.el-button--text {
+	color: #1977CC;
+	font-size: 24px;
+}
+
+.breadcrumbs ol {
+	font-size: 16px;
+}
+
+/* 面包屑样式 end*/
+#copyright {
+	margin-top: 10%;
+	width: 100%;
+}
+
+.data-download {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2%;
+}
+
+/*按钮样式 start*/
+.el-button--primary,
+.el-button--primary:focus {
+	color: #FFF;
+	background-color: #1977CC;
+	border-color: #1977CC;
+	margin-bottom: 2%;
+	margin-bottom: 5%;
+}
+
+/*按钮样式 end*/
+/*链接 start*/
+.document-col {
+	color: #1977CC;
+	font-size: 18px;
+	font-weight: bold;
+	/* border-right: 2px solid #1977CC */
+	/* padding: 0 15px; */
+	width: fit-content;
+	/* border-radius: 15px; */
+}
+
+.el-link--inner {
+	color: #1977CC;
+}
+
+.el-link .el-link--primary {
+	color: #1977CC;
+}
+
+/*链接 end*/
+.details {
+	background-color: #FFFFFF;
+}
+
+.data-download {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.el-button--primary {
+	color: #FFF;
+	background-color: #1977CC;
+	border-color: #1977CC;
+	margin-bottom: 50px;
+}
+
+/* 导航栏 */
+.el-menu-vertical-demo span {
+	font-size: 18px;
+}
+
+.el-container {
+	padding: 0;
+}
+
+.el-descriptions__title {
+	font-size: 20px;
+}
+
+.device-introduce {
+	height: 100%;
+}
+
+.textBox h2 {
+	text-align: center !important;
+	background: url(./assets/img/icon33.png) no-repeat center bottom !important;
+	line-height: 36px !important;
+	padding-bottom: 10px !important;
+	font-size: 20px !important;
+	color: #062640;
+	margin: 6px 0 !important;
+}
+
+/*el-side start*/
+.el-aside {
+	overflow: hidden;
+}
+
+/*el-side end*/
+
+/*表格样式 start*/
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+	text-align: center;
+	border-color: rgb(25, 119, 204) !important;
+	border-style: dotted !important;
+	border-width: 1px !important;
+	line-height: 24px;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	/* font-family: "Raleway", serif, sans-serif; */
+	/*cursive, */
+	font-size: 18px;
+	font-weight: 200;
+}
+
+table {
+	width: 100%;
+}
+
+td {
+	height: 40px;
+}
+
+/*表格样式 end*/
+/*main start*/
+.main_style {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+/*main end*/
