@@ -111,15 +111,377 @@
 													<p>*桥梁隧道</p>
 												</div> -->
 												<div id="device-table">
-													<div id="yungaoyi" v-if="flag==0"></div>
-													<div id="bianxieshizidongqixiangzhan" v-if="flag==1"></div>
-													<div id="yuliangtong" v-if="flag==2"></div>
-													<div id="nengjianduyi" v-if="flag==3"></div>
-													<div id="yudipuyi" v-if="flag==4"></div>
-													<div id="wudipuyi" v-if="flag==5"></div>
-													<div id="keliwuyi" v-if="flag==6"></div>
-													<div id="weiyuleida" v-if="flag==7"></div>
-													<div id="weibofusheji" v-if="flag==8"></div>
+													<div id="yungaoyi" v-if="flag==0">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">云高仪，Vaisala CL31</td>
+																</tr>
+																<tr>
+																	<td>数据级别</td>
+																	<td>Level2</td>
+																	<td>Level3</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td>后向散射回波廓线 </td>
+																	<td>边界层高度和云底高度（三层） </td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2015年11月-2020年10月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">16秒</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本his</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>无</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">UPAR_MODI_MOBS_SUOB_LSYW_CEIL（YCCL？）
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="bianxieshizidongqixiangzhan" v-if="flag==1">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">便携式自动气象站，华云GH-BPR</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本xlsx</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">气压、温度、相对湿度、风向、风速、雨量</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2015年11月-2020年8月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">1分钟</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>一致性、连续性、界限值、时变性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURE_MODI_MOBS_SUOB_LSYW_AWS</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div id="yuliangtong" v-if="flag==2">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">雨量筒，HOBO onset RG3-M</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">温度、降雨量、最大温度、累计降雨量</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2018年6月-2020年9月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">不固定</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>连续性、界限值、奇异值检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURE_MODI_MOBS_SUOB_LSYW_PRE</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="nengjianduyi" v-if="flag==3">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">能见度仪，Vaisala PWD22</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">1分钟水平能见度、10分钟水平能见度等</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2015年11月-2020年10月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">16秒</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>连续性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURE_MODI_MOBS_SUOB_LSYWZ_VIS</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="yudipuyi" v-if="flag==4">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">雨滴谱仪，Thies Clima LPM5</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本txt</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">
+																		等级粒子直径和速度对应粒子个数、累计降雨量、1分钟总降水强度、1分钟液态降水强度、1分钟固态降水强度等
+																	</td>
+																</tr>
+																<tr>
+																	<td>分档数</td>
+																	<td colspan="2">22个粒径档0.125-8.5mm，20个速度档：0-大于10m/s
+																	</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2015年11月-2020年10月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">1分钟</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>连续性和异常数据检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURE_MODI_MOBS_SUOB_LSYW_RSD</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="wudipuyi" v-if="flag==5">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">雾滴仪，DMT FM100</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">分档粒子数、数浓度、体积浓度、体积中值直径、有效直径、空气流速等
+																	</td>
+																</tr>
+																<tr>
+																	<td>分档数</td>
+																	<td colspan="2">20个粒径档：2-50μm</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2015年11月-2020年8月</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">1秒</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>连续性和参数合理性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURE_MODI_MOBS_SUOB_LSYW_FSD</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="keliwuyi" v-if="flag==6">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">颗粒物仪，Thermo Scientific TEOM 1405-DF
+																	</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本.csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">
+																		PM2.5、PMcoarse、PM10的质量浓度、1小时平均质量浓度和24h平均质量浓度等
+																	</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2021年4月（测试数据）</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">1小时</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>参数合理性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">SURF_MODI_MOBS_SUOB_LSYW_AERM</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="weiyuleida" v-if="flag==7">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="3">微雨雷达，METEK MRR2</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td colspan="2">0级：文本csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>数据级别</td>
+																	<td>Level raw</td>
+																	<td>Level pro</td>
+																	<td>Level ave</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td>转换方程、原始功率谱</td>
+																	<td colspan="2">
+																		转化方程、FFT谱、雨滴尺度谱、雨滴数浓度谱、路径积分衰减、雷达反射率因子、订正后的雷法反射率因子、降水强度、液态水含量、垂直速度等
+																	</td>
+																</tr>
+																<tr>
+																	<td>分档数</td>
+																	<td colspan="3">31个高度档；64个粒径档</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="3">2015年11月-2017年9月；2019年9月-2020年10月
+																	</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="3">10秒</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>参数合理性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="3">RADA_MODI_MOBS_SUOB_LSYW_RRD</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
+													<div id="weibofusheji" v-if="flag==8">
+														<table>
+															<tbody>
+																<tr>
+																	<td>设备名称及型号</td>
+																	<td colspan="2">微波辐射计，Radiometric MP-3055A和MP-3069A
+																	</td>
+																</tr>
+																<tr>
+																	<td>数据集级别及格式</td>
+																	<td>0级：文本.csv</td>
+																	<td>1级：csv；NetCDF</td>
+																</tr>
+																<tr>
+																	<td>观测要素</td>
+																	<td colspan="2">
+																		地面温度、相对湿度和气压；红外温度；云底高度；垂直累计水汽含量、垂直累计液态水含量；温度、相对湿度、水汽密度和液态水含量廓线等
+																	</td>
+																</tr>
+																<tr>
+																	<td>观测时间</td>
+																	<td colspan="2">2021年3-4月（测试数据）</td>
+																</tr>
+																<tr>
+																	<td>时间分辨率</td>
+																	<td colspan="2">分钟级</td>
+																</tr>
+																<tr>
+																	<td>质控描述</td>
+																	<td>无</td>
+																	<td>参数合理性检查</td>
+																</tr>
+																<tr>
+																	<td>文件名标识</td>
+																	<td colspan="2">UPAR_MODI_MOBS_SUOB_LSYW_MRD</td>
+																</tr>
+															</tbody>
+														</table>
+
+													</div>
 												</div>
 											</el-aside>
 											<el-main>
@@ -201,16 +563,16 @@
 		<script src="assets/js/main.js"></script>
 		<script>
 			$("#copyright").load("components/copyright.html")
-			$("#bianxieshizidongqixiangzhan").load("components/device/bianxieshizidongqixiangzhan.html")
-			$("#keliwuyi").load("components/device/keliwuyi.html")
-			$("#nengjianduyi").load("components/device/nengjianduyi.html")
-			$("#weibofusheji").load("components/device/weibofusheji.html")
-			$("#weiyuleida").load("components/device/weiyuleida.html")
-			$("#wudipuyi").load("components/device/wudipuyi.html")
-			$("#yudipuyi").load("components/device/yudipuyi.html")
-			$("#yuliangtong").load("components/device/yuliangtong.html")
-			$("#yungaoyi").load("components/device/yungaoyi.html")
-			console.log('!!!!!!!!')
+			// $("#bianxieshizidongqixiangzhan").load("components/device/bianxieshizidongqixiangzhan.html")
+			// $("#keliwuyi").load("components/device/keliwuyi.html")
+			// $("#nengjianduyi").load("components/device/nengjianduyi.html")
+			// $("#weibofusheji").load("components/device/weibofusheji.html")
+			// $("#weiyuleida").load("components/device/weiyuleida.html")
+			// $("#wudipuyi").load("components/device/wudipuyi.html")
+			// $("#yudipuyi").load("components/device/yudipuyi.html")
+			// $("#yuliangtong").load("components/device/yuliangtong.html")
+			// $("#yungaoyi").load("components/device/yungaoyi.html")
+			// console.log('!!!!!!!!')
 		</script>
 	</body>
 	<style>
@@ -337,12 +699,15 @@
 			font-size: 18px;
 			font-weight: 200;
 		}
-		table{
+
+		table {
 			width: 100%;
 		}
-		td{
+
+		td {
 			height: 40px;
 		}
+
 		/*表格样式 end*/
 		/*main*/
 		.main_style {
@@ -373,7 +738,7 @@
 				this.$forceUpdate()
 			},
 			watch: {
-				flag(){
+				flag() {
 					console.log(this.flag)
 				}
 			},
@@ -400,7 +765,7 @@
 						console.log('active_id', this.active_id)
 						console.log('activate_device_name', this.activate_device_name)
 						console.log('flag', this.flag)
-						console.log('flag==0', this.flag==0)
+						console.log('flag==0', this.flag == 0)
 						this.activate_device_name = this.device_list[this.active_id].deviceName
 						this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 					}).catch(err => {
