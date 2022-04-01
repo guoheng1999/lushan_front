@@ -141,7 +141,7 @@
 													<template>
 														<el-table ref="multipleTable" max-height="500"
 															@selection-change="handleSelectionChange"
-															:data="originData.slice((currentPage-1)*pagesize,currentPage*pagesize).filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+															:data="originData.filter(data => !search || data.picName.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
 															style="width: 100%;padding-left: 10px;">
 															<el-table-column align="right">
 																<template slot="header" slot-scope="scope">
@@ -574,5 +574,4 @@
 			}
 		})
 	</script>
-
 </html>
