@@ -33,7 +33,7 @@
 		<!-- Template Main CSS File -->
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/historyData/dataShow.css" rel="stylesheet">
-
+		<link href="assets/css/historyData/inner-page-historyData.css" rel="stylesheet" />
 		<!-- 导入阿里的图标样式文件 -->
 		<link rel="stylesheet" href="assets/css/iconfont.css">
 		<link rel="stylesheet" href="assets/css/left_nav.css">
@@ -43,7 +43,7 @@
 		<!-- import Vue before Element -->
 		<script src="assets/js/vue/vue.js"></script>
 		<!-- import element-ui JavaScript -->
-		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="assets/js/element-ui/lib/index.js"></script>
 
 		<!-- import api.js -->
 		<script src="assets/js/axios.js"></script>
@@ -109,7 +109,7 @@
 								<!-- 历史数据名称列表 -->
 								<template>
 									<el-table
-										:data="historyData.filter(data => !search || data.dataName.toLowerCase().includes(search.toLowerCase())).slice((historyData_currentPage-1)*historyData_pagesize,historyData_currentPage*historyData_pagesize)"
+										:data="historyData.filter(data => !historyDataSearch || data.dataName.toLowerCase().includes(historyDataSearch.toLowerCase())).slice((historyData_currentPage-1)*historyData_pagesize,historyData_currentPage*historyData_pagesize)"
 										style="width: 90%" :key='deviceName'>
 										<el-table-column min-width="16%" label="文件名" prop="dataName">
 										</el-table-column>
@@ -121,7 +121,7 @@
 										</el-table-column>
 										<el-table-column min-width="20%" align="right">
 											<template slot="header" slot-scope="scope">
-												<el-input v-model="search" size="mini" placeholder="按文件名搜索" />
+												<el-input v-model="historyDataSearch" size="mini" placeholder="按文件名搜索" />
 											</template>
 											<template slot-scope="scope">
 
@@ -141,11 +141,11 @@
 													<template>
 														<el-table ref="multipleTable" max-height="500"
 															@selection-change="handleSelectionChange"
-															:data="originData.filter(data => !search || data.picName.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
+															:data="originData.filter(data => !originDataSearch || data.picName.toLowerCase().includes(originDataSearch.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
 															style="width: 100%;padding-left: 10px;">
 															<el-table-column align="right">
 																<template slot="header" slot-scope="scope">
-																	<el-input v-model="search" size="mini"
+																	<el-input v-model="originDataSearch" size="mini"
 																		placeholder="按图像名搜索" />
 																</template>
 																<el-table-column label="编号" prop="id" type="selection">
@@ -259,8 +259,8 @@
 		<!-- Template Main JS File -->
 		<script src="assets/js/main.js"></script>
 	</body>
-	<script src="assets/js/login/login.js"></script>
-	<script src="assets/js/components/breadcrumbs.js"></script>
+	<!-- <script src="assets/js/login/login.js"></script> -->
+	<!-- <script src="assets/js/components/breadcrumbs.js"></script> -->
 	<script>
 		new Vue({
 			el: '#history-list',
@@ -276,7 +276,8 @@
 					userForm: {
 						email: ''
 					}, //用户信息列表
-					search: '',
+					historyDataSearch: '',
+					originDataSearch: '',
 					dialogVisible: false,
 					img_dialogVisible: false,
 					historyData_currentPage: 1,

@@ -1,3 +1,11 @@
+.device-container {
+	width: 100%;
+	padding-right: var(--bs-gutter-x, .75rem);
+	padding-left: var(--bs-gutter-x, .75rem);
+	margin-right: auto;
+	margin-left: auto;
+}
+
 /* 面包屑样式 start*/
 .breadcrumbs {
 	margin-top: -5px;
@@ -63,6 +71,7 @@
 }
 
 .data-download {
+	width: 720px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -108,7 +117,17 @@
 }
 
 /*el-side end*/
+#device-table {
+	width: -webkit-fit-content;
+	margin-right: 15px;
+}
 
+#weiyuleida {
+	width: 900px;
+}
+#bianxieshizidongqixiangzhan,#keliwuyi,#nengjianduyi,#weibofusheji,#wudipuyi,#yudipuyi,#yuliangtong,#yungaoyi{
+	width: 720px;
+}
 /*表格样式 start*/
 thead,
 tbody,
@@ -142,10 +161,10 @@ td {
 .main_style {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	align-content: center;
-	justify-content: center;
-	align-items: center;
+	/* justify-content: center; */
+	align-items: flex-start;
 }
 
 /*main end*/

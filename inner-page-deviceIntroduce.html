@@ -44,7 +44,7 @@
 		<script src="assets/js/moment.min.js"></script>
 		<!-- import element-ui CSS -->
 		<link rel="stylesheet" href="assets/css/element-ui/theme-chalk/index.css">
-		
+
 		<!-- 本页样式 -->
 		<link href="assets/css/inner-page-deviceIntroduce.css" rel="stylesheet" />
 		<!-- import Vue before Element -->
@@ -75,16 +75,16 @@
 			<!-- End Breadcrumbs Section -->
 
 			<section class="inner-page" style="padding-top: 0px;">
-				<div class="container">
+				<div class="device-container">
 					<div class="row">
 						<!-- 展示与隐藏侧边栏 开始-->
 						<!-- <input type="checkbox" id="menu-btn">
 					    <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label> -->
 						<!-- 展示与隐藏侧边栏 结束-->
 						<div id="device-introduce">
-							<div class="container">
+							<div>
 								<el-container>
-									<el-aside width="13%">
+									<el-aside style="width:13%; margin-left: 5%;">
 										<el-col>
 											<el-menu class="el-menu-vertical-demo"
 												:default-active="this.device_list[this.activate_id]">
@@ -98,20 +98,7 @@
 									</el-aside>
 									<el-main>
 										<el-container class="main_style">
-											<el-aside width="70%">
-												<!-- <div class="textBox">
-
-													<h2>{{this.activate_device_name}}概述</h2>
-													<p>&nbsp; &nbsp;
-														HM-YQX5型产品
-													</p>
-													<h2>{{this.activate_device_name}}特点</h2>
-													<p>*采用先进的传感技术实时测量</p>
-													<h2>{{this.activate_device_name}}应用领域</h2>
-													<p>*气象监测</p>
-													<h2>{{this.activate_device_name}}技术参数表</h2>
-													<p>*桥梁隧道</p>
-												</div> -->
+											<div>
 												<div id="device-table">
 													<div id="yungaoyi" v-if="flag==0">
 														<table>
@@ -482,17 +469,17 @@
 																</tr>
 															</tbody>
 														</table>
-
 													</div>
+
 												</div>
-											</el-aside>
-											<el-main>
+											</div>
+											<div>
 												<el-image style="height: 360px;" :src="active_src">
 													<div slot="error" class="image-slot">
 														<i class="el-icon-picture-outline"></i>
 													</div>
 												</el-image>
-											</el-main>
+											</div>
 										</el-container>
 										<div class="data-download">
 											<el-button type="primary"
