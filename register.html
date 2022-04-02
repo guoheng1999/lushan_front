@@ -121,18 +121,18 @@
 									</el-input>
 								</el-form-item>
 								<el-form-item prop="organization">
-									<el-input placeholder="组织" type="text" v-model="ruleForm.organization"
+									<el-input placeholder="组织/机构" type="text" v-model="ruleForm.organization"
 										autocomplete="off">
 										<i slot="prefix" class="el-input__icon el-icon-school"></i>
 									</el-input>
 								</el-form-item>
-								<el-form-item prop="pass">
+								<el-form-item prop="password">
 									<el-input placeholder="密码" type="password" v-model="ruleForm.password"
 										autocomplete="off">
 										<i slot="prefix" class="el-input__icon el-icon-unlock"></i>
 									</el-input>
 								</el-form-item>
-								<el-form-item prop="checkPass">
+								<el-form-item prop="checkPassword">
 									<el-input placeholder="确认密码" type="password" v-model="ruleForm.checkPassword"
 										autocomplete="off">
 										<i slot="prefix" class="el-input__icon el-icon-lock"></i>
@@ -199,16 +199,50 @@
 						}
 						callback();
 					}
-				};
+				}
 				var validatePass2 = (rule, value, callback) => {
 					if (value === '') {
-						callback(new Error('请再次输入密码'));
-					} else if (value !== this.ruleForm.pass) {
-						callback(new Error('两次输入密码不一致!'));
+						callback(new Error('请再次输入密码'))
+					} else if (value !== this.ruleForm.password) {
+						callback(new Error('两次输入密码不一致!'))
 					} else {
-						callback();
+						callback()
 					}
-				};
+				}
+				var validateName = (rule, value, callback) => {
+					var name = /^([a-zA-Z]|\/| |·|-|●|(\（+\）)|(\（[a-zA-Z]+\）))+$/
+					var namesw = /^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
+					value = value.replace(' ', '')
+					if (name.test(value) || namesw.test(value)){
+						callback()
+					}else{
+						callback(new Error('请输入您的姓名!'))
+					}
+				}
+				var validateEmail = (rule, value, callback) => {
+					var email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+					if (email.test(value)){
+						callback()
+					}else{
+						callback(new Error('请正确输入您的邮箱！'))
+					}
+				}
+				var validatePhone = (rule, value, callback) => {
+					var phone = /^1[23456789]\d{9}/;
+					if (phone.test(value)) {
+						callback()
+					} else{
+						callback(new Error('请正确输入您的手机号!'))
+					}
+				}
+				var validateOrganization = (rule, value, callback) => {
+					// var organization = /^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
+					if (value.replace(' ', '') == '') {
+						callback(new Error('请正确输入您的组织/机构名称'))
+					} else{
+						callback()
+					}
+				}
 				return {
 					headers: {
 						'Access-Control-Allow-Origin': '*',
@@ -229,12 +263,28 @@
 						checkPassword: ''
 					},
 					rules: {
-						pass: [{
+						password: [{
 							validator: validatePass,
 							trigger: 'blur'
 						}],
-						checkPass: [{
+						checkPassword: [{
 							validator: validatePass2,
+							trigger: 'blur'
+						}],
+						name: [{
+							validator: validateName,
+							trigger: 'blur'
+						}],
+						email: [{
+							validator: validateEmail,
+							trigger: 'blur'
+						}],
+						phone: [{
+							validator: validatePhone,
+							trigger: 'blur'
+						}],
+						organization: [{
+							validator: validateOrganization,
 							trigger: 'blur'
 						}]
 					}
