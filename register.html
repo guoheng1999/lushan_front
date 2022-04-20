@@ -140,16 +140,16 @@
 								</el-form-item>
 							</div>
 							<div id="form-image">
-
-								<el-upload :headers="headers" class="upload-demo" ref="upload"
-									action="http://127.0.0.1:8081/lushan/file/upload/user/proof"
-									:accept="acceptFileType" :limit="3" :on-exceed="handleExceed"
-									:before-upload="beforeUpload" :on-preview="handlePreview" :on-remove="handleRemove"
-									:file-list="fileList" :auto-upload="false">
-									<el-button slot="trigger" size="small" type="primary">选取审核文件</el-button>
-									<div slot="tip" class="el-upload_tip">只能上传pdf,png, jpg文件,且不超过5M</div>
-								</el-upload>
-
+								<el-form-item prop="fileList">
+									<el-upload :headers="headers" class="upload-demo" ref="upload"
+										action="http://127.0.0.1:8081/lushan/file/upload/user/proof"
+										:accept="acceptFileType" :limit="3" :on-exceed="handleExceed"
+										:before-upload="beforeUpload" :on-preview="handlePreview"
+										:on-remove="handleRemove" :file-list="ruleForm.fileList" :auto-upload="false">
+										<el-button slot="trigger" size="small" type="primary">选取审核文件</el-button>
+										<div slot="tip" class="el-upload_tip">只能上传pdf,png, jpg文件,且不超过5M</div>
+									</el-upload>
+								</el-form-item>
 								<el-form-item class="el-register-btn">
 									<el-button type="primary" @click="submitForm()">提交</el-button>
 									<el-button @click="resetForm()">重置</el-button>
@@ -194,8 +194,8 @@
 					if (value === '') {
 						callback(new Error('请输入密码'));
 					} else {
-						if (this.ruleForm.checkPass !== '') {
-							this.$refs.ruleForm.validateField('checkPass');
+						if (this.ruleForm.checkPassword !== '') {
+							this.$refs.ruleForm.validateField('checkPassword');
 						}
 						callback();
 					}
@@ -211,19 +211,20 @@
 				}
 				var validateName = (rule, value, callback) => {
 					var name = /^([a-zA-Z]|\/| |·|-|●|(\（+\）)|(\（[a-zA-Z]+\）))+$/
-					var namesw = /^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
+					var namesw =
+						/^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
 					value = value.replace(' ', '')
-					if (name.test(value) || namesw.test(value)){
+					if (name.test(value) || namesw.test(value)) {
 						callback()
-					}else{
+					} else {
 						callback(new Error('请输入您的姓名!'))
 					}
 				}
 				var validateEmail = (rule, value, callback) => {
 					var email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
-					if (email.test(value)){
+					if (email.test(value)) {
 						callback()
-					}else{
+					} else {
 						callback(new Error('请正确输入您的邮箱！'))
 					}
 				}
@@ -231,7 +232,7 @@
 					var phone = /^1[23456789]\d{9}/;
 					if (phone.test(value)) {
 						callback()
-					} else{
+					} else {
 						callback(new Error('请正确输入您的手机号!'))
 					}
 				}
@@ -239,8 +240,29 @@
 					// var organization = /^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
 					if (value.replace(' ', '') == '') {
 						callback(new Error('请正确输入您的组织/机构名称'))
-					} else{
+					} else {
 						callback()
+					}
+				}
+				var validateFileList = (rule, value, callback) => {
+					const mb = 1024 * 1024
+					if (this.$refs.upload.uploadFiles.length<=0){
+						callback(new Error('请上传审核文件，文件格式为pdf、png、jpg且不超过5M！'))
+					}else{
+						for (var i = 0; i < this.$refs.upload.uploadFiles.length; i++) {
+							if (this.$refs.upload.uploadFiles[i].size / mb <= 5) {
+								if(this.acceptFileType.indexOf(
+											this.$refs.upload.
+											uploadFiles[i].name.split('.').pop()) == -1){
+									this.$refs.upload.uploadFiles.splice(i, 1)
+									callback(new Error('上传的审核文件格式应为pdf、png、jpg'))
+								}
+								continue
+							} else{
+								this.$refs.upload.uploadFiles.splice(i, 1)
+								callback(new Error('上传的审核文件应不超过5M'))
+							}
+						}
 					}
 				}
 				return {
@@ -250,7 +272,6 @@
 					},
 					httpRequest: 'http://106.12.109.129:8849/lushan/file/upload/user/proof',
 					uploadTemplateDialog: false,
-					fileList: [],
 					uploadLoading: false,
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
 					downLoadLoading: '',
@@ -260,7 +281,8 @@
 						phone: '',
 						organization: '',
 						password: '',
-						checkPassword: ''
+						checkPassword: '',
+						fileList: []
 					},
 					rules: {
 						password: [{
@@ -286,36 +308,47 @@
 						organization: [{
 							validator: validateOrganization,
 							trigger: 'blur'
+						}],
+						fileList: [{
+							validator: validateFileList,
+							trigger: 'blur'
 						}]
 					}
 				};
 			},
 			methods: {
 				submitForm() {
-					const userInfo = {
-						realName: this.ruleForm.name,
-						email: this.ruleForm.email,
-						phone: this.ruleForm.phone,
-						password: this.ruleForm.password,
-						organization: this.ruleForm.organization
-					}
-					userRegister(userInfo).then(res => {
-						if (res.data.code === 2000) {
-							sessionStorage.setItem('logintoken', res.data.token)
-							this.$refs.upload.submit();
-							this.resetForm()
-							this.loading.close()
-							this.$message({
-								type: 'success',
-								message: res.data.msg
-							});
+
+					this.$refs['ruleForm'].validate(valid => {
+						if (valid) {
+							const userInfo = {
+								realName: this.ruleForm.name,
+								email: this.ruleForm.email,
+								phone: this.ruleForm.phone,
+								password: this.ruleForm.password,
+								organization: this.ruleForm.organization
+							}
+							userRegister(userInfo).then(res => {
+								if (res.data.code === 2000) {
+									sessionStorage.setItem('logintoken', res.data.token)
+									this.$refs.upload.submit();
+									this.resetForm()
+									this.loading.close()
+									this.$message({
+										type: 'success',
+										message: res.data.msg
+									});
+								} else {
+									this.$message({
+										type: 'error',
+										showClose: true,
+										duration: 3000,
+										message: res.data.msg
+									});
+								}
+							})
 						} else {
-							this.$message({
-								type: 'error',
-								showClose: true,
-								duration: 3000,
-								message: res.data.msg
-							});
+
 						}
 					})
 				},
@@ -328,13 +361,13 @@
 						password: '',
 						checkPassword: ''
 					}
-					this.fileList = []
+					this.$refs.upload.uploadFiles = []
 				},
 
 				uploadFile() {
 					this.uploadLoading = false;
 					var that = this;
-					this.fileList = [];
+					this.ruleForm.fileList = [];
 					this.uploadTemplateDialog = true;
 					setTimeout(function() {
 						that.$refs.upload.clearFiles();
@@ -410,10 +443,10 @@
 						let resp = res.data
 						if (resp.code == 2000) {
 							that.uploadTemplateDialog = false;
-							that.$message.success( {
-								message:'注册成功！请耐心等待审核...',
+							that.$message.success({
+								message: '注册成功！请耐心等待审核...',
 								duration: 6000,
-								});
+							});
 							//that.queryData();//更新数据
 						} else {
 							that.uploadTemplateDialog = false;
@@ -452,7 +485,8 @@
 		}
 
 		/* 面包屑样式 end*/
-		.el-button--primary,.el-button--primary:focus {
+		.el-button--primary,
+		.el-button--primary:focus {
 			color: #FFF;
 			background-color: #1977CC;
 			border-color: #1977CC;

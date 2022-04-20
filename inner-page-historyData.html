@@ -125,7 +125,7 @@
 											</template>
 											<template slot-scope="scope">
 
-												<el-button size="mini" style="margin-bottom: 5%;"
+												<el-button size="mini" :disabled='isDownload' style="margin-bottom: 5%;"
 													@click="download_csvData(scope.$index,scope.row)">
 													下载
 												</el-button>
@@ -148,9 +148,9 @@
 																	<el-input v-model="originDataSearch" size="mini"
 																		placeholder="按图像名搜索" />
 																</template>
-																<el-table-column label="编号" prop="id" type="selection">
-																</el-table-column>
-																<el-table-column prop="" label="编号" width="100px">
+																<!-- <el-table-column label="编号" prop="id" type="selection">
+																</el-table-column> -->
+																<el-table-column prop="" label="序号" width="100px">
 																	<template slot-scope="scope">
 																		{{scope.$index+1}}
 																	</template>
@@ -176,9 +176,9 @@
 														</el-pagination>
 													</template>
 													<span slot="footer" class="dialog-footer">
-														<el-button type="primary" @click="download_historySelectImg()">
+														<!-- <el-button type="primary" @click="download_historySelectImg()">
 															下载
-														</el-button>
+														</el-button> -->
 													</span>
 												</el-dialog>
 											</template>
@@ -292,6 +292,7 @@
 					timer: null,
 					message_board_text: '',
 					folder: '',
+					isDownload: false,
 					folders: [{
 							value: '01',
 							label: '云滴谱数据(A2/A3)',
@@ -381,7 +382,7 @@
 					}
 				},
 				download_historyImg(picName) {
-					const dataName = this.dialog_title.split('|')[1]
+					const dataName = this.dialog_title.split(' 的原始记录')[0]
 					console.log(picName, dataName)
 
 					/*下载原始记录的图片*/
@@ -444,14 +445,15 @@
 				},
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
+					this.isDownload = true					
+					this.$message({
+						type: 'success',
+						message: '服务器正在响应，请稍后！'
+					})
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
 						downloadHistoryData(data.dataName)
 							.then(res => {
-								this.$message({
-									type: 'success',
-									message: '服务器正在响应，请稍后！'
-								})
 								let blob = new Blob([res.data])
 								let contentDisposition = res.headers[
 									'content-disposition'
@@ -469,12 +471,15 @@
 								downloadElement.click() //点击下载
 								document.body.removeChild(downloadElement) //下载完成移除元素
 								window.URL.revokeObjectURL(href) //释放掉blob对象
+								this.isDownload = false
 							})
 							.catch(err => {
+								console.log(err)
 								// this.loading = false
 								setTimeout(() => {
 									this.$message.error('历史数据下载失败，请稍后重试！')
 								}, 1000)
+								this.isDownload = false
 							})
 					} else {
 						this.$confirm('提示', {
@@ -484,7 +489,6 @@
 								type: 'warning'
 							})
 							.then(() => {
-								console.log('跳转')
 								window.location.href = "login.html"
 							})
 							.catch(() => {
@@ -509,7 +513,7 @@
 				},
 				//获取原始记录
 				getOriginData(row) {
-					this.dialog_title = "|" + row.dataName + "|  包含的图片"
+					this.dialog_title = row.dataName + " 的原始记录"
 					this.dialogVisible = true
 					getOriginDataList(row.dataName)
 						.then(res => {
@@ -525,7 +529,7 @@
 						})
 						.catch(err => {
 							// this.loading = false
-							this.$message.error('历史数据获取失败，请稍后重试！')
+							this.$message.error('获取原始记录失败，请稍后重试！')
 						})
 				},
 				message_board() {

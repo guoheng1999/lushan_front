@@ -1,6 +1,6 @@
 
 DEV_BASE_URL = 'http://10.23.107.96:8081/lushan'
-TEST_BASE_URL = 'http://106.12.109.129:8849/lushan'
+TEST_BASE_URL = 'http://106.13.10.209:8849/lushan'
 
 const LUSHAN_CONFIG = {
 	BASE_URL: TEST_BASE_URL,
