@@ -23,7 +23,7 @@
 	float: left;
 }
 
-.login-button {
+.login-button,.login-button:focus{
 	background-color: #1977CC;
 	border-color: #1977CC;
 	color: #fff;
@@ -114,4 +114,14 @@
 	.el-dialog {
 		width: 90%;
 	}
+}
+
+/*数据反馈*/
+#form-image,
+.upload-demo {
+	display: flex;
+	justify-content: center;
+
+	flex-direction: column;
+	align-items: center;
 }

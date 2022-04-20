@@ -84,24 +84,33 @@
 					<div id="history-list" class="row">
 						<div class="menu-box">
 							<el-menu default-active="1-1-1" :unique-opened="true">
-								<el-menu-item index="1-1-1" @click="setDeviceName('A2')"><span @click="setDeviceName('A2')"><i
-											class="el-icon-folder"></i> 云滴谱分析资料</span></el-menu-item>
-								<el-menu-item index="1-1-2" @click="setDeviceName('A3')"><span @click="setDeviceName('A3')"><i
-											class="el-icon-folder"></i> 云滴谱统计资料</span></el-menu-item>
-								<el-menu-item index="1-2"  @click="setDeviceName('a')"><span @click="setDeviceName('a')"><i
-											class="el-icon-folder"></i>雾滴谱普查资料</span></el-menu-item>
-								<el-menu-item index="1-3-1" @click="setDeviceName('B2')"><span @click="setDeviceName('B2')"><i
-											class="el-icon-folder"></i> 雨滴谱年度统计</span></el-menu-item>
-								<el-menu-item index="1-3-2"  @click="setDeviceName('B3')"><span @click="setDeviceName('B3')"><i
-											class="el-icon-folder"></i> 雨滴谱统计总表</span></el-menu-item>
-								<el-menu-item index="1-4-1" @click="setDeviceName('C1')"><span @click="setDeviceName('C1')"><i
-											class="el-icon-folder"></i> 盐核统计资料</span></el-menu-item>
-								<el-menu-item index="1-4-2"  @click="setDeviceName('C2')"><span @click="setDeviceName('C2')"><i
-											class="el-icon-folder"></i> 盐核总表</span></el-menu-item>
-								<el-menu-item index="1-5" @click="setDeviceName('D1')"><span @click="setDeviceName('D1')"><i
-											class="el-icon-folder"></i>宏观记录</span></el-menu-item>
-								<el-menu-item index="1-6" @click="setDeviceName('F3')"><span @click="setDeviceName('F3')"><i
-											class="el-icon-folder"></i>双经纬仪测云总表</span></el-menu-item>
+								<el-menu-item index="1-1-1" @click="setDeviceName('A2')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 云滴谱分析资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-1-2" @click="setDeviceName('A3')"><span
+										@click="setDeviceName('A3')"><i class="el-icon-folder"></i> 云滴谱统计资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-2" @click="setDeviceName('a')"><span
+										@click="setDeviceName('a')"><i class="el-icon-folder"></i>雾滴谱普查资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-3-1" @click="setDeviceName('B2')"><span
+										@click="setDeviceName('B2')"><i class="el-icon-folder"></i> 雨滴谱年度统计</span>
+								</el-menu-item>
+								<el-menu-item index="1-3-2" @click="setDeviceName('B3')"><span
+										@click="setDeviceName('B3')"><i class="el-icon-folder"></i> 雨滴谱统计总表</span>
+								</el-menu-item>
+								<el-menu-item index="1-4-1" @click="setDeviceName('C1')"><span
+										@click="setDeviceName('C1')"><i class="el-icon-folder"></i> 盐核统计资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-4-2" @click="setDeviceName('C2')"><span
+										@click="setDeviceName('C2')"><i class="el-icon-folder"></i> 盐核总表</span>
+								</el-menu-item>
+								<el-menu-item index="1-5" @click="setDeviceName('D1')"><span
+										@click="setDeviceName('D1')"><i class="el-icon-folder"></i>宏观记录</span>
+								</el-menu-item>
+								<el-menu-item index="1-6" @click="setDeviceName('F3')"><span
+										@click="setDeviceName('F3')"><i class="el-icon-folder"></i>双经纬仪测云总表</span>
+								</el-menu-item>
 							</el-menu>
 						</div>
 						<div class="col-lg-9 mt-4 mt-lg-0">
@@ -121,7 +130,8 @@
 										</el-table-column>
 										<el-table-column min-width="20%" align="right">
 											<template slot="header" slot-scope="scope">
-												<el-input v-model="historyDataSearch" size="mini" placeholder="按文件名搜索" />
+												<el-input v-model="historyDataSearch" size="mini"
+													placeholder="按文件名搜索" />
 											</template>
 											<template slot-scope="scope">
 
@@ -198,27 +208,41 @@
 									<span>数据反馈</span>
 									<el-drawer append-to-body title="数据反馈" :visible.sync="messageBoardVisible"
 										direction="rtl" size="400px">
-										<div class="block">
-											<el-cascader class="demonstration cascader" v-model="folder"
-												:options="folders" :props="{ expandTrigger: 'hover' }"
-												@change="handleChange" placeholder="请选择需要反馈的数据名称">
-											</el-cascader>
-										</div>
-										<el-input type="textarea" :rows="9" placeholder="请输入您的反馈信息"
-											v-model="message_board_text">
-										</el-input>
-										<el-upload class="upload-demo" drag :before-upload="beforeAvatarUpload"
-											action="https://jsonplaceholder.typicode.com/posts/" multiple>
-											<i class="el-icon-upload"></i>
-											<div class="el-upload__text">将相关图片/PDF拖到此处，或<em>点击上传</em></div>
-										</el-upload>
-										<div class="demo-drawer__footer">
-											<el-button @click="cancelForm">取 消</el-button>
-											<el-button class="login-button" type="primary"
-												@click="$refs.drawer.closeDrawer()" :loading="loading">
-												{{ loading ? '提交中 ...' : '确 定' }}
-											</el-button>
-										</div>
+										<el-form :model='feedbackForm' :rules="feedbackRules" ref="feedbackForm">
+											<div class="block">
+												<el-cascader class="demonstration cascader" v-model="folder"
+													:options="folders" :props="{ expandTrigger: 'hover' }"
+													@change="handleChange" placeholder="请选择需要反馈的数据名称">
+												</el-cascader>
+											</div>
+											<el-form-item prop="content">
+												<el-input type="textarea" :rows="9" placeholder="请输入您的反馈信息"
+													v-model="feedbackForm.message_board_text">
+												</el-input>
+											</el-form-item>
+											<div id="form-image">
+												<el-form-item prop="fileListRule">
+													<el-upload :headers="headers" class="upload-demo" ref="upload"
+														action="http://106.13.10.209:8849/lushan/file/upload/commentFile"
+														:accept="acceptFileType" :limit="3" :on-exceed="handleExceed"
+														:before-upload="beforeUpload" :on-preview="handlePreview"
+														:on-remove="handleRemove" :file-list="feedbackForm.fileList"
+														:auto-upload="false">
+														<el-button class="login-button" slot="trigger" size="small"
+															type="primary">选取相关信息文件
+														</el-button>
+														<div slot="tip" class="el-upload_tip">只能上传pdf,png, jpg文件,且不超过5M
+														</div>
+													</el-upload>
+												</el-form-item>
+											</div>
+											<div class="demo-drawer__footer">
+												<el-button @click="cancelForm">取 消</el-button>
+												<el-button class="login-button" type="primary" @click="submitForm()">
+													提 交
+												</el-button>
+											</div>
+										</el-form>
 									</el-drawer>
 								</div>
 							</div>
@@ -265,9 +289,40 @@
 		new Vue({
 			el: '#history-list',
 			data() {
+				var validateContent = (rule, value, callback) => {
+					console.log('content验证')
+					if (value === '') {
+						callback(new Error('请输入具体内容'));
+					}
+				}
+				var validateFileList = (rule, value, callback) => {
+					console.log('list验证')
+					const mb = 1024 * 1024
+					if (this.$refs.upload.uploadFiles.length <= 0) {
+						callback(new Error('请上传审核文件，文件格式为pdf、png、jpg且不超过5M！'))
+					} else {
+						for (var i = 0; i < this.$refs.upload.uploadFiles.length; i++) {
+							if (this.$refs.upload.uploadFiles[i].size / mb <= 5) {
+								if (this.acceptFileType.indexOf(
+										this.$refs.upload.uploadFiles[i].name.split('.').pop()) == -1) {
+									this.$refs.upload.uploadFiles.splice(i, 1)
+									callback(new Error('上传的审核文件格式应为pdf、png、jpg'))
+								}
+								continue
+							} else {
+								this.$refs.upload.uploadFiles.splice(i, 1)
+								callback(new Error('上传的审核文件应不超过5M'))
+							}
+						}
+					}
+				}
 				return {
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+						'token': sessionStorage.getItem('token'),
+						// 'email':sessionStorage.getItem('userdata').email
+					},
 					src: 'assets/img/about.jpg',
-					previewSrcList: ['https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'],
 					dialog_title: '',
 					originalRecord: false, //原始记录按钮默认不可见
 					deviceName: '', //当前设备默认显示云滴谱数据A2
@@ -290,53 +345,66 @@
 					messageBoardVisible: false,
 					loading: false,
 					timer: null,
-					message_board_text: '',
-					folder: '',
 					isDownload: false,
+					acceptFileType: '.jpg, .png, .jpeg, .pdf',
+
+					folder: '',
 					folders: [{
-							value: '01',
-							label: '云滴谱数据(A2/A3)',
-							children: [{
-								value: '01-1',
-								label: '云滴谱数据A2',
-							}, {
-								value: '01-2',
-								label: '云滴谱数据A3'
-							}]
+						value: '01',
+						label: '云滴谱数据(A2/A3)',
+						children: [{
+							value: '01-1',
+							label: '云滴谱数据A2',
 						}, {
-							value: '02',
-							label: '雾滴谱原始数据(a)'
+							value: '01-2',
+							label: '云滴谱数据A3'
+						}]
+					}, {
+						value: '02',
+						label: '雾滴谱原始数据(a)'
+					}, {
+						value: '03',
+						label: '雨滴谱数据(B2/B3)',
+						children: [{
+							value: '03-1',
+							label: '雨滴谱数据B2',
 						}, {
-							value: '03',
-							label: '雨滴谱数据(B2/B3)',
-							children: [{
-								value: '03-1',
-								label: '雨滴谱数据B2',
-							}, {
-								value: '03-2',
-								label: '雨滴谱数据B3',
-							}]
+							value: '03-2',
+							label: '雨滴谱数据B3',
+						}]
 
+					}, {
+						value: '04',
+						label: '盐核数据(C1/C2)',
+						children: [{
+							value: '04-1',
+							label: '盐核数据C1',
 						}, {
-							value: '04',
-							label: '盐核数据(C1/C2)',
-							children: [{
-								value: '04-1',
-								label: '盐核数据C1',
-							}, {
-								value: '04-2',
-								label: '盐核数据C2',
-							}]
-						}, {
-							value: '05',
-							label: '云的宏观观测数据(D1)',
+							value: '04-2',
+							label: '盐核数据C2',
+						}]
+					}, {
+						value: '05',
+						label: '云的宏观观测数据(D1)',
 
-						}, {
-							value: '06',
-							label: '双经纬仪测云数据(F3)'
-						}
-
-					]
+					}, {
+						value: '06',
+						label: '双经纬仪测云数据(F3)'
+					}],
+					feedbackForm: {
+						message_board_text: '',
+						fileList: [],
+					},
+					feedbackRules: {
+						content: [{
+							validator: validateContent,
+							trigger: 'blur'
+						}],
+						fileListRule: [{
+							validator: validateFileList,
+							trigger: 'blur'
+						}]
+					},
 				}
 			},
 			watch: {
@@ -361,12 +429,6 @@
 			},
 			// 创建完毕状态(里面是操作)
 			created() {
-				// const token = sessionStorage.getItem('logintoken') || ''
-				// console.log(sessionStorage.getItem('logintoken'))
-				// if (token != null && token != '') {
-				// 	this.getuserpwd()
-				// 	this.getUserList()
-				// }
 				this.getUserList()
 				this.setDeviceName('A2')
 			},
@@ -421,12 +483,10 @@
 					console.log(this.pagesize) //每页下拉显示数据
 				},
 				handleCurrentChange: function(currentPage) {
-					console.log('嘿嘿嘿')
 					this.currentPage = currentPage;
 					console.log(this.currentPage) //点击第几页
 				},
 				handleHistoryCurrentChange: function(currentPage) {
-					console.log('嘿嘿嘿')
 					this.historyData_currentPage = currentPage;
 					console.log(this.currentPage) //点击第几页
 				},
@@ -445,7 +505,7 @@
 				},
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
-					this.isDownload = true					
+					this.isDownload = true
 					this.$message({
 						type: 'success',
 						message: '服务器正在响应，请稍后！'
@@ -539,42 +599,129 @@
 				handleChange(value) {
 					console.log(value);
 				},
-				handleClose(done) {
-					if (this.loading) {
-						return;
-
-					}
-					this.$confirm('确定要提交表单吗？')
-						.then(_ => {
-							this.loading = true;
-							this.timer = setTimeout(() => {
-								done();
-								// 动画关闭需要一定的时间
-								setTimeout(() => {
-									this.loading = false;
-								}, 400);
-							}, 2000);
-						})
-						.catch(_ => {});
-				},
 				cancelForm() {
 					this.loading = false;
 					this.messageBoardVisible = false;
 					clearTimeout(this.timer);
+					this.resetForm();
 				},
-				beforeAvatarUpload(file) {
-					const isJPG = file.type === 'image/jpeg';
-					const isPNG = file.type === 'image/png';
-					const isPDF = file.type === 'application/pdf';
-					const isPG = (isJPG || isPNG || isPDF) //限制图片格式为jpg / png
-					const isLt4M = file.size / 1024 / 1024 < 4; //限制图片大小
-					if (!isPG) {
-						this.$message.error('上传文件只能是 JPG 或 PNG 格式图片或 PDF文档!');
+				handleRemove(file, fileList) {
+					//console.log(file);
+				},
+				handlePreview(file) {
+					//console.log(file);
+				},
+				beforeUpload(file) {
+					var that = this;
+					//文件类型
+					var fileName = file.name.substring(file.name.lastIndexOf('.') + 1);
+					if (!(fileName == 'png' || fileName == 'pdf' || fileName == 'jpg')) {
+						that.uploadTemplateDialog = false;
+						that.$message({
+							type: 'error',
+							showClose: true,
+							duration: 3000,
+							message: '文件类型只支持png，pdf，jpg格式!'
+						});
+						return false;
 					}
-					if (!isLt2M) {
-						this.$message.error('上传文件大小不能超过 4MB!');
+					//读取文件大小
+					var fileSize = file.size;
+					console.log(fileSize);
+					if (fileSize > 1048576 * 5) {
+						that.uploadTemplateDialog = false;
+						that.$message({
+							type: 'error',
+							showClose: true,
+							duration: 3000,
+							message: file.name + '文件大于5M!'
+						})
+						return false;
 					}
-					return isPG && isLt4M && isSize
+					that.downloadLoading = that.$loading({
+						lock: true,
+						text: '数据导入中...',
+						spinner: 'el-icon-loading',
+						background: 'rgba(0,0,0,0.7)'
+					})
+					let fd = new FormData();
+					fd.append('file', file);
+					uploadUserProof(fd).then(res => {
+						that.downloadLoading.close();
+						that.uploadLoading = false;
+						let resp = res.data
+						if (resp.code == 2000) {
+							that.uploadTemplateDialog = false;
+							that.$message.success({
+								message: '反馈信息已提交，感谢您的反馈！',
+								duration: 6000,
+							});
+							//that.queryData();//更新数据
+						} else {
+							that.uploadTemplateDialog = false;
+							that.$message({
+								type: 'error',
+								showClose: true,
+								duration: 60000,
+								message: resp.msg
+							});
+						}
+					}).catch(error => {
+						that.downloadLoading.close();
+						that.uploadLoading = false;
+						that.uploadTemplateDialog = false;
+						that.$message({
+							type: 'error',
+							showClose: true,
+							duration: 60000,
+							message: '请求失败! error:' + error
+						});
+					})
+					return false;
+				},
+				handleExceed(files, fileList) {
+					this.$message.warning('只能选择3个文件!');
+				},
+				submitForm() {
+					console.log('开始提交。。。。')
+
+					this.$refs['feedbackForm'].validate(valid => {
+						console.log('提交的if之前');
+						if (valid) {
+							const feedbackMessage = {
+								topic: this.folder,
+								content: this.message_board_text
+							}
+							console.log(feedbackMessage)
+							feedbackData(JSON.stringify(feedbackMessage)).then(res => {
+								if (res.data.code === 2000) {
+									this.$refs.upload.submit();
+									this.resetForm()
+									this.loading.close()
+									this.$message({
+										type: 'success',
+										message: res.data.msg
+									});
+								} else {
+									this.$message({
+										type: 'error',
+										showClose: true,
+										duration: 3000,
+										message: res.data.msg
+									});
+								}
+							})
+						} else {
+							console.log('未进入if')
+						}
+					})
+
+
+				},
+				resetForm() {
+					this.folder = '',
+						this.message_board_text = ''
+					this.$refs.upload.uploadFiles = []
 				}
 			}
 		})

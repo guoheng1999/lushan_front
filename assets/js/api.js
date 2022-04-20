@@ -155,6 +155,19 @@ function downloadHistoryImg(picName, dataName) {
 		responseType: 'blob'
 	}).get("file/download/historyData/picture?dataName=" + dataName +"&picName=" + picName)
 }
+//数据反馈
+function feedbackData(feedbackMessage) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'token': sessionStorage.getItem('logintoken') || ''
+		}
+	}).post(
+		'/comment?content=' + feedbackMessage + "&userEmail=" + sessionStorage.getItem('userdata').email
+	)
+}
 
 //获取现代数据
 function getDayTime(dataLevel,deviceId) {
