@@ -668,6 +668,7 @@
 								message: '反馈信息已提交，感谢您的反馈！',
 								duration: 6000,
 							});
+							this.resetForm()
 							//that.queryData();//更新数据
 						} else {
 							that.uploadTemplateDialog = false;
@@ -710,7 +711,6 @@
 								if (res.data.code === 2000) {
 									this.commentId = res.data.data.id
 									this.$refs.upload.submit();
-									this.resetForm()
 									this.loading.close()
 									this.$message({
 										type: 'success',
