@@ -1,9 +1,10 @@
 
 DEV_BASE_URL = 'http://10.23.107.96:8081/lushan'
+DEV1_BASE_URL = 'http://127.0.0.1:8081/lushan'
 TEST_BASE_URL = 'http://106.13.10.209:8849/lushan'
 
 const LUSHAN_CONFIG = {
-	BASE_URL: TEST_BASE_URL,
+	BASE_URL: DEV1_BASE_URL,
 	TIME_OUT: 100000
 }
 
@@ -157,6 +158,11 @@ function downloadHistoryImg(picName, dataName) {
 }
 //数据反馈
 function feedbackData(feedbackMessage) {
+	const data = {
+		'content': feedbackMessage,
+		'userEmail': JSON.parse(sessionStorage.getItem('userdata')).email
+	}
+	console.log(data)
 	return axios.create({
 		baseURL: LUSHAN_CONFIG['BASE_URL'],
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
@@ -164,9 +170,7 @@ function feedbackData(feedbackMessage) {
 			'Access-Control-Allow-Origin': '*',
 			'token': sessionStorage.getItem('logintoken') || ''
 		}
-	}).post(
-		'/comment?content=' + feedbackMessage + "&userEmail=" + sessionStorage.getItem('userdata').email
-	)
+	}).post('/comment/', data)
 }
 
 //获取现代数据
@@ -251,6 +255,23 @@ function uploadUserProof(formData) {
 		}
 	}).post(
 		'/file/upload/user/proof',
+		formData
+	)
+}
+
+
+function uploadCommentFile(formData) {
+	return axios.create({
+		baseURL: LUSHAN_CONFIG['BASE_URL'],
+		timeout: LUSHAN_CONFIG['TIME_OUT'],
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			// 'token': sessionStorage.getItem(''),
+			'token': sessionStorage.getItem('logintoken') || '',
+			'Conten-Type': "multipart/form-data"
+		}
+	}).post(
+		'/file/upload/commentFile',
 		formData
 	)
 }

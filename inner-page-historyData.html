@@ -210,7 +210,7 @@
 										direction="rtl" size="400px">
 										<el-form :model='feedbackForm' :rules="feedbackRules" ref="feedbackForm">
 											<div class="block">
-												<el-cascader class="demonstration cascader" v-model="folder"
+												<el-cascader class="demonstration cascader" v-model="this.feedbackForm.folder"
 													:options="folders" :props="{ expandTrigger: 'hover' }"
 													@change="handleChange" placeholder="请选择需要反馈的数据名称">
 												</el-cascader>
@@ -221,9 +221,9 @@
 												</el-input>
 											</el-form-item>
 											<div id="form-image">
-												<el-form-item prop="fileListRule">
+												<el-form-item prop="fileList">
 													<el-upload :headers="headers" class="upload-demo" ref="upload"
-														action="http://106.13.10.209:8849/lushan/file/upload/commentFile"
+														action="http://127.0.0.1:8081/lushan/file/upload/commentFile"
 														:accept="acceptFileType" :limit="3" :on-exceed="handleExceed"
 														:before-upload="beforeUpload" :on-preview="handlePreview"
 														:on-remove="handleRemove" :file-list="feedbackForm.fileList"
@@ -294,6 +294,14 @@
 					if (value === '') {
 						callback(new Error('请输入具体内容'));
 					}
+					callback()
+				}
+				var validateFolder = (rule, value, callback) => {
+					console.log('folder验证')
+					if (value === '') {
+						callback(new Error('请选择需要反馈的数据！'));
+					}
+					callback()
 				}
 				var validateFileList = (rule, value, callback) => {
 					console.log('list验证')
@@ -319,8 +327,7 @@
 				return {
 					headers: {
 						'Access-Control-Allow-Origin': '*',
-						'token': sessionStorage.getItem('token'),
-						// 'email':sessionStorage.getItem('userdata').email
+						'token': sessionStorage.getItem('token')
 					},
 					src: 'assets/img/about.jpg',
 					dialog_title: '',
@@ -347,8 +354,7 @@
 					timer: null,
 					isDownload: false,
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
-
-					folder: '',
+					commentId: null,
 					folders: [{
 						value: '01',
 						label: '云滴谱数据(A2/A3)',
@@ -393,6 +399,7 @@
 					}],
 					feedbackForm: {
 						message_board_text: '',
+						folder: '',
 						fileList: [],
 					},
 					feedbackRules: {
@@ -402,6 +409,10 @@
 						}],
 						fileListRule: [{
 							validator: validateFileList,
+							trigger: 'blur'
+						}],
+						folder: [{
+							validator: validateFolder,
 							trigger: 'blur'
 						}]
 					},
@@ -646,7 +657,8 @@
 					})
 					let fd = new FormData();
 					fd.append('file', file);
-					uploadUserProof(fd).then(res => {
+					fd.append('commentId', this.commentId)
+					uploadCommentFile(fd).then(res => {
 						that.downloadLoading.close();
 						that.uploadLoading = false;
 						let resp = res.data
@@ -666,6 +678,7 @@
 								message: resp.msg
 							});
 						}
+						this.commentId = null
 					}).catch(error => {
 						that.downloadLoading.close();
 						that.uploadLoading = false;
@@ -689,12 +702,13 @@
 						console.log('提交的if之前');
 						if (valid) {
 							const feedbackMessage = {
-								topic: this.folder,
+								topic: this.feedbackForm.folder,
 								content: this.message_board_text
 							}
 							console.log(feedbackMessage)
 							feedbackData(JSON.stringify(feedbackMessage)).then(res => {
 								if (res.data.code === 2000) {
+									this.commentId = res.data.data.id
 									this.$refs.upload.submit();
 									this.resetForm()
 									this.loading.close()
@@ -719,8 +733,8 @@
 
 				},
 				resetForm() {
-					this.folder = '',
-						this.message_board_text = ''
+					this.feedbackForm.folder = '',
+					this.feedbackForm.message_board_text = ''
 					this.$refs.upload.uploadFiles = []
 				}
 			}

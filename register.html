@@ -197,6 +197,7 @@
 						if (this.ruleForm.checkPassword !== '') {
 							this.$refs.ruleForm.validateField('checkPassword');
 						}
+					console.log('check pass')
 						callback();
 					}
 				}
@@ -206,45 +207,58 @@
 					} else if (value !== this.ruleForm.password) {
 						callback(new Error('两次输入密码不一致!'))
 					} else {
+					console.log('check pass2')
 						callback()
 					}
 				}
 				var validateName = (rule, value, callback) => {
+					
 					var name = /^([a-zA-Z]|\/| |·|-|●|(\（+\）)|(\（[a-zA-Z]+\）))+$/
 					var namesw =
 						/^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
 					value = value.replace(' ', '')
 					if (name.test(value) || namesw.test(value)) {
+					console.log('check name')
 						callback()
 					} else {
 						callback(new Error('请输入您的姓名!'))
 					}
 				}
 				var validateEmail = (rule, value, callback) => {
+					
 					var email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 					if (email.test(value)) {
+					console.log('check email')
 						callback()
 					} else {
 						callback(new Error('请正确输入您的邮箱！'))
 					}
 				}
 				var validatePhone = (rule, value, callback) => {
+					
+					
 					var phone = /^1[23456789]\d{9}/;
 					if (phone.test(value)) {
+					console.log('check phone')
 						callback()
 					} else {
 						callback(new Error('请正确输入您的手机号!'))
 					}
 				}
 				var validateOrganization = (rule, value, callback) => {
+					
+					
 					// var organization = /^([\u4e00-\u9fa5]|[a-zA-Z]| |•|-|‧|•|⋅|ㆍ|・|●|(\（+\）)|(\（[\u4e00-\u9fa5]+\）)|(\（[a-zA-Z]+\）))+$/
 					if (value.replace(' ', '') == '') {
 						callback(new Error('请正确输入您的组织/机构名称'))
 					} else {
+					console.log('check org')
 						callback()
 					}
 				}
 				var validateFileList = (rule, value, callback) => {
+					
+					
 					const mb = 1024 * 1024
 					if (this.$refs.upload.uploadFiles.length<=0){
 						callback(new Error('请上传审核文件，文件格式为pdf、png、jpg且不超过5M！'))
@@ -263,6 +277,8 @@
 								callback(new Error('上传的审核文件应不超过5M'))
 							}
 						}
+						console.log('check list')
+						callback()
 					}
 				}
 				return {
@@ -270,7 +286,7 @@
 						'Access-Control-Allow-Origin': '*',
 						'token': sessionStorage.getItem('token')
 					},
-					httpRequest: 'http://106.12.109.129:8849/lushan/file/upload/user/proof',
+					httpRequest: 'http://106.13.10.209:8849/lushan/file/upload/user/proof',
 					uploadTemplateDialog: false,
 					uploadLoading: false,
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
@@ -319,7 +335,9 @@
 			methods: {
 				submitForm() {
 
+						console.log("submit")
 					this.$refs['ruleForm'].validate(valid => {
+						console.log("nihao ")
 						if (valid) {
 							const userInfo = {
 								realName: this.ruleForm.name,
