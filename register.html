@@ -334,7 +334,6 @@
 			},
 			methods: {
 				submitForm() {
-
 						console.log("submit")
 					this.$refs['ruleForm'].validate(valid => {
 						console.log("nihao ")
@@ -351,7 +350,6 @@
 									sessionStorage.setItem('logintoken', res.data.token)
 									this.$refs.upload.submit();
 									this.resetForm()
-									this.loading.close()
 									this.$message({
 										type: 'success',
 										message: res.data.msg

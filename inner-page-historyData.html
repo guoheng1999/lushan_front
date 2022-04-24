@@ -210,7 +210,7 @@
 										direction="rtl" size="400px">
 										<el-form :model='feedbackForm' :rules="feedbackRules" ref="feedbackForm">
 											<div class="block">
-												<el-cascader class="demonstration cascader" v-model="this.feedbackForm.folder"
+												<el-cascader class="demonstration cascader" v-model="feedbackForm.folder"
 													:options="folders" :props="{ expandTrigger: 'hover' }"
 													@change="handleChange" placeholder="请选择需要反馈的数据名称">
 												</el-cascader>
@@ -307,21 +307,15 @@
 					console.log('list验证')
 					const mb = 1024 * 1024
 					if (this.$refs.upload.uploadFiles.length <= 0) {
-						callback(new Error('请上传审核文件，文件格式为pdf、png、jpg且不超过5M！'))
+						callback()
 					} else {
 						for (var i = 0; i < this.$refs.upload.uploadFiles.length; i++) {
-							if (this.$refs.upload.uploadFiles[i].size / mb <= 5) {
-								if (this.acceptFileType.indexOf(
-										this.$refs.upload.uploadFiles[i].name.split('.').pop()) == -1) {
-									this.$refs.upload.uploadFiles.splice(i, 1)
-									callback(new Error('上传的审核文件格式应为pdf、png、jpg'))
-								}
-								continue
-							} else {
+							if (this.$refs.upload.uploadFiles[i].size / mb > 10) {
 								this.$refs.upload.uploadFiles.splice(i, 1)
 								callback(new Error('上传的审核文件应不超过5M'))
 							}
 						}
+						callback()
 					}
 				}
 				return {
@@ -356,45 +350,45 @@
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
 					commentId: null,
 					folders: [{
-						value: '01',
+						value: '云滴谱数据(A2/A3)',
 						label: '云滴谱数据(A2/A3)',
 						children: [{
-							value: '01-1',
+							value: '云滴谱数据A2',
 							label: '云滴谱数据A2',
 						}, {
-							value: '01-2',
+							value: '云滴谱数据A3',
 							label: '云滴谱数据A3'
 						}]
 					}, {
-						value: '02',
+						value: '雾滴谱原始数据(a)',
 						label: '雾滴谱原始数据(a)'
 					}, {
-						value: '03',
+						value: '雨滴谱数据(B2/B3)',
 						label: '雨滴谱数据(B2/B3)',
 						children: [{
-							value: '03-1',
+							value: '雨滴谱数据B2',
 							label: '雨滴谱数据B2',
 						}, {
-							value: '03-2',
+							value: '雨滴谱数据B3',
 							label: '雨滴谱数据B3',
 						}]
 
 					}, {
-						value: '04',
+						value: '盐核数据(C1/C2)',
 						label: '盐核数据(C1/C2)',
 						children: [{
-							value: '04-1',
+							value: '盐核数据C1',
 							label: '盐核数据C1',
 						}, {
-							value: '04-2',
+							value: '盐核数据C2',
 							label: '盐核数据C2',
 						}]
 					}, {
-						value: '05',
+						value: '云的宏观观测数据(D1)',
 						label: '云的宏观观测数据(D1)',
 
 					}, {
-						value: '06',
+						value: '双经纬仪测云数据(F3)',
 						label: '双经纬仪测云数据(F3)'
 					}],
 					feedbackForm: {
@@ -704,7 +698,7 @@
 						if (valid) {
 							const feedbackMessage = {
 								topic: this.feedbackForm.folder,
-								content: this.message_board_text
+								content: this.feedbackForm.message_board_text
 							}
 							console.log(feedbackMessage)
 							feedbackData(JSON.stringify(feedbackMessage)).then(res => {
