@@ -140,10 +140,10 @@ function downloadHistoryData(params) {
 			'Conten-Type': "multipart/form-data"
 		},
 		responseType: 'blob'
-	}).get("file/download/historyData?dataName=" + params)
+	}).post("file/download/historyData",params)
 }
 //下载历史数据图片
-function downloadHistoryImg(picName, dataName) {
+function downloadHistoryImg(params) {
 	return axios.create({
 		baseURL: LUSHAN_CONFIG['BASE_URL'],
 		timeout: LUSHAN_CONFIG['TIME_OUT'],
@@ -154,7 +154,7 @@ function downloadHistoryImg(picName, dataName) {
 			'Conten-Type': "multipart/form-data"
 		},
 		responseType: 'blob'
-	}).get("file/download/historyData/picture?dataName=" + dataName +"&picName=" + picName)
+	}).post("file/download/historyData/picture" ,params)
 }
 //数据反馈
 function feedbackData(feedbackMessage) {

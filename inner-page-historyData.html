@@ -210,9 +210,10 @@
 										direction="rtl" size="400px">
 										<el-form :model='feedbackForm' :rules="feedbackRules" ref="feedbackForm">
 											<div class="block">
-												<el-cascader class="demonstration cascader" v-model="feedbackForm.folder"
-													:options="folders" :props="{ expandTrigger: 'hover' }"
-													@change="handleChange" placeholder="请选择需要反馈的数据名称">
+												<el-cascader class="demonstration cascader"
+													v-model="feedbackForm.folder" :options="folders"
+													:props="{ expandTrigger: 'hover' }" @change="handleChange"
+													placeholder="请选择需要反馈的数据名称">
 												</el-cascader>
 											</div>
 											<el-form-item prop="content">
@@ -350,46 +351,34 @@
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
 					commentId: null,
 					folders: [{
-						value: '云滴谱数据(A2/A3)',
-						label: '云滴谱数据(A2/A3)',
-						children: [{
-							value: '云滴谱数据A2',
-							label: '云滴谱数据A2',
-						}, {
-							value: '云滴谱数据A3',
-							label: '云滴谱数据A3'
-						}]
+						value: '云滴谱分析资料',
+						label: '云滴谱分析资料'
 					}, {
-						value: '雾滴谱原始数据(a)',
-						label: '雾滴谱原始数据(a)'
+						value: '云滴谱统计资料',
+						label: '云滴谱统计资料'
 					}, {
-						value: '雨滴谱数据(B2/B3)',
-						label: '雨滴谱数据(B2/B3)',
-						children: [{
-							value: '雨滴谱数据B2',
-							label: '雨滴谱数据B2',
-						}, {
-							value: '雨滴谱数据B3',
-							label: '雨滴谱数据B3',
-						}]
+						value: '雾滴谱普查资料',
+						label: '雾滴谱普查资料'
 
 					}, {
-						value: '盐核数据(C1/C2)',
-						label: '盐核数据(C1/C2)',
-						children: [{
-							value: '盐核数据C1',
-							label: '盐核数据C1',
-						}, {
-							value: '盐核数据C2',
-							label: '盐核数据C2',
-						}]
+						value: '雨滴谱年度统计',
+						label: '雨滴谱年度统计'
 					}, {
-						value: '云的宏观观测数据(D1)',
-						label: '云的宏观观测数据(D1)',
+						value: '雨滴谱统计总表',
+						label: '雨滴谱统计总表'
 
 					}, {
-						value: '双经纬仪测云数据(F3)',
-						label: '双经纬仪测云数据(F3)'
+						value: '盐核统计资料',
+						label: '盐核统计资料'
+					}, {
+						value: '盐核总表',
+						label: '盐核总表'
+					}, {
+						value: '宏观记录',
+						label: '宏观记录'
+					}, {
+						value: '双经纬仪测云总表',
+						label: '双经纬仪测云总表'
 					}],
 					feedbackForm: {
 						message_board_text: '',
@@ -450,10 +439,14 @@
 				},
 				download_historyImg(picName) {
 					const dataName = this.dialog_title.split(' 的原始记录')[0]
-					console.log(picName, dataName)
-
+					
+					const params = { 
+						dataName:dataName,  
+						picName:picName
+					}
+					console.log(params)
 					/*下载原始记录的图片*/
-					downloadHistoryImg(picName, dataName).then(res => {
+					downloadHistoryImg(params).then(res => {
 						let blob = new Blob([res.data])
 						let contentDisposition = res.headers[
 							'content-disposition'
@@ -511,13 +504,14 @@
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
 					this.isDownload = true
-					this.$message({
-						type: 'success',
-						message: '服务器正在响应，请稍后！'
-					})
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
-						downloadHistoryData(data.dataName)
+						this.$message({
+							type: 'success',
+							message: '服务器正在响应，请稍后！'
+						})
+						const params={dataName:data.dataName};
+						downloadHistoryData(params)
 							.then(res => {
 								let blob = new Blob([res.data])
 								let contentDisposition = res.headers[
@@ -728,7 +722,7 @@
 				},
 				resetForm() {
 					this.feedbackForm.folder = '',
-					this.feedbackForm.message_board_text = ''
+						this.feedbackForm.message_board_text = ''
 					this.$refs.upload.uploadFiles = []
 				}
 			}
