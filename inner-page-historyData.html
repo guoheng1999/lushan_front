@@ -139,7 +139,7 @@
 													@click="download_csvData(scope.$index,scope.row)">
 													下载
 												</el-button>
-												<el-button size="mini" @click="getOriginData(scope.row)"
+												<el-button size="mini" :disabled='isDownload' @click="getOriginData(scope.row)"
 													v-if="originalRecord">
 													原始记录
 												</el-button>
@@ -169,7 +169,8 @@
 																	<template slot-scope="scope">
 																		<el-link
 																			@click="download_historyImg(scope.row.picName)"
-																			type="primary">
+																			type="primary"
+																			:disabled='isDownload'>
 																			{{scope.row.picName}}
 																		</el-link>
 																	</template>
@@ -445,6 +446,12 @@
 						picName:picName
 					}
 					console.log(params)
+					this.isDownload = true
+					const serverMessage = this.$message({
+						type: 'success',
+						message: '服务器正在响应，请稍后！',
+						duration: 0
+					})
 					/*下载原始记录的图片*/
 					downloadHistoryImg(params).then(res => {
 						let blob = new Blob([res.data])
@@ -464,6 +471,15 @@
 						downloadElement.click() //点击下载
 						document.body.removeChild(downloadElement) //下载完成移除元素
 						window.URL.revokeObjectURL(href) //释放掉blob对象
+						this.isDownload = false
+						serverMessage.close()
+					}).catch(err => {
+						this.$message({
+							type: 'error',
+							message: '系统错误，请稍后重试或联系管理员！'
+						})
+						this.isDownload = false
+						serverMessage.close()
 					})
 				},
 				/*设置设备名称并获取相关历史数据*/
@@ -503,12 +519,13 @@
 				},
 				download_csvData(index, data) {
 					console.log(index, data); //点击第几页
-					this.isDownload = true
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
-						this.$message({
+						this.isDownload = true
+						const serverMessage = this.$message({
 							type: 'success',
-							message: '服务器正在响应，请稍后！'
+							message: '服务器正在响应，请稍后！',
+							duration: 0
 						})
 						const params={dataName:data.dataName};
 						downloadHistoryData(params)
@@ -531,14 +548,17 @@
 								document.body.removeChild(downloadElement) //下载完成移除元素
 								window.URL.revokeObjectURL(href) //释放掉blob对象
 								this.isDownload = false
+								serverMessage.close()
 							})
 							.catch(err => {
 								console.log(err)
 								// this.loading = false
-								setTimeout(() => {
-									this.$message.error('历史数据下载失败，请稍后重试！')
-								}, 1000)
+								this.$message({
+									type: 'error',
+									message: '系统错误，请稍后重试或联系管理员！'
+								})
 								this.isDownload = false
+								serverMessage.close()
 							})
 					} else {
 						this.$confirm('提示', {
