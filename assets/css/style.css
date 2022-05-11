@@ -693,7 +693,7 @@ section {
 .about-top p,.experience-grids p,.elcard p{
 	margin-bottom: 10px !important;
 	text-indent: 2em;
-	line-height: 25px;
+	line-height: 1.7em;
 	letter-spacing: 1px;
 	word-spacing: 2px;
 	font-family: "Raleway", serif, sans-serif;
@@ -834,15 +834,13 @@ section {
 
 .about-top-img {
 	background: #eaeaea;
-	border: 2px solid #eaeaea;
+	/* border: 2px solid #eaeaea; */
 	padding: 1em;
 	-webkit-transition: .5s all;
 	-moz-transition: .5s all;
 	transition: .5s all;
 	-o-transition: .5s all;
 	-ms-transition: .5s all;
-	/* margin: 0 auto; */
-	/* width: 70%; */
 }
 
 .about-top:hover .about-top-img {
@@ -855,13 +853,13 @@ section {
 }
 
 .about-in {
-	width: 33.3%;
+	width: 40%;
 }
 
 .top-about {
 	border: 1px solid #eaeaea;
 	padding: 2em 2em;
-	width: 66.6%;
+	width: 60%;
 	/* padding: 0 0 2em; */
 }
 
@@ -886,7 +884,7 @@ section {
 }
 
 .experience-left {
-	width: 25%;
+	width: 40%;
 	float: left;
 	background: #eaeaea;
 	text-align: center;
@@ -910,7 +908,7 @@ section {
 
 .experience-right {
 	float: right;
-	width: 75%;
+	width: 60%;
 	border: 1px solid #eaeaea;
 	padding: 2em 4em;
 }

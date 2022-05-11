@@ -67,7 +67,7 @@
 
 .Introduce-div p {
 	text-indent: 2em;
-	line-height: 25px;
+	line-height: 35px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
 	/* font-family: "Raleway", serif, sans-serif; */
@@ -88,7 +88,16 @@
 .el-tag {
 	color: #1977cc;
 }
-.el-tabs__item.is-active ,.el-tabs__item:hover{
+.el-tabs__item.is-active ,{
     color: #1977CC!important;
+}
+.el-tabs__item {
+	font-size: 16px!important;
+}
+.el-collapse-item__header {
+	font-size: 16px!important;
+	background-color: #F1F7FD!important;
+	padding: 1.25rem;
+    /* border-radius: 0px 0px 25px 25px; */
 }
 /*介绍样式 end*/
