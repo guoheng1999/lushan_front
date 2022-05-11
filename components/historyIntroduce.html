@@ -5,7 +5,152 @@
 			历史观测数据集里面收录了1959年-1969年间在庐山开展观测试验的数据，包含云滴谱、雨滴谱、盐核、宏观资料、双经纬仪测云共计5个类别资料。经数据质量筛选后，历史观测0数据集包含纸质资料经扫描后的jpg图片，共计4146张。历史观测1数据集包含与图片相对应的经数字化处理后的excel文档，共计表格文档107个。
 		</p>
 	</div>
-	<div id="magicalDragScene" class="mc-root mc-ui-absolute-pane"
+	<template>
+		<el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
+			<el-tab-pane label="云雾滴谱仪" name="first">
+				<el-collapse v-model="collapseName_cloud">
+					<el-collapse-item title="云滴谱分析资料" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1959-1965年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、庐山上站、庐山下站</el-descriptions-item>
+							<el-descriptions-item label="册数">18 </el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								454
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">A2</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+					<el-collapse-item title="云滴谱统计资料" name="2">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1959-1965年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所</el-descriptions-item>
+							<el-descriptions-item label="册数">14 </el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								283
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">A3</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+
+					</el-collapse-item>
+					<el-collapse-item title="雾滴谱普查资料" name="3">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1969年 </el-descriptions-item>
+							<el-descriptions-item label="地点">云南景洪、思茅、安徽屯溪、祁门、福建永安</el-descriptions-item>
+							<el-descriptions-item label="册数">5 </el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								259
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">a</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="雨滴谱" name="second">
+				<el-collapse v-model="collapseName_rain" accordion>
+					<el-collapse-item title="雨滴谱年度统计" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1962-1963年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、庐山、月弓堑、喇嘛塔、沙河等7个站</el-descriptions-item>
+							<el-descriptions-item label="册数">7 </el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								225
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">B2</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+					<el-collapse-item title="雨滴谱统计总表" name="2">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1960-1965年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所</el-descriptions-item>
+							<el-descriptions-item label="册数">9</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								154
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">B3</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="盐核" name="third">
+				<el-collapse v-model="collapseName_salt" accordion>
+					<el-collapse-item title="盐核统计资料" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1964年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所</el-descriptions-item>
+							<el-descriptions-item label="册数">1</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								41
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">C1</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+					<el-collapse-item title="盐核总表" name="2">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1962-1964年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、日照峰</el-descriptions-item>
+							<el-descriptions-item label="册数">18</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								365
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">C2</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="宏观资料" name="fourth">
+
+				<el-collapse v-model="collapseName_macr" accordion>
+					<el-collapse-item title="宏观资料" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1960-1962年</el-descriptions-item>
+							<el-descriptions-item label="地点">太乙峰、太乙村</el-descriptions-item>
+							<el-descriptions-item label="册数">22</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								2910
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">D1</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="双经纬度测云资料" name="fifth">
+
+				<el-collapse v-model="collapseName_neph" accordion>
+					<el-collapse-item title="双经纬仪测云总表	" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1962-1965年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、沙河、九江</el-descriptions-item>
+							<el-descriptions-item label="册数">13</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								428
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">F3</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+		</el-tabs>
+	</template>
+	<!-- <div id="magicalDragScene" class="mc-root mc-ui-absolute-pane"
 		style="width: 100%; height: 100%; border-color: rgb(25, 119, 204); margin: 2% 0px 2%;">
 		<table style="
 		text-align: center;
@@ -105,14 +250,14 @@
 			</tbody>
 		</table>
 	</div>
+	 -->
 	<el-button style="margin-left: 45%" type="primary"
 		@click="pushTo('inner-page-historyData.html?datasets-type=2&data-type=0')" rounds>下载数据
 	</el-button>
-	<el-row
-		style="padding: 5px 5px 5px 15px; border-bottom: #1977CC solid 2px;">
+	<el-row style="padding: 5px 5px 5px 15px; border-bottom: #1977CC solid 2px;">
 		<el- class="document-col" :span="24">
 			<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关文档</div>
-		</el-col>
+			</el-col>
 	</el-row>
 	<el-row style="padding: 5px 5px 5px 15px;">
 		<el-col :span="24">
@@ -141,7 +286,14 @@
 	new Vue({
 		el: '#introduce',
 		data() {
-			return {}
+			return {
+				activeName: 'first',
+				collapseName_cloud: ['1', '2'],
+				collapseName_rain: ['1', '2'],
+				collapseName_salt: ['1', '2'],
+				collapseName_macr: '1',
+				collapseName_neph: '1'
+			}
 		},
 		beforeMount() {},
 		watch: {},
@@ -152,6 +304,10 @@
 			},
 			pushTo(url) {
 				window.location.href = url;
+			},
+
+			handleClick(tab, event) {
+				console.log(tab, event);
 			}
 		}
 	})

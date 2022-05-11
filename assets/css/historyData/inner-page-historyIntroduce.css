@@ -57,10 +57,10 @@
 }
 
 .Introduce-div h2 {
-	font-size: 26px;
+	font-size: 22px;
 	font-weight: bold;
 	margin-bottom: 20px;
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 	position: relative;
 	color: #2c4964;
 }
@@ -72,7 +72,7 @@
 	word-spacing: 2px;
 	/* font-family: "Raleway", serif, sans-serif; */
 	/*cursive, */
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 200;
 }
 
@@ -85,25 +85,10 @@
 	width: fit-content;
 	/* border-radius: 15px; */
 }
-
-/*表格样式 start*/
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th {
-	border-color: rgb(25, 119, 204) !important;
-	border-style: dotted !important;
-	border-width: 1px !important;
-	line-height: 25px;
-	letter-spacing: 1px;
-	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
-	/*cursive, */
-	font-size: 18px;
-	font-weight: 200;
+.el-tag {
+	color: #1977cc;
 }
-
-/*表格样式 end*/
+.el-tabs__item.is-active ,.el-tabs__item:hover{
+    color: #1977CC!important;
+}
 /*介绍样式 end*/

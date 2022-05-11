@@ -8,12 +8,11 @@
 .Introduce-div {
 	margin: 2% 0px 2%;
 }
-
 .Introduce-div h2 {
-	font-size: 26px;
+	font-size: 22px;
 	font-weight: bold;
 	margin-bottom: 20px;
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 	position: relative;
 	color: #2c4964;
 }
@@ -25,7 +24,7 @@
 	word-spacing: 2px;
 	/* font-family: "Raleway", serif, sans-serif; */
 	/*cursive, */
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 200;
 }
 

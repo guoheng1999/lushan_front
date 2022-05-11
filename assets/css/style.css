@@ -647,13 +647,21 @@ section {
 
 .textBox p {
 	text-indent: 2em;
-	line-height: 25px;
+	line-height: 35px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
+	font-family: "Raleway", serif, sans-serif;
 	/*cursive, */
 	font-size: 18px;
 	font-weight: 200;
+}
+
+.el-divider {
+	background-color: #1977cc;
+}
+
+.el-divider__text {
+	color: #1977cc;
 }
 
 /*介绍样式 start*/
@@ -678,26 +686,27 @@ section {
 	position: relative;
 	color: #2c4964;
 }
+
 .Introduce-div h3:last-child {
 	margin-top: 20px;
 }
-.Introduce-div p {
+.about-top p,.experience-grids p,.elcard p{
 	margin-bottom: 10px !important;
 	text-indent: 2em;
 	line-height: 25px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
+	font-family: "Raleway", serif, sans-serif;
 	/*cursive, */
-	font-size: 18px;
+	font-size: 18px!important;
 	font-weight: 200;
 }
 
 .Introduce-img {
 	display: flex;
 	flex-direction: row;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .Introduce-img p {
@@ -724,16 +733,19 @@ section {
 	width: 458px;
 	height: 342px;
 }
-.observeIntroduce{
+
+.observeIntroduce {
 	display: flex;
 	flex-direction: row;
 }
-.Introduce-img02{
+
+.Introduce-img02 {
 	width: 45%;
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 }
+
 .img02 {
 	width: 348px;
 	height: 305px;
@@ -809,6 +821,143 @@ section {
 # Why Us
 --------------------------------------------------------------*/
 
+/* 首页 */
+.el-card p {
+	text-indent: 2em;
+}
+
+/* 庐山云雾 */
+.about-top {
+	display: flex;
+	align-items: center;
+}
+
+.about-top-img {
+	background: #eaeaea;
+	border: 2px solid #eaeaea;
+	padding: 1em;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	/* margin: 0 auto; */
+	/* width: 70%; */
+}
+
+.about-top:hover .about-top-img {
+	padding: 0em;
+	transition: .5s all;
+}
+
+.about {
+	padding: 5em 0;
+}
+
+.about-in {
+	width: 33.3%;
+}
+
+.top-about {
+	border: 1px solid #eaeaea;
+	padding: 2em 2em;
+	width: 66.6%;
+	/* padding: 0 0 2em; */
+}
+
+.top-about p {
+	font-size: 1.2em;
+	color: #000;
+	font-weight: 300;
+	line-height: 1.7em;
+	margin: 1em 0;
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/*-- experience --*/
+.experience-grids {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.experience-left {
+	width: 25%;
+	float: left;
+	background: #eaeaea;
+	text-align: center;
+	/* padding: 2em 0; */
+	border: 2px solid #eaeaea;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+
+.experience-left-img {
+	width: 90%;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+
+.experience-right {
+	float: right;
+	width: 75%;
+	border: 1px solid #eaeaea;
+	padding: 2em 4em;
+}
+
+.experience-left h3 {
+	font-size: 1.5em;
+	color: #fff;
+	font-family: 'Text Me One', sans-serif;
+}
+
+.experience-right p {
+	color: #464646;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.experience-left h5 {
+	font-size: 1.5em;
+	color: #fff;
+	margin-top: 1em;
+	font-family: 'Text Me One', sans-serif;
+	font-weight: bold;
+}
+
+.experience-right h4 {
+	font-size: 1.6em;
+	color: #1dadd3;
+	margin-bottom: 0.5em;
+	font-family: 'Text Me One', sans-serif;
+	font-weight: bold;
+}
+
+.experience-grids:hover .experience-left-img {
+	width: 100%;
+	border: 2px solid #fff;
+	padding: 0px;
+	transition: .5s all;
+}
+
+.experience-left h3 span {
+	font-size: .5em;
+	font-weight: 300;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+/*-- //experience --*/
 .why-us .content {
 	padding: 0px;
 	background: #fff;
