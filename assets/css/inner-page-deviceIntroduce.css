@@ -137,7 +137,7 @@ td,
 th {
 	text-align: center;
 	border-color: rgb(25, 119, 204) !important;
-	border-style: dotted !important;
+	border-style: solid !important;
 	border-width: 1px !important;
 	line-height: 24px;
 	letter-spacing: 1px;
