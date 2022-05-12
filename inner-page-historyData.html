@@ -449,7 +449,7 @@
 					this.isDownload = true
 					const serverMessage = this.$message({
 						type: 'success',
-						message: '服务器正在响应，请稍后！',
+						message: '请您稍等，服务器正在准备数据。',
 						duration: 0
 					})
 					/*下载原始记录的图片*/
@@ -524,7 +524,7 @@
 						this.isDownload = true
 						const serverMessage = this.$message({
 							type: 'success',
-							message: '服务器正在响应，请稍后！',
+							message: '请您稍等，服务器正在准备数据。',
 							duration: 0
 						})
 						const params={dataName:data.dataName};
@@ -562,7 +562,7 @@
 							})
 					} else {
 						this.$confirm('提示', {
-								message: '您还未登录，请登录后下载',
+								message: '请您登录后再进行下载。',
 								confirmButtonText: '登录',
 								cancelButtonText: '取消',
 								type: 'warning'
@@ -673,7 +673,7 @@
 						if (resp.code == 2000) {
 							that.uploadTemplateDialog = false;
 							that.$message.success({
-								message: '反馈信息已提交，感谢您的反馈！',
+								message: '您的反馈已提交，谢谢。',
 								duration: 6000,
 							});
 							this.resetForm()

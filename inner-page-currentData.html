@@ -79,13 +79,15 @@
 					<div class="col-lg-9 mt-4 mt-lg-0">
 						<div class="tab-content">
 							<div id="calender">
-								<div id="yungaoyi_level" v-if="this.getDeviceId()==0" style="display: flex;justify-content: center;">
+								<div id="yungaoyi_level" v-if="this.getDeviceId()==0"
+									style="display: flex;justify-content: center;">
 									<el-radio-group size="small" v-model="yungaoyi">
 										<el-radio-button label="二级数据"></el-radio-button>
 										<el-radio-button label="三级数据"></el-radio-button>
 									</el-radio-group>
 								</div>
-								<div id="weiyuleida_level"  v-if="this.getDeviceId()==7" style="display: flex;justify-content: center;">
+								<div id="weiyuleida_level" v-if="this.getDeviceId()==7"
+									style="display: flex;justify-content: center;">
 									<el-radio-group size="small" v-model="weiyuleida">
 										<el-radio-button label="原始数据"></el-radio-button>
 										<el-radio-button label="平均数据"></el-radio-button>
@@ -256,24 +258,24 @@
 					}
 					this.getDayTimeData()
 				},
-				yungaoyi(){
-					if(this.yungaoyi==='三级数据'){
-						this.dataType=1
+				yungaoyi() {
+					if (this.yungaoyi === '三级数据') {
+						this.dataType = 1
 						this.getDayTimeData()
-					}else{
-						this.dataType=0
+					} else {
+						this.dataType = 0
 						this.getDayTimeData()
 					}
 				},
-				weiyuleida(){
-					if(this.weiyuleida==='平均数据'){
-						this.dataType=1
+				weiyuleida() {
+					if (this.weiyuleida === '平均数据') {
+						this.dataType = 1
 						this.getDayTimeData()
-					}else if(this.weiyuleida==='处理后数据'){
-						this.dataType=2
+					} else if (this.weiyuleida === '处理后数据') {
+						this.dataType = 2
 						this.getDayTimeData()
-					}else{
-						this.dataType=0
+					} else {
+						this.dataType = 0
 						this.getDayTimeData()
 					}
 				}
@@ -333,7 +335,7 @@
 				},
 
 				downloadData() {
-					console.log(this.getDayArr(this.fromDate, this.endDate))
+					// console.log(this.getDayArr(this.fromDate, this.endDate))
 					const token = sessionStorage.getItem('logintoken') || ''
 					if (token != null && token != '') {
 						if (this.datePickStatus) {
@@ -342,11 +344,11 @@
 							this.downloadMessage.dataType = this.dataType
 							this.downloadMessage.deviceId = this.getDeviceId()
 							this.downloadMessage.email = JSON.parse(sessionStorage.getItem('userInfo')).email
-							console.log(this.downloadMessage.email)
+							// console.log(this.downloadMessage.email)
 							this.downloadMessage.endDay = this.endDate
 							this.downloadMessage.fromDay = this.fromDate
 							this.downloadMessage.fileFormat = this.checkedType
-							console.log(this.downloadMessage)
+							// console.log(this.downloadMessage)
 							downloadCurrentData(this.downloadMessage)
 								.then(res => {
 									res = res.data
@@ -355,7 +357,7 @@
 										this.$message({
 											type: 'success',
 											duration: 5000,
-											message: '正在打包您的数据，稍后会将下载链接发送至您的邮箱，请注意查收！'
+											message: '服务器正在准备您的数据并将下载链接发送至您邮箱，请查收和下载。'
 										})
 									} else {
 										this.$message({
@@ -369,11 +371,21 @@
 									this.$message.error('现代数据获取失败，请稍后重试！')
 								})
 						} else {
-							this.$message.error('请先选择下载日期！');
+							if (this.fromDate == '' && this.fromDate == null && this.endDate == '' && this.endDate ==
+								null) {
+								// 起始日期、结束日期都未选择
+								this.$message.error('请您选择要下载数据的起始日期和结束日期。');
+							} else if (this.fromDate == '' || this.fromDate == null) {
+								// 起始日期未选择
+								this.$message.error('请您选择要下载数据的起始日期。');
+							} else if (this.endDate == '' || this.endDate == null) {
+								// 结束日期未选择
+								this.$message.error('请您选择要下载数据的结束日期。');
+							}
 						}
 					} else {
 						this.$confirm('提示', {
-								message: '您还未登录，请登录后下载',
+								message: '请您登录后再进行下载。',
 								confirmButtonText: '登录',
 								cancelButtonText: '取消',
 								type: 'warning'
