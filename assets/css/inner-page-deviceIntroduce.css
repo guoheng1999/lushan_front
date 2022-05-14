@@ -122,14 +122,47 @@
 	margin-right: 15px;
 }
 
-#weiyuleida {
+/* #weiyuleida {
 	width: 900px;
 }
-#bianxieshizidongqixiangzhan,#keliwuyi,#nengjianduyi,#weibofusheji,#wudipuyi,#yudipuyi,#yuliangtong,#yungaoyi{
+
+#bianxieshizidongqixiangzhan,
+#keliwuyi,
+#nengjianduyi,
+#weibofusheji,
+#wudipuyi,
+#yudipuyi,
+#yuliangtong,
+#yungaoyi {
 	width: 720px;
-}
+} */
+
 /*表格样式 start*/
-thead,
+.deviceTAble {
+	width: 760px;
+	font-family: "宋体";
+	font-size: 18px;
+	/* line-height: 20px; */
+	text-align: center;
+}
+
+table{
+	border-collapse: separate;
+	border-spacing: 0;
+	border-top: 1px #1977cc solid;
+	border-left: 1px #1977cc solid;
+	border-bottom: none;
+	border-right: none;
+}
+/* tr, */
+td {
+	padding: 6px;
+	border: 1px #1977cc solid;
+	border-top: none;
+	border-left: none;
+}
+
+/* thead,
 tbody,
 tfoot,
 tr,
@@ -143,8 +176,8 @@ th {
 	letter-spacing: 1px;
 	word-spacing: 2px;
 	/* font-family: "Raleway", serif, sans-serif; */
-	/*cursive, */
-	font-size: 18px;
+/*cursive, */
+/* font-size: 18px;
 	font-weight: 200;
 }
 
@@ -154,7 +187,7 @@ table {
 
 td {
 	height: 40px;
-}
+} */
 
 /*表格样式 end*/
 /*main start*/
