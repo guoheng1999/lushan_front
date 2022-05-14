@@ -7,7 +7,7 @@
 	</div>
 	<template>
 		<el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
-			<el-tab-pane label="云雾滴谱仪" name="first">
+			<el-tab-pane label="云雾滴谱" name="first">
 				<el-collapse v-model="collapseName_cloud">
 					<el-collapse-item title="云滴谱分析资料" name="1">
 						<el-descriptions>
@@ -34,7 +34,7 @@
 								<el-tag size="small">A3</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
-	
+
 					</el-collapse-item>
 					<el-collapse-item title="雾滴谱普查资料" name="3">
 						<el-descriptions>
@@ -48,7 +48,7 @@
 								<el-tag size="small">a</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
-	
+
 					</el-collapse-item>
 				</el-collapse>
 			</el-tab-pane>
@@ -113,7 +113,7 @@
 				</el-collapse>
 			</el-tab-pane>
 			<el-tab-pane label="宏观资料" name="fourth">
-	
+
 				<el-collapse v-model="collapseName_macr" accordion>
 					<el-collapse-item title="宏观资料" name="1">
 						<el-descriptions>
@@ -131,7 +131,7 @@
 				</el-collapse>
 			</el-tab-pane>
 			<el-tab-pane label="双经纬度测云资料" name="fifth">
-	
+
 				<el-collapse v-model="collapseName_neph" accordion>
 					<el-collapse-item title="双经纬仪测云总表	" name="1">
 						<el-descriptions>
@@ -186,12 +186,13 @@
 		el: '#introduce',
 		data() {
 			return {
-					activeName: 'first',
-					collapseName_cloud: ['1', '2', '3'],
-					collapseName_rain: ['1', '2'],
-					collapseName_salt: ['1', '2'],
-					collapseName_macr: '1',
-					collapseName_neph: '1'}
+				activeName: 'first',
+				collapseName_cloud: ['1', '2', '3'],
+				collapseName_rain: ['1', '2'],
+				collapseName_salt: ['1', '2'],
+				collapseName_macr: '1',
+				collapseName_neph: '1'
+			}
 		},
 		beforeMount() {},
 		watch: {},
