@@ -521,7 +521,7 @@ h6 {
 }
 
 #hero .btn-get-started {
-	font-family: "Raleway", sans-serif;
+	font-family: "宋体", sans-serif;
 	text-transform: uppercase;
 	font-weight: 500;
 	font-size: 16px;
@@ -650,7 +650,7 @@ section {
 	line-height: 35px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	font-family: "Raleway", serif, sans-serif;
+	font-family: "宋体", serif, sans-serif;
 	/*cursive, */
 	font-size: 18px;
 	font-weight: 200;
@@ -696,7 +696,7 @@ section {
 	line-height: 1.7em;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	font-family: "Raleway", serif, sans-serif;
+	font-family: "宋体", serif, sans-serif;
 	/*cursive, */
 	font-size: 18px!important;
 	font-weight: 200;
@@ -717,7 +717,7 @@ section {
 	line-height: 25px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
+	/* font-family: "宋体", serif, sans-serif; */
 	/*cursive, */
 	font-size: 18px;
 	font-weight: 200;
@@ -853,7 +853,7 @@ section {
 }
 
 .about-in {
-	width: 40%;
+	width: 411.8px;
 }
 
 .top-about {
@@ -1234,7 +1234,7 @@ section {
 .counts .count-box p {
 	padding: 0;
 	margin: 0;
-	font-family: "Raleway", sans-serif;
+	font-family: "宋体", sans-serif;
 	font-size: 14px;
 }
 
@@ -1975,7 +1975,7 @@ section {
 	font-size: 14px;
 	line-height: 24px;
 	margin-bottom: 0;
-	font-family: "Raleway", sans-serif;
+	font-family: "宋体", sans-serif;
 	color: #777777;
 }
 

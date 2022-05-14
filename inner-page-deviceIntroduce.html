@@ -485,12 +485,12 @@
 											<el-button type="primary"
 												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=0&data-type=1')"
 												rounds>
-												0级数据下载
+												0级数据集下载
 											</el-button>
 											<el-button type="primary"
 												@click="toPage('inner-page-currentData.html?datasets-type=2&data-level=1&data-type=1')"
 												rounds>
-												1级数据下载
+												1级数据集下载
 											</el-button>
 										</div>
 										<div>
@@ -552,18 +552,6 @@
 		<script src="assets/js/main.js"></script>
 		<script>
 			$("#copyright").load("components/copyright.html")
-			// $("#bianxieshizidongqixiangzhan").load("components/device/bianxieshizidongqixiangzhan.html")
-			// $("#keliwuyi").load("components/device/keliwuyi.html")
-			// $("#nengjianduyi").load("components/device/nengjianduyi.html")
-			// $("#weibofusheji").load("components/device/weibofusheji.html")
-			// $("#weiyuleida").load("components/device/weiyuleida.html")
-			// $("#wudipuyi").load("components/device/wudipuyi.html")
-			// $("#yudipuyi").load("components/device/yudipuyi.html")
-			// $("#yuliangtong").load("components/device/yuliangtong.html")
-			// $("#yungaoyi").load("components/device/yungaoyi.html")
-			// console.log('!!!!!!!!')
-			console.log('!!!!!!!!')
-			console.log('!!!!!!!!')
 		</script>
 	</body>
 	<script src="assets/js/login/login.js"></script>
@@ -586,7 +574,7 @@
 			},
 			watch: {
 				flag() {
-					console.log(this.flag)
+					// console.log(this.flag)
 				}
 			},
 			computed: {},
@@ -609,10 +597,10 @@
 							"颗粒物仪", "微雨雷达", "微波辐射计"
 						]
 						this.checkUrl()
-						console.log('active_id', this.active_id)
-						console.log('activate_device_name', this.activate_device_name)
-						console.log('flag', this.flag)
-						console.log('flag==0', this.flag == 0)
+						// console.log('active_id', this.active_id)
+						// console.log('activate_device_name', this.activate_device_name)
+						// console.log('flag', this.flag)
+						// console.log('flag==0', this.flag == 0)
 						this.activate_device_name = this.device_list[this.active_id].deviceName
 						this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 					}).catch(err => {
