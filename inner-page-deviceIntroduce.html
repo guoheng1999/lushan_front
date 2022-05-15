@@ -101,6 +101,7 @@
 											<div>
 												<h5 style="margin: 0px 0px 15px 0px;">{{activate_device_name}}</h5>
 												<div id="device-table">
+<<<<<<< Updated upstream
 													<!-- 云高仪 -->
 													<div id="yungaoyi" v-if="flag==0">
 														<table border="1" class="deviceTAble">
@@ -450,6 +451,17 @@
 														</table>
 													</div>
 
+=======
+													<div id="yungaoyi" v-if="flag==0"></div>
+													<div id="bianxieshizidongqixiangzhan" v-if="flag==1"></div>
+													<div id="yuliangtong" v-if="flag==2"></div>
+													<div id="nengjianduyi" v-if="flag==3"></div>
+													<div id="yudipuyi" v-if="flag==4"></div>
+													<div id="wudipuyi" v-if="flag==5"></div>
+													<div id="keliwuyi" v-if="flag==6"></div>
+													<div id="weiyuleida" v-if="flag==7"></div>
+													<div id="weibofusheji" v-if="flag==8"></div>
+>>>>>>> Stashed changes
 												</div>
 											</div>
 											<div style="width: 400px;height: 360px;margin-top: 30px;">
@@ -531,6 +543,19 @@
 		<script src="assets/js/main.js"></script>
 		<script>
 			$("#copyright").load("components/copyright.html")
+<<<<<<< Updated upstream
+=======
+			$("#bianxieshizidongqixiangzhan").load("components/device/bianxieshizidongqixiangzhan.html")
+			$("#keliwuyi").load("components/device/keliwuyi.html")
+			$("#nengjianduyi").load("components/device/nengjianduyi.html")
+			$("#weibofusheji").load("components/device/weibofusheji.html")
+			$("#weiyuleida").load("components/device/weiyuleida.html")
+			$("#wudipuyi").load("components/device/wudipuyi.html")
+			$("#yudipuyi").load("components/device/yudipuyi.html")
+			$("#yuliangtong").load("components/device/yuliangtong.html")
+			$("#yungaoyi").load("components/device/yungaoyi.html")
+			console.log('!!!!!!!!')
+>>>>>>> Stashed changes
 		</script>
 	</body>
 	<script src="assets/js/login/login.js"></script>
@@ -552,8 +577,13 @@
 				this.$forceUpdate()
 			},
 			watch: {
+<<<<<<< Updated upstream
 				flag() {
 					// console.log(this.flag)
+=======
+				flag(){
+					console.log(this.flag)
+>>>>>>> Stashed changes
 				}
 			},
 			computed: {},
@@ -576,10 +606,17 @@
 							"颗粒物仪", "微雨雷达", "微波辐射计"
 						]
 						this.checkUrl()
+<<<<<<< Updated upstream
 						// console.log('active_id', this.active_id)
 						// console.log('activate_device_name', this.activate_device_name)
 						// console.log('flag', this.flag)
 						// console.log('flag==0', this.flag == 0)
+=======
+						console.log('active_id', this.active_id)
+						console.log('activate_device_name', this.activate_device_name)
+						console.log('flag', this.flag)
+						console.log('flag==0', this.flag==0)
+>>>>>>> Stashed changes
 						this.activate_device_name = this.device_list[this.active_id].deviceName
 						this.active_src = 'assets/img/devices/' + this.activate_device_name + '.jpg'
 					}).catch(err => {
