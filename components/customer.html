@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="section-title">
 			<h2>用户须知</h2>
-			<p>引导语</p>
+			<!-- <p>引导语</p> -->
 		</div>
 		<div class="row">
 			<div
@@ -11,36 +11,79 @@
 			</div>
 
 			<div
-				class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-				<h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-				<p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
-					minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi.
-					Libero laboriosam sint et id nulla tenetur. Suscipit
-					aut voluptate.</p>
+				class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5 customer">
+				<!-- <h5>用户须知：</h5> -->
+				<!-- <p></p>
+				<p></p> -->
 
 				<div class="icon-box">
 					<div class="icon"><i class="bx bx-fingerprint"></i></div>
-					<h4 class="title"><a href="">Lorem Ipsum</a></h4>
-					<p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-						excepturi sint occaecati cupiditate non provident</p>
+					<h4 class="title"><a href="">须知1：</a></h4>
+					<p class="description">
+						为了保证外场科学试验数据的安全，数据使用者需要填写数据使用申请表（见附件1）并签署数据使用协议（见附件2），若有违法使用数据集的行为，将承担相关法律责任。
+					</p>
 				</div>
 
 				<div class="icon-box">
 					<div class="icon"><i class="bx bx-gift"></i></div>
-					<h4 class="title"><a href="">Nemo Enim</a></h4>
-					<p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-						blanditiis praesentium voluptatum deleniti atque</p>
+					<h4 class="title"><a href="">须知2：</a></h4>
+					<p class="description">
+						为尊重知识产权、保障数据贡献者和服务者的权益，请数据使用者在基于本数据所产生的研究成果（包括项目评估报告、验收报告，以及学术论文或毕业论文等）
+						中标注数据来源，并按照文献引用方式标注需引用的参考文献（见附件3）。
+					</p>
 				</div>
 
-				<div class="icon-box">
+				<!-- <div class="icon-box">
 					<div class="icon"><i class="bx bx-atom"></i></div>
-					<h4 class="title"><a href="">Dine Pad</a></h4>
-					<p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et
-						veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+					<h4 class="title"><a href="">附件3</a></h4>
+					<p class="description">
+						点击下载附件3
+					</p>
+				</div> -->
+				<div>
+					<el-row style="margin-top:40px; padding: 5px 5px 5px 15px; border-bottom: #1977CC solid 2px;">
+						<el- class="document-col" :span="24">
+							<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关附件</div>
+							</el-col>
+					</el-row>
+					<el-row style="padding: 5px 5px 5px 15px;">
+						<el-col :span="24">
+							<div class="grid-content bg-purple-dark">
+								<span><i class="el-icon-magic-stick">&nbsp;</i></span>
+								<el-link target="_blank" href="" type="primary">
+									附件1</el-link>
+							</div>
+						</el-col>
+						<el-col :span="24">
+							<div class="grid-content bg-purple-dark">
+								<span><i class="el-icon-magic-stick">&nbsp;</i></span>
+								<el-link target="_blank" href="" type="primary">附件2</el-link>
+							</div>
+						</el-col>
+						<el-col :span="24">
+							<div class="grid-content bg-purple-dark">
+								<span><i class="el-icon-magic-stick">&nbsp;</i></span>
+								<el-link target="_blank" href="" type="primary">
+									附件3
+								</el-link>
+							</div>
+						</el-col>
+					</el-row>
 				</div>
-
 			</div>
 		</div>
 
 	</div>
 </section>
+<script>
+	new Vue({
+		el: '#customer',
+		data() {
+			return {}
+		},
+		beforeMount() {},
+		watch: {},
+		computed: {},
+		methods: {}
+	})
+</script>

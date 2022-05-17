@@ -690,7 +690,10 @@ section {
 .Introduce-div h3:last-child {
 	margin-top: 20px;
 }
-.about-top p,.experience-grids p,.elcard p{
+
+.about-top p,
+.experience-grids p,
+.elcard p {
 	margin-bottom: 10px !important;
 	text-indent: 2em;
 	line-height: 1.7em;
@@ -698,7 +701,7 @@ section {
 	word-spacing: 2px;
 	font-family: "宋体", serif, sans-serif;
 	/*cursive, */
-	font-size: 18px!important;
+	font-size: 18px !important;
 	font-weight: 200;
 }
 
@@ -816,7 +819,36 @@ section {
 	}
 }
 
+/*--------------------------------------------------------------
+# 用户须知
+--------------------------------------------------------------*/
 
+.customer p {
+	/* margin-bottom: 10px !important; */
+	text-indent: 2em;
+	line-height: 1.7em;
+	letter-spacing: 1px;
+	word-spacing: 2px;
+	font-family: "宋体", serif, sans-serif;
+	font-size: 18px !important;
+	font-weight: 200;
+}
+.document-col {
+	color: #1977CC;
+	font-size: 18px;
+	font-weight: bold;
+	/* border-right: 2px solid #1977CC */
+	/* padding: 0 15px; */
+	width: fit-content;
+	/* border-radius: 15px; */
+}
+.el-link--inner {
+	color: #1977CC;
+}
+
+.el-link.el-link--primary {
+	color: #1977CC;
+}
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
