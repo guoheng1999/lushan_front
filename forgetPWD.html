@@ -218,13 +218,13 @@
 									type: 'success',
 									message: '密码重置成功!'
 								})
+								window.location.href = 'index.html'
 							} else {
 								this.$message({
-									type: 'info',
+									type: 'error',
 									message: res.data.msg
 								})
 							}
-							window.location.href = 'index.html'
 						})
 						.catch(err => {
 							this.loading = false

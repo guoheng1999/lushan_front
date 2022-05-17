@@ -100,6 +100,8 @@
 											<div style="padding: 5px;"><span style="margin-top: 5px;"
 													class="demonstration">起始日期</span>
 												<el-date-picker style="margin-top: 5px;" v-model="fromDate" type='date'
+													  format="yyyy 年 MM 月 dd 日"
+												      value-format="yyyy-MM-dd"
 													placeholder="选择日期">
 												</el-date-picker>
 											</div>
@@ -107,6 +109,8 @@
 											<div style="padding: 5px;"><span style="margin-top: 5px;"
 													class="demonstration">结束日期</span>
 												<el-date-picker style="margin-top: 5px;" v-model="endDate" type='date'
+													  format="yyyy 年 MM 月 dd 日"
+												      value-format="yyyy-MM-dd"
 													placeholder="选择日期">
 												</el-date-picker>
 											</div>
@@ -475,10 +479,14 @@
 				chooseDay(day) {
 					// 在日历picker组件中的×，点击后会将fromDate和endDate对象置为null，因此需要重新赋为空字符串。
 					if (this.fromDate instanceof Date) {
+						console.log("转换之前：", this.fromDate)
 						this.fromDate = moment(new Date(this.fromDate)).format('YYYY-MM-DD')
+						console.log("转换之后：", this.fromDate)
 					}
 					if (this.endDate instanceof Date) {
+						console.log("转换之前：", this.endDate)
 						this.endDate = moment(new Date(this.endDate)).format('YYYY-MM-DD')
+						console.log("转换之后：", this.endDate)
 					}
 					if (this.fromDate == null) {
 						this.fromDate = ''
