@@ -8,6 +8,7 @@
 .Introduce-div {
 	margin: 2% 0px 2%;
 }
+
 .Introduce-div h2 {
 	font-size: 22px;
 	font-weight: bold;
@@ -75,6 +76,7 @@
 	width: fit-content;
 	/* border-radius: 15px; */
 }
+
 .el-link--inner {
 	color: #1977CC;
 }
@@ -82,3 +84,52 @@
 .el-link.el-link--primary {
 	color: #1977CC;
 }
+
+/*设备介绍*/
+.device_content {
+	width: 70%;
+}
+
+.device-img {
+	width: 30%;
+}
+
+.device-img img {
+	width: 100%;
+}
+
+.el-tab-pane {
+	display: flex;
+}
+
+.el-tag {
+	color: #1977cc;
+}
+
+.el-tabs__item.is-active,
+	{
+	color: #1977CC !important;
+}
+
+.el-tabs__item {
+	font-size: 16px !important;
+}
+
+.el-collapse-item__header {
+	font-size: 16px !important;
+	background-color: #F1F7FD !important;
+	padding: 1.25rem;
+	/* border-radius: 0px 0px 25px 25px;*/
+}
+
+.el-descriptions-item p {
+	word-break: break-all;
+	width: 200px;
+}
+
+/* .el-descriptions-item__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+} */

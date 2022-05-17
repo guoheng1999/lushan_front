@@ -5,6 +5,152 @@
 			现代观测设备数据集里面主要收录了2015年11月-2020年10月期间在庐山云雾试验站便携式自动气象站、雨量筒、能见度仪、云高仪、雨滴谱仪、雾滴谱仪、微雨雷达7种现代观测设备的数据，颗粒物仪和微波辐射计数据为测试数据。0级数据集是原始数据文件经标准命名后的数据集，1级数据集是原始数据文件经过标准命名后、结构规范、质量控制和格式统一后的数据集，具有文本csv和NetCDF两种数据格式。
 		</p>
 	</div>
+
+	<template>
+		<el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
+			<el-tab-pane label="云高仪，Vaisala CL31" name="first">
+				<div class="device_content">
+					<el-collapse v-model="collapseName_cloud">
+						<el-collapse-item title="Level2" name="1">
+							<el-descriptions :column="2">
+								<el-descriptions-item label="观测要素">后向散射回波廓线</el-descriptions-item>
+								<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
+								<el-descriptions-item label="时间分辨率">16秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式">
+									<p>0级：文本his</p>
+									<p>1级：csv和NetCDF</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="质控描述">
+									<p>0级：无</p>
+									<p>1级：无</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="文件名标识">
+									<el-tag size="small">UPAR_MODI_MOBS_SUOB_LSYW_YCCL</el-tag>
+								</el-descriptions-item>
+							</el-descriptions>
+						</el-collapse-item>
+						<el-collapse-item title="Level3" name="2">
+							<el-descriptions :column="2">
+								<el-descriptions-item label="观测要素">边界层高度和云底高度</el-descriptions-item>
+								<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
+								<el-descriptions-item label="时间分辨率">16秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式">
+									<p>0级：文本his</p>
+									<p>1级：csv和NetCDF</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="质控描述">
+									<p>0级：无</p>
+									<p>1级：无</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="文件名标识">
+									<el-tag size="small">UPAR_MODI_MOBS_SUOB_LSYW_YCCL</el-tag>
+								</el-descriptions-item>
+							</el-descriptions>
+						</el-collapse-item>
+					</el-collapse>
+				</div>
+				<div class="device-img">
+					<img style="height: 556px;" src="assets/img/devices/云高仪.jpg" />
+				</div>
+			</el-tab-pane>
+			<el-tab-pane label="便携式自动气象站，华云GH-BPR" name="second">
+				<div class="device_content">
+					<el-collapse v-model="collapseName_cloud">
+						<el-collapse-item name="1">
+							<el-descriptions :column="2">
+								<el-descriptions-item label="观测要素">
+									<p>气压、温度、相对湿度、风向、风速、雨量</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="观测时间">2015年11月-2020年8月</el-descriptions-item>
+								<el-descriptions-item label="时间分辨率">1分钟 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式">
+									<p>0级：xlsx</p>
+									<p>1级：csv和NetCDF</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="质控描述">
+									<p>0级：无</p>
+									<p>1级：一致性、连续性、界限值、时变性检查</p>
+								</el-descriptions-item>
+								<el-descriptions-item label="文件名标识">
+									<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYW_AWS</el-tag>
+								</el-descriptions-item>
+							</el-descriptions>
+						</el-collapse-item>
+						
+					</el-collapse>
+				</div>
+				<div class="device-img">
+					<img src="assets/img/devices/便携式自动气象站.jpg" />
+				</div>
+			</el-tab-pane>
+			<!-- <el-tab-pane label="盐核" name="third">
+				<el-collapse v-model="collapseName_salt" accordion>
+					<el-collapse-item title="盐核统计资料" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1964年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所</el-descriptions-item>
+							<el-descriptions-item label="册数">1</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								41
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">C1</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+					<el-collapse-item title="盐核总表" name="2">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1962-1964年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、日照峰</el-descriptions-item>
+							<el-descriptions-item label="册数">18</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								365
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">C2</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="宏观资料" name="fourth">
+
+				<el-collapse v-model="collapseName_macr" accordion>
+					<el-collapse-item title="宏观资料" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1960-1962年</el-descriptions-item>
+							<el-descriptions-item label="地点">太乙峰、太乙村</el-descriptions-item>
+							<el-descriptions-item label="册数">22</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								2910
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">D1</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane>
+			<el-tab-pane label="双经纬度测云资料" name="fifth">
+
+				<el-collapse v-model="collapseName_neph" accordion>
+					<el-collapse-item title="双经纬仪测云总表	" name="1">
+						<el-descriptions>
+							<el-descriptions-item label="时间">1962-1965年</el-descriptions-item>
+							<el-descriptions-item label="地点">天控所、沙河、九江</el-descriptions-item>
+							<el-descriptions-item label="册数">13</el-descriptions-item>
+							<el-descriptions-item label="图片数">
+								428
+							</el-descriptions-item>
+							<el-descriptions-item label="表格文档标识">
+								<el-tag size="small">F3</el-tag>
+							</el-descriptions-item>
+						</el-descriptions>
+					</el-collapse-item>
+				</el-collapse>
+			</el-tab-pane> -->
+		</el-tabs>
+	</template>
 	<el-button style="margin-left: 45%" type="primary"
 		@click="pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=0')" rounds>设备数据下载
 	</el-button>
@@ -47,7 +193,14 @@
 	new Vue({
 		el: '#introduce',
 		data() {
-			return {}
+			return {
+				activeName: 'first',
+				collapseName_cloud: ['1', '2', '3'],
+				collapseName_rain: ['1', '2'],
+				collapseName_salt: ['1', '2'],
+				collapseName_macr: '1',
+				collapseName_neph: '1'
+			}
 		},
 		beforeMount() {},
 		watch: {},
@@ -58,6 +211,16 @@
 			// },
 			pushTo(url) {
 				window.location.href = url;
+			},
+			downloadData() {
+				this.$message.success('请求成功，等待服务器响应！');
+			},
+			pushTo(url) {
+				window.location.href = url;
+			},
+
+			handleClick(tab, event) {
+				console.log(tab, event);
 			}
 		}
 	})
