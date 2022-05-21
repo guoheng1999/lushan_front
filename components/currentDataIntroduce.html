@@ -14,36 +14,35 @@
 					<el-collapse v-model="collapseName_cloud">
 						<el-collapse-item title="Level2" name="1">
 							<el-descriptions :column="1">
-								<el-descriptions-item label="观测要素">后向散射回波廓线</el-descriptions-item>
-								<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
-								<el-descriptions-item label="时间分辨率">16秒 </el-descriptions-item>
-								<el-descriptions-item label="数据集级别及格式">
-									<p>0级：文本his</p>
-									1级：csv和NetCDF
+								<el-descriptions-item label="观测要素" content-class-name="my-content">后向散射回波廓线</el-descriptions-item>
+								<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年10月</el-descriptions-item>
+								<el-descriptions-item label="时间分辨率" content-class-name="my-content">16秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+									<span>0级：文本his</span>
+									<span>1级：csv和NetCDF</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="质控描述">
-									<p>0级：无</p>
-									1级：无
+								<el-descriptions-item label="质控描述" content-class-name="my-content">
+									<span>0级：无</span>
+									<span>1级：无</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="文件名标识">
+								<el-descriptions-item label="文件名标识" content-class-name="file-content">
 									<el-tag size="small">UPAR_MODI_MOBS_SUOB_LSYW_YCCL</el-tag>
 								</el-descriptions-item>
 							</el-descriptions>
 						</el-collapse-item>
 						<el-collapse-item title="Level3" name="2">
 							<el-descriptions :column="1">
-								<el-descriptions-item label="观测要素">边界层高度和云底高度</el-descriptions-item>
-								<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
-								<el-descriptions-item label="时间分辨率">16秒 </el-descriptions-item>
-								<el-descriptions-item label="数据集级别及格式">
-									<p>0级：文本his</p>
-									1级：csv和NetCDF
+								<el-descriptions-item label="观测要素" content-class-name="my-content">边界层高度和云底高度</el-descriptions-item>
+								<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年10月</el-descriptions-item>
+								<el-descriptions-item label="时间分辨率" content-class-name="my-content">16秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+									<span>0级：文本his</span>
+									<span>1级：csv和NetCDF</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="质控描述">
-									<p>0级：无</p>
-									1级：无
+								<el-descriptions-item label="质控描述" content-class-name="my-content">
+									<span>0级：无</span><span>1级：无</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="文件名标识">
+								<el-descriptions-item label="文件名标识" content-class-name="file-content">
 									<el-tag size="small">UPAR_MODI_MOBS_SUOB_LSYW_YCCL</el-tag>
 								</el-descriptions-item>
 							</el-descriptions>
@@ -60,20 +59,20 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								气压、温度、相对湿度、风向、风速、雨量
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2015年11月-2020年8月</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">1分钟 </el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：xlsx</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年8月</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">1分钟 </el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：xlsx</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：一致性、连续性、界限值、时变性检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：一致性、连续性、界限值、时变性检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYW_AWS</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -90,20 +89,20 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								温度、降雨量、最大温度、累计降雨量
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2018年6月-2020年9月</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">不固定 </el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：csv</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2018年6月-2020年9月</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">不固定 </el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：csv</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：连续性、界限值、奇异值检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：连续性、界限值、奇异值检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYW_PRE</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -120,20 +119,20 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								1分钟水平能见度、10分钟水平能见度等
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">16秒 </el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：csv</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年10月</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">16秒 </el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：csv</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：连续性检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：连续性检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYWZ_VIS</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -150,23 +149,23 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								等级粒子直径和速度对应粒子个数、累计降雨量、1分钟总降水强度、1分钟液态降水强度、1分钟固态降水强度等
 							</el-descriptions-item>
-							<el-descriptions-item label="范围及分档数">
+							<el-descriptions-item label="范围及分档数" content-class-name="my-content">
 								粒径范围：0.125-大于8mm，22个粒径档；速度范围：0-大于10m/s ，20个速度档
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2015年11月-2020年10月</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">1分钟</el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：txt</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年10月</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">1分钟</el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：txt</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：连续性和异常数据检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：连续性和异常数据检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYW_RSD</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -183,23 +182,23 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								分档粒子数、数浓度、体积浓度、体积中值直径、有效直径、空气流速等
 							</el-descriptions-item>
-							<el-descriptions-item label="分档数">
+							<el-descriptions-item label="分档数" content-class-name="my-content">
 								20个粒径档：2-50μm
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2015年11月-2020年8月</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">1秒</el-descriptions-item>
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2020年8月</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">1秒</el-descriptions-item>
 							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：csv</p>
-								1级：csv和NetCDF
+								<span>0级：csv</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：连续性和参数合理性检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：连续性和参数合理性检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURE_MODI_MOBS_SUOB_LSYW_FSD</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -216,20 +215,20 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								PM2.5、PMcoarse、PM10的质量浓度、1小时平均质量浓度和24h平均质量浓度等
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2021年4月（测试数据）</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">1小时</el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：csv</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2021年4月（测试数据）</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">1小时</el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：csv</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：参数合理性检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：参数合理性检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">SURF_MODI_MOBS_SUOB_LSYW_AERM</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -246,64 +245,64 @@
 					<el-collapse v-model="collapseName_WYLD">
 						<el-collapse-item title="原始数据（level raw）" name="1">
 							<el-descriptions :column="1">
-								<el-descriptions-item label="观测要素">转换方程、原始功率谱</el-descriptions-item>
-								<el-descriptions-item label="分档数">31个高度档；64个粒径档</el-descriptions-item>
-								<el-descriptions-item label="观测时间">2015年11月-2017年9月；2019年9月-2020年10月
+								<el-descriptions-item label="观测要素" content-class-name="my-content">转换方程、原始功率谱</el-descriptions-item>
+								<el-descriptions-item label="分档数" content-class-name="my-content">31个高度档；64个粒径档</el-descriptions-item>
+								<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2017年9月；2019年9月-2020年10月
 								</el-descriptions-item>
-								<el-descriptions-item label="时间分辨率">10秒 </el-descriptions-item>
-								<el-descriptions-item label="数据集级别及格式">
-									<p>0级：csv</p>
-									1级：csv和NetCDF
+								<el-descriptions-item label="时间分辨率" content-class-name="my-content">10秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+									<span>0级：csv</span>
+									<span>1级：csv和NetCDF</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="质控描述">
-									<p>0级：无</p>
-									1级：参数合理性检查
+								<el-descriptions-item label="质控描述" content-class-name="my-content">
+									<span>0级：无</span>
+									<span>1级：参数合理性检查</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="文件名标识">
+								<el-descriptions-item label="文件名标识" content-class-name="file-content">
 									<el-tag size="small">RADA_MODI_MOBS_SUOB_LSYW_RRD</el-tag>
 								</el-descriptions-item>
 							</el-descriptions>
 						</el-collapse-item>
 						<el-collapse-item title="处理后数据（Level pro）" name="2">
 							<el-descriptions :column="1">
-								<el-descriptions-item label="观测要素">
+								<el-descriptions-item label="观测要素" content-class-name="my-content">
 									转化方程、FFT谱、雨滴尺度谱、雨滴数浓度谱、路径积分衰减、雷达反射率因子、订正后的雷法反射率因子、降水强度、液态水含量、垂直速度等
 								</el-descriptions-item>
-								<el-descriptions-item label="分档数">31个高度档；64个粒径档</el-descriptions-item>
-								<el-descriptions-item label="观测时间">2015年11月-2017年9月；2019年9月-2020年10月
+								<el-descriptions-item label="分档数" content-class-name="my-content">31个高度档；64个粒径档</el-descriptions-item>
+								<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2017年9月；2019年9月-2020年10月
 								</el-descriptions-item>
-								<el-descriptions-item label="时间分辨率">10秒 </el-descriptions-item>
-								<el-descriptions-item label="数据集级别及格式">
-									<p>0级：csv</p>
-									1级：csv和NetCDF
+								<el-descriptions-item label="时间分辨率" content-class-name="my-content">10秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+									<span>0级：csv</span>
+									<span>1级：csv和NetCDF</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="质控描述">
-									<p>0级：无</p>
-									1级：参数合理性检查
+								<el-descriptions-item label="质控描述" content-class-name="my-content">
+									<span>0级：无</span>
+									<span>1级：参数合理性检查</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="文件名标识">
+								<el-descriptions-item label="文件名标识" content-class-name="file-content">
 									<el-tag size="small">RADA_MODI_MOBS_SUOB_LSYW_RRD</el-tag>
 								</el-descriptions-item>
 							</el-descriptions>
 						</el-collapse-item>
 						<el-collapse-item title="平均数据(Level ave)" name="3">
 							<el-descriptions :column="1">
-								<el-descriptions-item label="观测要素">
+								<el-descriptions-item label="观测要素" content-class-name="my-content">
 									转化方程、FFT谱、雨滴尺度谱、雨滴数浓度谱、路径积分衰减、雷达反射率因子、订正后的雷法反射率因子、降水强度、液态水含量、垂直速度等
 								</el-descriptions-item>
-								<el-descriptions-item label="分档数">31个高度档；64个粒径档</el-descriptions-item>
-								<el-descriptions-item label="观测时间">2015年11月-2017年9月；2019年9月-2020年10月
+								<el-descriptions-item label="分档数" content-class-name="my-content">31个高度档；64个粒径档</el-descriptions-item>
+								<el-descriptions-item label="观测时间" content-class-name="my-content">2015年11月-2017年9月；2019年9月-2020年10月
 								</el-descriptions-item>
-								<el-descriptions-item label="时间分辨率">10秒 </el-descriptions-item>
-								<el-descriptions-item label="数据集级别及格式">
-									<p>0级：csv</p>
-									1级：csv和NetCDF
+								<el-descriptions-item label="时间分辨率" content-class-name="my-content">10秒 </el-descriptions-item>
+								<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+									<span>0级：csv</span>
+									<span>1级：csv和NetCDF</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="质控描述">
-									<p>0级：无</p>
-									1级：参数合理性检查
+								<el-descriptions-item label="质控描述" content-class-name="my-content">
+									<span>0级：无</span>
+									<span>1级：参数合理性检查</span>
 								</el-descriptions-item>
-								<el-descriptions-item label="文件名标识">
+								<el-descriptions-item label="文件名标识" content-class-name="file-content">
 									<el-tag size="small">RADA_MODI_MOBS_SUOB_LSYW_RRD</el-tag>
 								</el-descriptions-item>
 							</el-descriptions>
@@ -320,20 +319,20 @@
 					<el-collapse v-model="collapseName_cloud">
 						<!-- <el-collapse-item name="1"> -->
 						<el-descriptions :column="1">
-							<el-descriptions-item label="观测要素">
+							<el-descriptions-item label="观测要素" content-class-name="my-content">
 								地面温度、相对湿度和气压；红外温度；云底高度；垂直累计水汽含量、垂直累计液态水含量；温度、相对湿度、水汽密度和液态水含量廓线等
 							</el-descriptions-item>
-							<el-descriptions-item label="观测时间">2021年3-4月（测试数据）</el-descriptions-item>
-							<el-descriptions-item label="时间分辨率">分钟级</el-descriptions-item>
-							<el-descriptions-item label="数据集级别及格式">
-								<p>0级：csv</p>
-								1级：csv和NetCDF
+							<el-descriptions-item label="观测时间" content-class-name="my-content">2021年3-4月（测试数据）</el-descriptions-item>
+							<el-descriptions-item label="时间分辨率" content-class-name="my-content">分钟级</el-descriptions-item>
+							<el-descriptions-item label="数据集级别及格式" content-class-name="my-content">
+								<span>0级：csv</span>
+								<span>1级：csv和NetCDF</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="质控描述">
-								<p>0级：无</p>
-								1级：参数合理性检查
+							<el-descriptions-item label="质控描述" content-class-name="my-content">
+								<span>0级：无</span>
+								<span>1级：参数合理性检查</span>
 							</el-descriptions-item>
-							<el-descriptions-item label="文件名标识">
+							<el-descriptions-item label="文件名标识" content-class-name="file-content">
 								<el-tag size="small">UPAR_MODI_MOBS_SUOB_LSYW_MRD</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
