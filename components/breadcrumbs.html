@@ -88,22 +88,37 @@
 						break
 				}
 				
+				// if (item.endsWith('级数据')){
+				// 		deviceName = this.breadcrumbs[this.breadcrumbs.indexOf(item)-1]
+				// 		for (var i = 0; i < this.deviceList.length; i++) {
+				// 			if (this.deviceList[i].deviceName == deviceName)
+				// 			{
+				// 				pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
+				// 			}
+				// 		}
+				// }
+				// for (var i = 0; i < this.deviceList.length; i++) {
+				// 	if (this.deviceList[i].deviceName == item)
+				// 	{
+				// 		pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
+				// 	}
+				// }
+				
 				if (item.endsWith('级数据')){
 						deviceName = this.breadcrumbs[this.breadcrumbs.indexOf(item)-1]
 						for (var i = 0; i < this.deviceList.length; i++) {
 							if (this.deviceList[i].deviceName == deviceName)
 							{
-								pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
+								pushTo('inner-page-historyIntroduce.html?datasets-type=1')
 							}
 						}
 				}
 				for (var i = 0; i < this.deviceList.length; i++) {
 					if (this.deviceList[i].deviceName == item)
 					{
-						pushTo('inner-page-deviceIntroduce.html?datasets-type=2&data-type=1&device-id=' + i)
+						pushTo('inner-page-historyIntroduce.html?datasets-type=1')
 					}
 				}
-				
 				
 			},
 			getDatasetsType() {

@@ -267,8 +267,9 @@
 							if (this.$refs.upload.uploadFiles[i].size / mb <= 5) {
 								if (this.acceptFileType.indexOf(
 										this.$refs.upload.uploadFiles[i].name.split('.').pop()) == -1) {
+											console.log(this.$refs.upload.uploadFiles[i])
 									this.$refs.upload.uploadFiles.splice(i, 1)
-									callback(new Error('上传的审核文件格式应为pdf、png、jpg'))
+									callback(new Error('上传的审核文件格式应为pdf、png、jpg、jpeg'))
 								}
 								continue
 							} else {
@@ -418,13 +419,13 @@
 					var that = this;
 					//文件类型
 					var fileName = file.name.substring(file.name.lastIndexOf('.') + 1);
-					if (!(fileName == 'png' || fileName == 'pdf' || fileName == 'jpg')) {
+					if (!(fileName == 'png' || fileName == 'pdf' || fileName == 'jpg' || fileName == 'jpeg')) {
 						that.uploadTemplateDialog = false;
 						that.$message({
 							type: 'error',
 							showClose: true,
 							duration: 3000,
-							message: '文件类型只支持png，pdf，jpg格式!'
+							message: '文件类型只支持png，pdf，jpg，jpeg格式!'
 						});
 						return false;
 					}
