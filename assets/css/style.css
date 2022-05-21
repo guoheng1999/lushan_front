@@ -833,6 +833,7 @@ section {
 	font-size: 18px !important;
 	font-weight: 200;
 }
+
 .document-col {
 	color: #1977CC;
 	font-size: 18px;
@@ -842,6 +843,7 @@ section {
 	width: fit-content;
 	/* border-radius: 15px; */
 }
+
 .el-link--inner {
 	color: #1977CC;
 }
@@ -849,6 +851,7 @@ section {
 .el-link.el-link--primary {
 	color: #1977CC;
 }
+
 /*--------------------------------------------------------------
 # Why Us
 --------------------------------------------------------------*/
@@ -1352,6 +1355,10 @@ section {
 	color: #fff;
 }
 
+/*icon*/
+.el-icon-arrow-right {
+	color: #1977CC;
+}
 
 /*--------------------------------------------------------------
 # Appointments

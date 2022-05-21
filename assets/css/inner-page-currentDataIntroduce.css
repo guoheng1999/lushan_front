@@ -92,6 +92,7 @@
 
 .device-img {
 	width: 30%;
+	height: 264px;
 }
 
 .device-img img {
@@ -122,10 +123,20 @@
 	/* border-radius: 0px 0px 25px 25px;*/
 }
 
-.el-descriptions-item p {
-	word-break: break-all;
-	width: 200px;
+.el-descriptions-item__container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
 }
+
+/* .el-descriptions-item p {
+	word-break: break-all;
+	width: 90%;
+} */
 
 /* .el-descriptions-item__container {
     display: -webkit-box;
