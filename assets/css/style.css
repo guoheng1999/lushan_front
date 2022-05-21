@@ -864,7 +864,7 @@ section {
 /* 庐山云雾 */
 .about-top {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 }
 
@@ -889,15 +889,16 @@ section {
 }
 
 .about-in {
-	width: 66%;
+	width: 40%;
     display: flex;
     justify-content: center;
+
 }
 
 .top-about {
 	border: 1px solid #eaeaea;
 	padding: 2em 2em;
-	width: 100%;
+	width: 60%;
 	/* padding: 0 0 2em; */
 }
 
