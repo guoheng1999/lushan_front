@@ -83,7 +83,7 @@
 				<div class="container">
 					<div id="history-list" class="row">
 						<div class="menu-box">
-							<el-menu default-active="1-1-1" :unique-opened="true">
+							<!-- 							<el-menu default-active="1-1-1" :unique-opened="true">
 								<el-menu-item index="1-1-1" @click="setDeviceName('A2')"><span
 										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 云滴谱分析资料</span>
 								</el-menu-item>
@@ -111,7 +111,50 @@
 								<el-menu-item index="1-6" @click="setDeviceName('F3')"><span
 										@click="setDeviceName('F3')"><i class="el-icon-folder"></i>双经纬仪测云总表</span>
 								</el-menu-item>
+							</el-menu> -->
+							<!-- 云雾滴谱 -->
+							<el-menu default-active="1-1-1" :unique-opened="true" v-if="isShow('A')">
+								<el-menu-item index="1-1-1" @click="setDeviceName('A2')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 云滴谱分析资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-1-2" @click="setDeviceName('A3')"><span
+										@click="setDeviceName('A3')"><i class="el-icon-folder"></i> 云滴谱统计资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-2" @click="setDeviceName('a')"><span
+										@click="setDeviceName('a')"><i class="el-icon-folder"></i>雾滴谱普查资料</span>
+								</el-menu-item>
 							</el-menu>
+							<!-- 雨滴谱 -->
+							<el-menu default-active="1-1-1" :unique-opened="true"  v-if="isShow('B')">
+								<el-menu-item index="1-1-1" @click="setDeviceName('B2')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 雨滴谱年度统计</span>
+								</el-menu-item>
+								<el-menu-item index="1-1-2" @click="setDeviceName('B3')"><span
+										@click="setDeviceName('A3')"><i class="el-icon-folder"></i> 雨滴谱统计总表</span>
+								</el-menu-item>
+							</el-menu>
+							<!-- 盐核 -->
+							<el-menu default-active="1-1-1" :unique-opened="true"  v-if="isShow('C')">
+								<el-menu-item index="1-1-1" @click="setDeviceName('C1')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 盐核统计资料</span>
+								</el-menu-item>
+								<el-menu-item index="1-1-2" @click="setDeviceName('C2')"><span
+										@click="setDeviceName('A3')"><i class="el-icon-folder"></i> 盐核总表</span>
+								</el-menu-item>
+							</el-menu>
+							<!-- 宏观资料 -->
+							<el-menu default-active="1-1-1" :unique-opened="true"  v-if="isShow('D')">
+								<el-menu-item index="1-1-1" @click="setDeviceName('D1')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 宏观资料</span>
+								</el-menu-item>
+							</el-menu>
+							<!-- 双经纬度测云资料 -->
+							<el-menu default-active="1-1-1" :unique-opened="true"  v-if="isShow('F')">
+								<el-menu-item index="1-1-1" @click="setDeviceName('F3')"><span
+										@click="setDeviceName('A2')"><i class="el-icon-folder"></i> 双经纬仪测云总表</span>
+								</el-menu-item>
+							</el-menu>
+							
 						</div>
 						<div class="col-lg-9 mt-4 mt-lg-0">
 							<div>
@@ -139,8 +182,8 @@
 													@click="download_csvData(scope.$index,scope.row)">
 													下载
 												</el-button>
-												<el-button size="mini" :disabled='isDownload' @click="getOriginData(scope.row)"
-													v-if="originalRecord">
+												<el-button size="mini" :disabled='isDownload'
+													@click="getOriginData(scope.row)" v-if="originalRecord">
 													原始记录
 												</el-button>
 												<!-- 图片列表弹窗 -->
@@ -169,8 +212,7 @@
 																	<template slot-scope="scope">
 																		<el-link
 																			@click="download_historyImg(scope.row.picName)"
-																			type="primary"
-																			:disabled='isDownload'>
+																			type="primary" :disabled='isDownload'>
 																			{{scope.row.picName}}
 																		</el-link>
 																	</template>
@@ -351,6 +393,7 @@
 					isDownload: false,
 					acceptFileType: '.jpg, .png, .jpeg, .pdf',
 					commentId: null,
+					showDataName: 'D',
 					folders: [{
 						value: '云滴谱分析资料',
 						label: '云滴谱分析资料'
@@ -425,7 +468,7 @@
 			// 创建完毕状态(里面是操作)
 			created() {
 				this.getUserList()
-				this.setDeviceName('A2')
+				this.setDeviceName(this.getShowDataName())
 			},
 			methods: {
 				// 获取用户信息以确定是否显示原始记录
@@ -440,10 +483,10 @@
 				},
 				download_historyImg(picName) {
 					const dataName = this.dialog_title.split(' 的原始记录')[0]
-					
-					const params = { 
-						dataName:dataName,  
-						picName:picName
+
+					const params = {
+						dataName: dataName,
+						picName: picName
 					}
 					console.log(params)
 					this.isDownload = true
@@ -527,7 +570,9 @@
 							message: '请您稍等，服务器正在准备数据。',
 							duration: 0
 						})
-						const params={dataName:data.dataName};
+						const params = {
+							dataName: data.dataName
+						};
 						downloadHistoryData(params)
 							.then(res => {
 								let blob = new Blob([res.data])
@@ -611,12 +656,25 @@
 							this.$message.error('获取原始记录失败，请稍后重试！')
 						})
 				},
+				getShowDataName(){
+					if (window.location.href.indexOf("showDataName=") != -1){
+						this.showDataName = window.location.href.split("showDataName=")[1].slice(0, 2)
+						console.log(window.location.href.split("showDataName=")[1].slice(0, 2))
+						return window.location.href.split("showDataName=")[1].slice(0, 2)
+					}
+					return 'A2'
+				},
 				message_board() {
 					//留言板
 					this.messageBoardVisible = true
 				},
 				handleChange(value) {
 					console.log(value);
+				},
+				isShow(dataName){
+					if (dataName == this.showDataName.slice(0, 1))
+						return true
+					return false
 				},
 				cancelForm() {
 					this.loading = false;

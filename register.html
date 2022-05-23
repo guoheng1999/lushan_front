@@ -416,32 +416,32 @@
 					//console.log(file);
 				},
 				beforeUpload(file) {
-					var that = this;
-					//文件类型
-					var fileName = file.name.substring(file.name.lastIndexOf('.') + 1);
-					if (!(fileName == 'png' || fileName == 'pdf' || fileName == 'jpg' || fileName == 'jpeg')) {
-						that.uploadTemplateDialog = false;
-						that.$message({
-							type: 'error',
-							showClose: true,
-							duration: 3000,
-							message: '文件类型只支持png，pdf，jpg，jpeg格式!'
-						});
-						return false;
-					}
-					//读取文件大小
-					var fileSize = file.size;
-					console.log(fileSize);
-					if (fileSize > 1048576 * 5) {
-						that.uploadTemplateDialog = false;
-						that.$message({
-							type: 'error',
-							showClose: true,
-							duration: 3000,
-							message: file.name + '文件大于5M!'
-						})
-						return false;
-					}
+					var that = this; 
+					// //文件类型
+					// var fileName = file.name.substring(file.name.lastIndexOf('.') + 1);
+					// if (!(fileName == 'png' || fileName == 'pdf' || fileName == 'jpg' || fileName == 'jpeg')) {
+					// 	that.uploadTemplateDialog = false;
+					// 	that.$message({
+					// 		type: 'error',
+					// 		showClose: true,
+					// 		duration: 3000,
+					// 		message: '文件类型只支持png，pdf，jpg，jpeg格式!'
+					// 	});
+					// 	return false;
+					// }
+					// //读取文件大小
+					// var fileSize = file.size;
+					// console.log(fileSize);
+					// if (fileSize > 1048576 * 5) {
+					// 	that.uploadTemplateDialog = false;
+					// 	that.$message({
+					// 		type: 'error',
+					// 		showClose: true,
+					// 		duration: 3000,
+					// 		message: file.name + '文件大于5M!'
+					// 	})
+					// 	return false;
+					// }
 					that.downloadLoading = that.$loading({
 						lock: true,
 						text: '数据导入中...',

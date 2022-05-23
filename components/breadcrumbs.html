@@ -109,14 +109,14 @@
 						for (var i = 0; i < this.deviceList.length; i++) {
 							if (this.deviceList[i].deviceName == deviceName)
 							{
-								pushTo('inner-page-historyIntroduce.html?datasets-type=1')
+								pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
 							}
 						}
 				}
 				for (var i = 0; i < this.deviceList.length; i++) {
 					if (this.deviceList[i].deviceName == item)
 					{
-						pushTo('inner-page-historyIntroduce.html?datasets-type=1')
+						pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
 					}
 				}
 				
@@ -147,6 +147,7 @@
 				if (window.location.href.indexOf('inner-page-currentData.html') != -1){
 					pushTo(document.referrer.split('/').pop())
 				}else{
+					console.log("111111")
 					window.history.back()
 				}
 			},

@@ -7,7 +7,7 @@
 	</div>
 	<template>
 		<el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
-			<el-tab-pane label="云雾滴谱" name="first">
+			<el-tab-pane label="云雾滴谱" name="A2">
 				<el-collapse v-model="collapseName_cloud">
 					<el-collapse-item title="云滴谱分析资料" name="1">
 						<el-descriptions>
@@ -52,7 +52,7 @@
 					</el-collapse-item>
 				</el-collapse>
 			</el-tab-pane>
-			<el-tab-pane label="雨滴谱" name="second">
+			<el-tab-pane label="雨滴谱" name="B2">
 				<el-collapse v-model="collapseName_rain" accordion>
 					<el-collapse-item title="雨滴谱年度统计" name="1">
 						<el-descriptions>
@@ -82,7 +82,7 @@
 					</el-collapse-item>
 				</el-collapse>
 			</el-tab-pane>
-			<el-tab-pane label="盐核" name="third">
+			<el-tab-pane label="盐核" name="C1">
 				<el-collapse v-model="collapseName_salt" accordion>
 					<el-collapse-item title="盐核统计资料" name="1">
 						<el-descriptions>
@@ -112,7 +112,7 @@
 					</el-collapse-item>
 				</el-collapse>
 			</el-tab-pane>
-			<el-tab-pane label="宏观资料" name="fourth">
+			<el-tab-pane label="宏观资料" name="D1">
 
 				<el-collapse v-model="collapseName_macr" accordion>
 					<el-collapse-item title="宏观资料" name="1">
@@ -130,7 +130,7 @@
 					</el-collapse-item>
 				</el-collapse>
 			</el-tab-pane>
-			<el-tab-pane label="双经纬度测云资料" name="fifth">
+			<el-tab-pane label="双经纬度测云资料" name="F3">
 
 				<el-collapse v-model="collapseName_neph" accordion>
 					<el-collapse-item title="双经纬仪测云总表	" name="1">
@@ -186,7 +186,7 @@
 		el: '#introduce',
 		data() {
 			return {
-				activeName: 'first',
+				activeName: 'A2',
 				collapseName_cloud: ['1', '2', '3'],
 				collapseName_rain: ['1', '2'],
 				collapseName_salt: ['1', '2'],
@@ -202,7 +202,7 @@
 				this.$message.success('请求成功，等待服务器响应！');
 			},
 			pushTo(url) {
-				window.location.href = url;
+				window.location.href = url+'&showDataName='+this.activeName;
 			},
 
 			handleClick(tab, event) {
