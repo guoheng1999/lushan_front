@@ -67,15 +67,15 @@
 		</script>
 		<!-- End Header -->
 		<main id="main" style="margin-top: 107.19px;">
-			
+
 			<!-- ======= Breadcrumbs Section ======= -->
 			<section id="breadcrumbs" class="breadcrumbs">
 			</section>
 			<script>
 				$('#breadcrumbs').load('components/breadcrumbs.html')
 			</script>
-			<div id="inner-page-whyUs">
-				
+			<div id="inner-page-Customer">
+
 				<div>
 					<section class="inner-page" style="padding-top: 0px;">
 
@@ -85,61 +85,64 @@
 									<div id="whyUs-content">
 										<!-- 用户须知 -->
 										<!-- <div id="content-RYZX" v-if="flag==1"> -->
-											<el-card class="elcard">
-												<div class="about-top">
-													<div class="col-md-8 top-about" style="width: 100%;">
-														<h5 class="whyUs-title">用户须知</h5>
-														<p>
-															1.为了保证外场科学试验数据的安全，数据使用者需要填写数据使用申请表（见附件1）并签署数据使用协议（见附件2），若有违法使用数据集的行为，将承担相关法律责任。
-														</p>
-														<p>
-															2.为尊重知识产权、保障数据贡献者和服务者的权益，请数据使用者在基于本数据所产生的研究成果（包括项目评估报告、验收报告，以及学术论文或毕业论文等） 中标注数据来源，并按照文献引用方式标注需引用的参考文献（见附件3）。
-														</p>
-														<!-- <p>
+										<el-card class="elcard">
+											<div class="about-top">
+												<div class="col-md-8 top-about" style="width: 100%;">
+													<h5 class="whyUs-title">用户须知</h5>
+													<p>
+														1.为了保证外场科学试验数据的安全，数据使用者需要填写数据使用申请表（见附件1）并签署数据使用协议（见附件2），若有违法使用数据集的行为，将承担相关法律责任。
+													</p>
+													<p>
+														2.为尊重知识产权、保障数据贡献者和服务者的权益，请数据使用者在基于本数据所产生的研究成果（包括项目评估报告、验收报告，以及学术论文或毕业论文等）
+														中标注数据来源，并按照文献引用方式标注需引用的参考文献（见附件3）。
+													</p>
+													<!-- <p>
 															3.
 														</p> -->
-													</div>
-													<!-- <div class="col-md-4 about-in">
+												</div>
+												<!-- <div class="col-md-4 about-in">
 													<img class="img-responsive about-top-img"
 														src="./assets/img/introduce/庐山云雾试验站.jpg" alt=" ">
 												</div> -->
-													<div class="clearfix"> </div>
-												</div>
-											</el-card>
-				<div>
-					<el-row style="margin-top:40px; padding: 5px 5px 5px 0px; border-bottom: #1977CC solid 2px;">
-						<el- class="document-col" :span="24">
-							<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关附件</div>
-							</el-col>
-					</el-row>
-					<el-row style="padding: 5px 5px 5px 0px;">
-						<el-col :span="24">
-							<div class="grid-content bg-purple-dark">
-								<span><i class="el-icon-arrow-right">&nbsp;</i></span>
-								<el-link target="_blank" href="" type="primary">
-									附件1</el-link>
-							</div>
-						</el-col>
-						<el-col :span="24">
-							<div class="grid-content bg-purple-dark">
-								<span><i class="el-icon-arrow-right">&nbsp;</i></span>
-								<el-link target="_blank" href="" type="primary">附件2</el-link>
-							</div>
-						</el-col>
-						<el-col :span="24">
-							<div class="grid-content bg-purple-dark">
-								<span><i class="el-icon-arrow-right">&nbsp;</i></span>
-								<el-link target="_blank" href="" type="primary">
-									附件3
-								</el-link>
-							</div>
-						</el-col>
-					</el-row>
-				</div>
+												<div class="clearfix"> </div>
+											</div>
+										</el-card>
+										<div>
+											<el-row
+												style="margin-top:40px; padding: 5px 5px 5px 0px; border-bottom: #1977CC solid 2px;">
+												<el- class="document-col" :span="24">
+													<div class="grid-content bg-purple-dark el-icon-document">&nbsp;相关附件
+													</div>
+													</el-col>
+											</el-row>
+											<el-row style="padding: 5px 5px 5px 0px;">
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i class="el-icon-arrow-right">&nbsp;</i></span>
+														<el-link target="_blank" href="" type="primary">
+															附件1</el-link>
+													</div>
+												</el-col>
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i class="el-icon-arrow-right">&nbsp;</i></span>
+														<el-link target="_blank" href="" type="primary">附件2</el-link>
+													</div>
+												</el-col>
+												<el-col :span="24">
+													<div class="grid-content bg-purple-dark">
+														<span><i class="el-icon-arrow-right">&nbsp;</i></span>
+														<el-link target="_blank" href="" type="primary">
+															附件3
+														</el-link>
+													</div>
+												</el-col>
+											</el-row>
+										</div>
 										<!-- </div> -->
+									</div>
 								</div>
 							</div>
-						</div>
 					</section>
 				</div>
 			</div>
@@ -164,7 +167,7 @@
 	<script src="assets/js/components/breadcrumbs.js"></script>
 	<script>
 		new Vue({
-			el: '#inner-page-whyUs',
+			el: '#inner-page-Customer',
 			data() {
 				return {
 					flag: '1',
@@ -172,9 +175,7 @@
 					content_id: '1',
 				}
 			},
-			created() {
-				this.checkUrl()
-			},
+			created() {},
 			watch: {},
 			computed: {},
 			methods: {
@@ -189,13 +190,6 @@
 				changeContent(item) {
 					this.flag = item
 					// console.log(item)
-				},
-				checkUrl() {
-					href_str = window.location.href
-					this.content_id = href_str.split("flag=")[1][0]
-					// console.log(this.content_id)
-					this.flag = this.content_id
-					this.defaultActive = this.content_id
 				}
 			}
 		})
