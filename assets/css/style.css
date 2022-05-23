@@ -12,6 +12,7 @@
 
 body {
 	font-family: "Open Sans", sans-serif;
+	/* Open Sans */
 	color: #444444;
 }
 
@@ -37,7 +38,21 @@ h5,
 h6 {
 	font-family: "Raleway", sans-serif;
 }
+.fixed-top {
+    position: absolute!important;
+}
+#content {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 101.99px;
+	bottom: 1px;
+	overflow: auto;
+}
 
+.copyright {
+	font-family: "Open Sans", sans-serif;
+}
 
 /*--------------------------------------------------------------
 # Preloader
@@ -822,6 +837,10 @@ section {
 /*--------------------------------------------------------------
 # 用户须知
 --------------------------------------------------------------*/
+.customer {
+	margin-top: -60px;
+	width: 100%;
+}
 
 .customer p {
 	/* margin-bottom: 10px !important; */
@@ -832,6 +851,15 @@ section {
 	font-family: "宋体", serif, sans-serif;
 	font-size: 18px !important;
 	font-weight: 200;
+}
+
+.customer span {
+	color: #1977CC;
+	font-size: 18px;
+}
+
+.customer .icon:hover span {
+	color: #FFFFFF;
 }
 
 .document-col {
@@ -861,6 +889,10 @@ section {
 	text-indent: 2em;
 }
 
+.whyUs-title {
+	font-weight: bold;
+}
+
 /* 庐山云雾 */
 .about-top {
 	display: flex;
@@ -885,13 +917,13 @@ section {
 }
 
 .about {
-	padding: 5em 0;
+	/* padding: 5em 0; */
 }
 
 .about-in {
 	width: 40%;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 
 }
 
@@ -906,7 +938,7 @@ section {
 	font-size: 1.2em;
 	color: #000;
 	font-weight: 300;
-	line-height: 1.7em;
+	line-height: 2.0em;
 	margin: 1em 0;
 }
 
@@ -1055,8 +1087,18 @@ section {
 	font-size: 15px;
 	color: #848484;
 }
-
-
+.image {
+    width: 15.625rem;
+	height: 12.5rem;
+	margin: auto;
+    display: block;
+}
+.el-col-8{
+	width: -webkit-min-content;
+}
+.GCSY:hover{
+	cursor: pointer;
+}
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
@@ -1085,7 +1127,7 @@ section {
 	justify-content: center;
 	width: 64px;
 	height: 64px;
-	border: 2px solid #8dc2f1;
+	/* border: 2px solid #8dc2f1; */
 	border-radius: 50px;
 	transition: 0.5s;
 }

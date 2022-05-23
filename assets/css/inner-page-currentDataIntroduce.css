@@ -23,9 +23,9 @@
 	line-height: 35px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
+	font-family: "宋体", serif, sans-serif;
 	/*cursive, */
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 200;
 }
 
@@ -104,6 +104,8 @@
 }
 
 .el-tag {
+	
+    font-size: 13px;
 	color: #1977cc;
 }
 
@@ -117,7 +119,7 @@
 }
 
 .el-collapse-item__header {
-	font-size: 16px !important;
+	font-size: 17px !important;
 	background-color: #F1F7FD !important;
 	padding: 1.25rem;
 	margin-bottom: 10px;
@@ -125,20 +127,32 @@
 }
 
 .el-descriptions-item__container {
-	display: -webkit-box;
-	display: -ms-flexbox;
+	/* display: -webkit-box; */
+/* 	display: -ms-flexbox;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
+	flex-wrap: wrap; */
+}
+.el-descriptions-item__label{
+	width: 22%;
+}.el-descriptions-item__content{
+	width: 74%;
+}
+.el-descriptions-item__label:not(.is-bordered-label) {
+    margin-right: 10px;
 }
 .my-label{
 	color: #1977cc;
 }
 .my-content{
-	text-indent: 2em;
+	/* margin-left: 2em; */
+}
+.my-content-2{
+	/* margin-left: 7em;
+	text-indent: 0!important; */
 }
 .file-content{
-	margin-left: 2em;
+	/* margin-left: 2em; */
 }
 .my-content span:last-child{
 	margin-left: 40px;
@@ -150,6 +164,15 @@
 }
 .el-tabs__header .el-tabs__item.is-active, .el-tabs__header .el-tabs__item:hover{
     color: #1977CC;
+}
+.el-descriptions{
+	font-size: 16px;
+}
+.el-collapse-item__content {
+	font-size: 16px;
+}
+.el-link--inner {
+	font-size: 16px;
 }
 /* .el-descriptions-item p {
 	word-break: break-all;
