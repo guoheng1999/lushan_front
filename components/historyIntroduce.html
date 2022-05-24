@@ -197,14 +197,37 @@
 		beforeMount() {},
 		watch: {},
 		computed: {},
+		created(){
+			this.getShowDataName()
+		},
 		methods: {
 			downloadData() {
 				this.$message.success('请求成功，等待服务器响应！');
 			},
 			pushTo(url) {
+				href = window.location.href
+				if (href.indexOf('&showDataName=') != -1){
+					idx = href.indexOf('&showDataName=')
+					console.log(href.slice(idx, idx + 17))
+					href = href.replace(href.slice(idx, idx + 17), '')
+					console.log('href', href)
+					// window.location.href = href + '&showDataName=' + this.activeName
+					window.history.pushState(null, '', href + '&showDataName=' + this.activeName)
+					console.log(window.location.href)
+				}else{
+					window.history.pushState(null, '', href + '&showDataName=' + this.activeName)
+					console.log(window.location.href)
+				}
 				window.location.href = url+'&showDataName='+this.activeName;
 			},
-
+			getShowDataName(){
+				href = window.location.href
+				if(href.indexOf("showDataName=") != -1){
+					this.activeName = href.split('showDataName=')[1].slice(0, 3)
+				}else{
+					this.activeName = 'A2'
+				}
+			},
 			handleClick(tab, event) {
 				console.log(tab, event);
 			}

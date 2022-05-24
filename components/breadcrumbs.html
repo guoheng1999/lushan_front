@@ -6,6 +6,7 @@
 				<li><a href="index.html">首页</a></li>
 				<li v-for="(item, index) in breadcrumbs" :key="item" @click="toPage(item)"><a href="#">{{item}}</a></li>
 				<li>{{ pageName }}</li>
+				<li v-if="isWhyUs">{{whyUsPageName}}</li>
 			</ol>
 		</div>
 	</div>
@@ -27,9 +28,13 @@
 					'0': '历史观测数据',
 					'1': '现代设备观测数据'
 				},
+				isWhyUs: false,
 				pageName: '',
 				breadcrumbs: [],
-				deviceList: []
+				deviceList: [],
+				whyUsPageName: '',
+				whyUsPageNames: ['中国气象局人工影响天气中心', '庐山云雾物理试验基地', '观测试验'],
+				currentDataName: ['YCL', 'AWS', 'PRE', 'VIS', 'RSD', 'FSD', 'AERM', 'RRD', 'MRD']
 			}
 		},
 		mounted() {},
@@ -39,6 +44,7 @@
 			this.initDeviceName()
 			// this.initDataLevel()
 			this.initPageName()
+			this.initWhyUsPageName()
 		},
 		methods: {
 			initeDataTypeName() {
@@ -77,6 +83,13 @@
 					this.breadcrumbs.push('数据产品')
 				}
 			},
+			initWhyUsPageName(){
+				if (window.location.href.indexOf('inner-page-whyUs.html') != -1){
+					this.isWhyUs =true
+					idx = window.location.href.slice(window.location.href.indexOf('flag='), window.location.href.indexOf('flag=') + 6).split('=')[1]
+					this.whyUsPageName = this.whyUsPageNames[idx - 1]
+				}
+			},
 			toPage(item) {
 				switch (item) {
 					case '现代设备观测数据':
@@ -109,14 +122,14 @@
 						for (var i = 0; i < this.deviceList.length; i++) {
 							if (this.deviceList[i].deviceName == deviceName)
 							{
-								pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
+								pushTo('inner-page-currentDataIntroduce.html?datasets-type=2&showDataName='+this.currentDataName[i])
 							}
 						}
 				}
 				for (var i = 0; i < this.deviceList.length; i++) {
 					if (this.deviceList[i].deviceName == item)
 					{
-						pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
+						pushTo('inner-page-currentDataIntroduce.html?datasets-type=2&showDataName='+this.currentDataName[i])
 					}
 				}
 				
