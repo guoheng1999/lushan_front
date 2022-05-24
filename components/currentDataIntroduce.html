@@ -409,62 +409,62 @@
 		</el-collapse-item> -->
 		<!-- <el-collapse-item title="1级数据集" name="2"> -->
 			<el-row style="padding: 5px 5px 5px 0px;">
-				<el-col :span="24">
-					<div class="grid-content bg-purple-dark">
-						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
-						<el-link target="_blank" href="data/自动气象站.pdf" type="primary">
-							自动气象站</el-link>
-					</div>
-				</el-col>
-				<el-col :span="24">
-					<div class="grid-content bg-purple-dark">
-						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
-						<el-link target="_blank" href="data/雨量筒.pdf" type="primary">雨量筒</el-link>
-					</div>
-				</el-col>
-				<el-col :span="24">
-					<div class="grid-content bg-purple-dark">
-						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
-						<el-link target="_blank" href="data/能见度仪.pdf" type="primary">能见度仪
-						</el-link>
-					</div>
-				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==0">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/云高仪.pdf" type="primary">云高仪
 						</el-link>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==1">
+					<div class="grid-content bg-purple-dark">
+						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
+						<el-link target="_blank" href="data/自动气象站.pdf" type="primary">
+							自动气象站</el-link>
+					</div>
+				</el-col>
+				<el-col :span="24" v-if="active_id==2">
+					<div class="grid-content bg-purple-dark">
+						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
+						<el-link target="_blank" href="data/雨量筒.pdf" type="primary">雨量筒</el-link>
+					</div>
+				</el-col>
+				<el-col :span="24" v-if="active_id==3">
+					<div class="grid-content bg-purple-dark">
+						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
+						<el-link target="_blank" href="data/能见度仪.pdf" type="primary">能见度仪
+						</el-link>
+					</div>
+				</el-col>
+				<el-col :span="24" v-if="active_id==4">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/雨滴谱仪.pdf" type="primary">雨滴谱仪
 						</el-link>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==5">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/雾滴谱仪.pdf" type="primary">雾滴谱仪
 						</el-link>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==6">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/颗粒物仪.pdf" type="primary">颗粒物仪
 						</el-link>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==7">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/微雨雷达.pdf" type="primary">微雨雷达
 						</el-link>
 					</div>
 				</el-col>
-				<el-col :span="24">
+				<el-col :span="24" v-if="active_id==8">
 					<div class="grid-content bg-purple-dark">
 						<span><i class="el-icon-arrow-right">&nbsp;</i>1级数据集使用说明文档:</span>
 						<el-link target="_blank" href="data/微波辐射计.pdf" type="primary">微波辐射计

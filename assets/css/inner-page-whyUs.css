@@ -28,8 +28,13 @@
 	margin-top: 6px;
 }
 .whyUs-title{
+	font-size: 22px;
 	text-align: center;
 	font-weight: bold;
+}
+.whyUs-title hr{
+	color: #EEE;
+	width: 100%;
 }
 .about-top {
 	display: flex;
