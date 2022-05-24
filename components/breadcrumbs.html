@@ -21,8 +21,8 @@
 		data() {
 			return {
 				dataLevelDict: {
-					'0': '0级数据',
-					'1': '1级数据'
+					'0': '0级数据集下载',
+					'1': '1级数据集下载'
 				},
 				dataTypeDict: {
 					'0': '历史观测数据集',
@@ -71,12 +71,19 @@
 				}
 			},
 			initDataLevel() {
-				if (this.getDataLevel() != null){
-					this.breadcrumbs.push(this.dataLevelDict[this.getDataLevel()])
-				}
+				// if (this.getDataLevel() != null){
+				// 	this.breadcrumbs.push(this.dataLevelDict[this.getDataLevel()])
+				// }
 			},
 			initPageName() {
+				if (document.title == '下载数据'){
+					if (this.getDataLevel() != null){
+						this.pageName = this.dataLevelDict[this.getDataLevel()]
+						return
+					}
+				}
 				this.pageName = document.title
+				
 			},
 			initDatasetsName() {
 				if (this.getDatasetsType() != null){
@@ -117,7 +124,7 @@
 				// 	}
 				// }
 				
-				if (item.endsWith('级数据')){
+				if (item.endsWith('级数据集下载')){
 						deviceName = this.breadcrumbs[this.breadcrumbs.indexOf(item)-1]
 						for (var i = 0; i < this.deviceList.length; i++) {
 							if (this.deviceList[i].deviceName == deviceName)
@@ -160,7 +167,6 @@
 				if (window.location.href.indexOf('inner-page-currentData.html') != -1){
 					pushTo(document.referrer.split('/').pop())
 				}else{
-					console.log("111111")
 					window.history.back()
 				}
 			},
