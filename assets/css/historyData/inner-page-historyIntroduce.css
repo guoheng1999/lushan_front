@@ -64,15 +64,14 @@
 	position: relative;
 	color: #2c4964;
 }
-
 .Introduce-div p {
 	text-indent: 2em;
 	line-height: 35px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
-	/* font-family: "Raleway", serif, sans-serif; */
+	font-family: "宋体", serif, sans-serif;
 	/*cursive, */
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 200;
 }
 

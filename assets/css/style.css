@@ -51,6 +51,7 @@ h6 {
 }
 
 .copyright {
+	font-size: 15px;
 	font-family: "Open Sans", sans-serif;
 }
 
@@ -537,7 +538,7 @@ h6 {
 }
 
 #hero .btn-get-started {
-	font-family: "宋体", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	text-transform: uppercase;
 	font-weight: 500;
 	font-size: 16px;
