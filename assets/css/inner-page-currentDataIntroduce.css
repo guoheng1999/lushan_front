@@ -157,6 +157,10 @@
 .my-content span:last-child{
 	margin-left: 40px;
 }
+.level_align{
+	/* 指控描述与01级对齐 */
+	padding-left: 33px;
+}
 .el-tabs__nav-prev,.el-tabs__nav-next{
     color: #1977CC;
     font-size: 20px;
