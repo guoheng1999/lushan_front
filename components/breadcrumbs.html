@@ -25,8 +25,8 @@
 					'1': '1级数据'
 				},
 				dataTypeDict: {
-					'0': '历史观测数据',
-					'1': '现代设备观测数据'
+					'0': '历史观测数据集',
+					'1': '现代设备观测数据集'
 				},
 				isWhyUs: false,
 				pageName: '',
@@ -92,11 +92,11 @@
 			},
 			toPage(item) {
 				switch (item) {
-					case '现代设备观测数据':
+					case '现代设备观测数据集':
 						pushTo('inner-page-currentDataIntroduce.html?datasets-type=2')
 						break
 
-					case '历史观测数据':
+					case '历史观测数据集':
 						pushTo('inner-page-historyIntroduce.html?datasets-type=1')
 						break
 				}

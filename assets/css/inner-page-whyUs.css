@@ -27,26 +27,36 @@
 	/* width: 70%; */
 	margin-top: 6px;
 }
-.whyUs-title{
+
+.whyUs-title {
 	font-size: 22px;
 	text-align: center;
 	font-weight: bold;
 }
-.whyUs-title hr{
+
+.whyUs-title hr {
 	color: #EEE;
 	width: 100%;
 }
+
 .about-top {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
+
+.about-top h6 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 .about-in {
 	width: 66%;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 
 }
+
 .about-top-img {
 	background: none;
 	/* border: 2px solid #eaeaea; */
@@ -57,13 +67,16 @@
 	-o-transition: .5s all;
 	-ms-transition: .5s all; */
 }
-.GCSY{
-	width:30%;
+
+.GCSY {
+	width: 30%;
 }
+
 .about-top:hover .about-top-img {
 	padding: 0em;
 	transition: .5s all;
 }
+
 .top-about {
 	border: none;
 	padding: 2em 2em;
