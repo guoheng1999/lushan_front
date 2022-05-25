@@ -129,24 +129,15 @@
 		<!-- End #main -->
 
 		<!-- ======= Footer ======= -->
-		<footer id="footer">
-			<div class="container d-md-flex py-4">
-
-				<div class="me-md-auto text-center text-md-start">
-					<div class="copyright">
-						&copy; Copyright <strong><span style="font-weight: bold;">中国气象局人工影响天气中心</span></strong>. All
-						Rights Reserved
-					</div>
-
-				</div>
-			</div>
-		</footer>
+		<footer id="copyright" style="margin-top: 6%;"></footer>
 		<!-- End Footer -->
 
 		<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
 				class="bi bi-arrow-up-short"></i></a>
 
-
+		<script>
+			$("#copyright").load("components/copyright.html")
+		</script>
 	</body>
 
 	<script src="assets/js/login/login.js"></script>
@@ -261,8 +252,7 @@
 	<style>
 		/* 面包屑样式 start*/
 		.breadcrumbs {
-			margin-top: -3px;
-			padding: 0 0;
+			margin-top: -12px;
 		}
 
 		.breadcrumbs ol {

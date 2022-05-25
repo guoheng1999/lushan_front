@@ -1,30 +1,52 @@
-.register-form{
+.register-form {
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center;
 	justify-content: center;
 	flex-direction: column;
 }
-.upload-demo{
+
+.upload-demo {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-content: center;
 }
-.el-input{
+
+.el-input {
 	width: 335.5px;
 }
+
 .el-form-item__content {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+	display: flex;
+	align-content: center;
+	justify-content: center;
 }
-.el-register-btn{
+
+.el-register-btn {
 	margin-top: 3%;
 }
-#form-image{
+
+#form-image {
 	width: 335.5px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+}
+
+/* 面包屑样式 start*/
+.breadcrumbs {
+	margin-top: -12px;
+}
+
+.breadcrumbs ol {
+	font-size: 16px;
+}
+
+/* 面包屑样式 end*/
+.el-button--primary,
+.el-button--primary:focus {
+	color: #FFF;
+	background-color: #1977CC;
+	border-color: #1977CC;
 }

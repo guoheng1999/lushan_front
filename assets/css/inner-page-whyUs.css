@@ -1,3 +1,21 @@
+
+/* 面包屑样式 start*/
+.breadcrumbs {
+	margin-top: -5px;
+	padding: 0 0;
+}
+
+/* 返回按钮大小 */
+.el-button--text {
+	color: #1977CC;
+	font-size: 24px;
+}
+
+.breadcrumbs ol {
+	font-size: 16px;
+}
+
+/* 面包屑样式 end*/
 .whyUs {
 	display: flex;
 	flex-direction: row;

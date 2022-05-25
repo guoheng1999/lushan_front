@@ -10,41 +10,41 @@
 			<el-tab-pane label="云雾滴谱" name="A2">
 				<el-collapse v-model="collapseName_cloud">
 					<el-collapse-item title="云滴谱分析资料" name="1">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1959-1965年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所、庐山上站、庐山下站</el-descriptions-item>
 							<el-descriptions-item label="册数">18 </el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								454
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">A2</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
 					</el-collapse-item>
 					<el-collapse-item title="云滴谱统计资料" name="2">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1959-1965年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所</el-descriptions-item>
 							<el-descriptions-item label="册数">14 </el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								283
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">A3</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
 
 					</el-collapse-item>
 					<el-collapse-item title="雾滴谱普查资料" name="3">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1969年 </el-descriptions-item>
 							<el-descriptions-item label="地点">云南景洪、思茅、安徽屯溪、祁门、福建永安</el-descriptions-item>
 							<el-descriptions-item label="册数">5 </el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								259
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">a</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -55,27 +55,27 @@
 			<el-tab-pane label="雨滴谱" name="B2">
 				<el-collapse v-model="collapseName_rain" accordion>
 					<el-collapse-item title="雨滴谱年度统计" name="1">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1962-1963年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所、庐山、月弓堑、喇嘛塔、沙河等7个站</el-descriptions-item>
 							<el-descriptions-item label="册数">9 </el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								225
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">B2</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
 					</el-collapse-item>
 					<el-collapse-item title="雨滴谱统计总表" name="2">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1960-1965年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所</el-descriptions-item>
 							<el-descriptions-item label="册数">9</el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								154
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">B3</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -85,27 +85,27 @@
 			<el-tab-pane label="盐核" name="C1">
 				<el-collapse v-model="collapseName_salt" accordion>
 					<el-collapse-item title="盐核统计资料" name="1">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1964年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所</el-descriptions-item>
 							<el-descriptions-item label="册数">1</el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								41
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">C1</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
 					</el-collapse-item>
 					<el-collapse-item title="盐核总表" name="2">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1962-1964年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所、日照峰</el-descriptions-item>
 							<el-descriptions-item label="册数">18</el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								365
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">C2</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -116,14 +116,14 @@
 
 				<el-collapse v-model="collapseName_macr" accordion>
 					<el-collapse-item title="宏观资料" name="1">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1960-1962年</el-descriptions-item>
 							<el-descriptions-item label="地点">太乙峰、太乙村</el-descriptions-item>
 							<el-descriptions-item label="册数">22</el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								2910
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">D1</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
@@ -134,14 +134,14 @@
 
 				<el-collapse v-model="collapseName_neph" accordion>
 					<el-collapse-item title="双经纬仪测云总表	" name="1">
-						<el-descriptions>
+						<el-descriptions :column="2">
 							<el-descriptions-item label="时间">1962-1965年</el-descriptions-item>
 							<el-descriptions-item label="地点">天控所、沙河、九江</el-descriptions-item>
 							<el-descriptions-item label="册数">13</el-descriptions-item>
 							<el-descriptions-item label="图片数">
 								428
 							</el-descriptions-item>
-							<el-descriptions-item label="表格文档标识">
+							<el-descriptions-item label="表格文档标识" content-class-name="my-content">
 								<el-tag size="small">F3</el-tag>
 							</el-descriptions-item>
 						</el-descriptions>
