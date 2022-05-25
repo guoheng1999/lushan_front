@@ -1105,6 +1105,9 @@ section {
 .el-col-8{
 	width: -webkit-min-content;
 }
+.GCSY{
+	padding: 32px;
+}
 .GCSY:hover{
 	cursor: pointer;
 }
