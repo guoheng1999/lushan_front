@@ -99,14 +99,16 @@
 										<div class="choose-box">
 											<div style="padding: 5px;"><span style="margin-top: 5px;"
 													class="demonstration">起始日期</span>
-												<el-date-picker style="margin-top: 5px;" v-model="fromDate" type='date'
+												<el-date-picker style="margin-top: 5px;" v-model="fromDate" type='date' format="yyyy年MM月dd日"
+												value-format="yyyy-MM-dd"
 													placeholder="选择日期">
 												</el-date-picker>
 											</div>
 
 											<div style="padding: 5px;"><span style="margin-top: 5px;"
 													class="demonstration">结束日期</span>
-												<el-date-picker style="margin-top: 5px;" v-model="endDate" type='date'
+												<el-date-picker style="margin-top: 5px;" v-model="endDate" type='date' format="yyyy年MM月dd日"
+												value-format="yyyy-MM-dd"
 													placeholder="选择日期">
 												</el-date-picker>
 											</div>

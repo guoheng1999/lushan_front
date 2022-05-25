@@ -124,7 +124,7 @@
 			getuserpwd() {
 				console.log(getCookie('email'))
 				if (getCookie('email') != '' && getCookie('pwd') != '') {
-					this.ruleForm.email = getCookie('eamil')
+					this.ruleForm.email = getCookie('email')
 					this.ruleForm.pass = getCookie('pwd')
 					this.rememberpwd = true
 					this.ruleForm.email = sessionStorage.getItem('userdata').email
