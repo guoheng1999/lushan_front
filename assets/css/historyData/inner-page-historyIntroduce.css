@@ -7,11 +7,7 @@
 /* 面包屑样式 start*/
 .breadcrumbs {
 	margin-top: -5px;
-	padding: 0px 0;
-}
-
-.el-button.el-button--text {
-	/* padding: 0px; */
+	padding: 0 0;
 }
 
 .el-button--text {

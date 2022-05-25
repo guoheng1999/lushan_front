@@ -14,7 +14,7 @@
 			<el-tab-pane label="云高仪" name="YCL">
 				<div class="device_content">
 					<el-collapse v-model="collapseName_cloud">
-						<el-collapse-item title="Level2" name="1">
+						<el-collapse-item title="二级数据（Level2）" name="1">
 							<el-descriptions :column="1">
 								<el-descriptions-item label="观测要素" content-class-name="my-content">后向散射回波廓线
 								</el-descriptions-item>
@@ -35,7 +35,7 @@
 								</el-descriptions-item>
 							</el-descriptions>
 						</el-collapse-item>
-						<el-collapse-item title="Level3" name="2">
+						<el-collapse-item title="二级数据（Level3）" name="2">
 							<el-descriptions :column="1">
 								<el-descriptions-item label="观测要素" content-class-name="my-content">边界层高度和云底高度
 								</el-descriptions-item>
@@ -266,7 +266,7 @@
 			<el-tab-pane label="微雨雷达" name="RRD">
 				<div class="device_content">
 					<el-collapse v-model="collapseName_WYLD">
-						<el-collapse-item title="原始数据（level raw）" name="1">
+						<el-collapse-item title="原始数据（Level raw）" name="1">
 							<el-descriptions :column="1">
 								<el-descriptions-item label="观测要素" content-class-name="my-content">转换方程, 原始功率谱
 								</el-descriptions-item>
@@ -315,7 +315,7 @@
 								</el-descriptions-item>
 							</el-descriptions>
 						</el-collapse-item>
-						<el-collapse-item title="平均数据(Level ave)" name="3">
+						<el-collapse-item title="平均数据（Level ave）" name="3">
 							<el-descriptions :column="1">
 								<el-descriptions-item label="观测要素" content-class-name="my-content">
 									转化方程, FFT谱, 雨滴尺度谱, 雨滴数浓度谱, 路径积分衰减, 雷达反射率因子, 订正后的雷法反射率因子, 降水强度, 液态水含量, 垂直速度等
