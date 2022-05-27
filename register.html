@@ -338,6 +338,7 @@
 								if (res.data.code === 2000) {
 									sessionStorage.setItem('logintoken', res.data.token)
 									this.$refs.upload.submit();
+									sessionStorage.removeItem('logintoken')
 									this.resetForm()
 									// this.$message({
 									// 	type: 'success',
